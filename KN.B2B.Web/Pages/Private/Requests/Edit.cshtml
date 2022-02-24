@@ -1,0 +1,472 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Requests.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Request</h4>
+<hr />
+
+@** Modals *@
+@** Communication *@
+<div class="modal fade" tabindex="-1" role="dialog" id="communications-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modify a communication</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+@** -------------------------------------------------------------------------------------------------------- *@
+
+@** Products *@
+<div class="modal fade" tabindex="-1" role="dialog" id="products-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modify a product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+@** -------------------------------------------------------------------------------------------------------- *@
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="B2BRequest.Id" />
+    <div class="card-group">
+        <div class="card border-dark mb-3">
+            <div class="card-body text-dark">
+                <div class="form-group">
+                    <label asp-for="B2BRequest.RequestDate" class="control-label"></label>
+                    <input type="date" asp-for="B2BRequest.RequestDate" class="form-control" />
+                    <span asp-validation-for="B2BRequest.RequestDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="B2BRequest.Customer" />
+                    <label class="control-label">Please select a customer: </label>
+                    <select name="CustomerSelect" class="form-control" asp-for="B2BRequest.Customer" asp-items="@Model.Customers">
+                        @if (Model.B2BRequest.Customer != null)
+                        {
+                            <option selected>@Model.B2BRequest.Customer.Name</option>
+                            <option disabled></option>
+                            @*Empty option to separate current from available*@
+                        }
+                    </select>
+                    <span asp-validation-for="B2BRequest.Customer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.Comment" class="control-label"></label>
+                    <textarea asp-for="B2BRequest.Comment" class="form-control" rows="3"></textarea>
+                    @*<input asp-for="Request.Comment" class="form-control" />*@
+                    <span asp-validation-for="B2BRequest.Comment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.RequestDeadline" class="control-label"></label>
+                    <input type="date" asp-for="B2BRequest.RequestDeadline" class="form-control" />
+                    <span asp-validation-for="B2BRequest.RequestDeadline" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.StartStatus" class="control-label"></label>
+                    <select id="startStatus" class="form-control" onchange="toggleSample()" name="StartStatusSelect" asp-for="B2BRequest.StartStatus" asp-items="@Model.StartStatuses">
+                        @if (Model.B2BRequest.StartStatus != null)
+                        {
+                            <option value="@Model.B2BRequest.StartStatus.Id" selected>@Model.B2BRequest.StartStatus.Status</option>
+                            @*Default value - empty if creating a new B2BRequest *@
+                            <option disabled></option>
+                            @*Empty option to separate current from available*@
+                        }
+                    </select>
+                    <span asp-validation-for="B2BRequest.StartStatus" class="text-danger"></span>
+                </div>
+                <div class="card" id="sample" style="display:none">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="B2BRequest.SampleRequested" class="control-label"></label>
+                            <input type="date" asp-for="B2BRequest.SampleRequested" class="form-control" />
+                            <span asp-validation-for="B2BRequest.SampleRequested" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="B2BRequest.SampleSent" class="control-label"></label>
+                            <input type="date" asp-for="B2BRequest.SampleSent" class="form-control" />
+                            <span asp-validation-for="B2BRequest.SampleSent" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="B2BRequest.SampleApproved" class="control-label"></label>
+                            <input type="date" asp-for="B2BRequest.SampleApproved" class="form-control" />
+                            <span asp-validation-for="B2BRequest.SampleApproved" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-dark mb-3">
+            <div class="card-body text-dark">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="B2BRequest.ExpressProduction" /> @Html.DisplayNameFor(model => model.B2BRequest.ExpressProduction)
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="B2BRequest.ExpressDelivery" /> @Html.DisplayNameFor(model => model.B2BRequest.ExpressDelivery)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.DeliveryAddress" class="control-label"></label>
+                    <input asp-for="B2BRequest.DeliveryAddress" class="form-control" />
+                    <span asp-validation-for="B2BRequest.DeliveryAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="B2BRequest.DeliveryZip" />
+                    <label asp-for="B2BRequest.DeliveryZip" class="control-label"></label>
+                    <select name="ZipCodeSelect" class="form-control" asp-for="B2BRequest.DeliveryZip" asp-items="@Model.ZipCodes">
+                        @if (Model.B2BRequest.DeliveryZip != null)
+                        {
+                            <option selected>@Model.B2BRequest.DeliveryZip.ZipToZipRedux()</option>
+                            <option disabled></option>
+                            @*Empty option to separate current from available*@
+                        }
+                    </select>
+                    <span asp-validation-for="B2BRequest.DeliveryZip" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="B2BRequest.LegalAction" />
+                        @Html.DisplayNameFor(model => model.B2BRequest.LegalAction)
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" id="trustPilot" type="checkbox" onchange="toggleTrustPilotDate()" asp-for="B2BRequest.TrustPilot" />
+                        @Html.DisplayNameFor(model => model.B2BRequest.TrustPilot)
+                    </label>
+                </div>
+                <div id="trustPilotDate" class="form-group" style="display:none">
+                    <label asp-for="B2BRequest.TrustPilotDate" class="control-label"></label>
+                    <input type="date" asp-for="B2BRequest.TrustPilotDate" class="form-control" />
+                    <span asp-validation-for="B2BRequest.TrustPilotDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.EndStatus" class="control-label"></label>
+                    <select id="endStatus" name="EndStatusSelect" onchange="toggleCancellationReason()" class="form-control" asp-for="B2BRequest.EndStatus" asp-items="@Model.EndStatuses">
+                        @if (Model.B2BRequest.EndStatus != null)
+                        {
+                            <option value="@Model.B2BRequest.EndStatus.Id" selected>@Model.B2BRequest.EndStatus.Status</option>
+                            @*Default value - empty if creating a new B2BRequest *@
+                            @*Empty option to separate current from available*@
+                            <option disabled></option>
+                        }
+                    </select>
+                    <span asp-validation-for="B2BRequest.EndStatus" class="text-danger"></span>
+                </div>
+                <div id="cancellationReason" style="display:none" class="form-group">
+                    <label asp-for="B2BRequest.CancellationReason" class="control-label"></label>
+                    <select name="CancellationReasonSelect" class="form-control" asp-for="B2BRequest.CancellationReason" asp-items="@Model.CancellationReasons">
+                        @if (Model.B2BRequest.CancellationReason != null)
+                        {
+                            @*Default value - empty if creating a new B2BRequest *@
+                            <option selected>@Model.B2BRequest.CancellationReason.Reason</option> 
+                        }
+                    </select>
+                    <span asp-validation-for="B2BRequest.CancellationReason" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card border-dark mb-3">
+            <div class="card-body text-dark">
+                <div class="form-group">
+                    <label asp-for="B2BRequest.B2bOrderNumber" class="control-label"></label>
+                    <input asp-for="B2BRequest.B2bOrderNumber" class="form-control" />
+                    <span asp-validation-for="B2BRequest.B2bOrderNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.B2bInvoiceNumber" class="control-label"></label>
+                    <input asp-for="B2BRequest.B2bInvoiceNumber" class="form-control" />
+                    <span asp-validation-for="B2BRequest.B2bInvoiceNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.InvoiceDate" class="control-label"></label>
+                    <input type="date" asp-for="B2BRequest.InvoiceDate" class="form-control" />
+                    <span asp-validation-for="B2BRequest.InvoiceDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.DueDate" class="control-label"></label>
+                    <input type="date" asp-for="B2BRequest.DueDate" class="form-control" />
+                    <span asp-validation-for="B2BRequest.DueDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.PaymentDate" class="control-label"></label>
+                    <input type="date" asp-for="B2BRequest.PaymentDate" class="form-control" />
+                    <span asp-validation-for="B2BRequest.PaymentDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="B2BRequest.CurrentStatus" class="control-label"></label>
+                    <select class="form-control" name="CurrentStatusSelect" asp-for="B2BRequest.CurrentStatus" asp-items="@Model.CurrentStatuses">
+                        @if (Model.B2BRequest.CurrentStatus != null)
+                        {
+                            <option value="@Model.B2BRequest.CurrentStatus.Id" selected>@Model.B2BRequest.CurrentStatus.Name</option>
+                            @*Default value - empty if creating a new B2BRequest *@
+                        }
+                    </select>
+                    <span asp-validation-for="B2BRequest.CurrentStatus" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-dark mb-3">
+        <div class="card-header">
+            Products
+            @if (Model.B2BRequest.Id == 0)
+            {
+                <button style="margin-left:10px;" type="button" class="btn btn-primary" disabled>
+                    <i class="fa fa-plus"></i>
+                    Add new (Save your request first)
+                </button>
+            }
+            else
+            {
+                <button style="margin-left:10px;" type="button" class="btn btn-primary" onclick="AddProduct(this)" data-toggle="modal" data-target="#products-modal">
+                    <i class="fa fa-plus"></i>
+                    Add new
+                </button>
+            }
+        </div>
+        <div class="card-body text-dark scroll-max-threeHundred">
+            @if (Model.Products.Count() > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> B2B Category </th>
+                            <th> Supplier </th>
+                            <th> SKU </th>
+                            <th> Price </th>
+                            <th> Vol. </th>
+                            <th> Total </th>
+                            <th> Order Date</th>
+                            <th> Ship. Date</th>
+                            <th> Delivery Date</th>
+                            <th> Track & Trace</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products.OrderBy(x => x.OrderDate))
+                        {
+                            <tr>
+                                <td>
+                                    @(product.B2BCategory == null ? "" : product.B2BCategory.Category)
+                                </td>
+                                <td>
+                                    @(product.Supplier == null ? "" : product.Supplier.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => product.SKU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => product.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => product.Volume)
+                                </td>
+                                <td>
+                                    @(product.Price * product.Volume)
+                                </td>
+                                <td>
+                                    @product.OrderDate.Date.ToShortDateString()
+                                </td>
+                                <td>
+                                    @(product.ShippingDate == null ? "" : product.ShippingDate.Value.Date.ToShortDateString())
+                                </td>
+                                <td>
+                                    @(product.DeliveryDate == null ? "" : product.DeliveryDate.Value.Date.ToShortDateString())
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => product.TrackingCode)
+                                </td>
+                                <td style="text-align:right">
+                                    <button type="button" class="btn btn-lg" onclick="EditProduct(this)" data-prod-id="@product.Id" data-toggle="modal" data-target="#products-modal">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <label class="control-label">No products for this request yet.</label>
+            }
+        </div>
+    </div>
+    <div class="card border-dark mb-3">
+        <div class="card-header">
+            Communications
+            @if (Model.B2BRequest.Id == 0)
+            {
+                <button style="margin-left:10px;" type="button" class="btn btn-primary" disabled>
+                    <i class="fa fa-plus"></i>
+                    Add new (Save your request first)
+                </button>
+            }
+            else
+            {
+                <button style="margin-left:10px;" type="button" class="btn btn-primary" onclick="AddComm(this)" data-toggle="modal" data-target="#communications-modal">
+                    <i class="fa fa-plus"></i>
+                    Add new
+                </button>
+            }
+        </div>
+        <div class="card-body text-dark scroll-max-threeHundred">
+            @if (Model.Communications.Count() > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> Date </th>
+                            <th> Note </th>
+                            <th> With whom? </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var communication in Model.Communications)
+                        {
+                            <tr>
+                                <td>
+                                    @communication.Date.ToShortDateString()
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => communication.Note)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(item => communication.Recipient)
+                                </td>
+                                <td style="text-align:right">
+                                    <button type="button" class="btn btn-lg" onclick="EditComm(this)" data-comm-id="@communication.Id" data-toggle="modal" data-target="#communications-modal">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <label class="control-label">No communications about this request yet.</label>
+            }
+        </div>
+    </div>
+    <hr />
+    <div>
+        <button id="save" class="btn btn-success" type="submit">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        |
+        @if (Model.B2BRequest.Id == 0)
+        {
+            <button disabled class="btn btn-danger" type="reset">
+                <i class="fas fa-trash-alt"></i>
+                Delete
+            </button>
+        }
+        else
+        {
+            <a class="btn btn-danger" type="reset" asp-page="./Delete" asp-route-id="@Model.B2BRequest.Id">
+                <i class="fas fa-trash-alt"></i>
+                Delete
+            </a>
+        }
+        |
+        <a class="btn btn-secondary" type="reset" asp-page="./Index">
+            <i class="fa fa-list"></i>
+            Back
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/unsaved.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        function AddComm() {
+            $('.modal-body').load(`/Private/Requests/Communications/Edit?reqId=${@Model.B2BRequest.Id}`);
+        }
+
+        function EditComm(elem) {
+            var id = $(elem).data('comm-id');
+            $('.modal-body').load(`/Private/Requests/Communications/Edit?id=${id}&reqId=${@Model.B2BRequest.Id}`);
+        }
+
+        function AddProduct() {
+            $('.modal-body').load(`/Private/Requests/Products/Edit?reqId=${@Model.B2BRequest.Id}`);
+        }
+
+        function EditProduct(elem) {
+            var id = $(elem).data('prod-id');
+            $('.modal-body').load(`/Private/Requests/Products/Edit?id=${id}&reqId=${@Model.B2BRequest.Id}`);
+        }
+    </script>
+
+    <script type="text/javascript">
+        function toggleTrustPilotDate() {
+            var x = document.getElementById("trustPilotDate");
+            if (document.getElementById('trustPilot').checked) {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function toggleCancellationReason() {
+            var selectedReason = document.getElementById("endStatus");
+            var status = '@ConstValues.CancelledEndStatusId';
+            var cancellationReason = document.getElementById("cancellationReason");
+            if (selectedReason.value === status) {
+                cancellationReason.style.display = "block";
+            }
+            else {
+                cancellationReason.style.display = "none";
+            }
+        }
+
+        function toggleSample() {
+            var selectedReason = document.getElementById("startStatus");
+            var status = '@ConstValues.SampleStatusId';
+            var cancellationReason = document.getElementById("sample");
+            if (selectedReason.value === status) {
+                cancellationReason.style.display = "block";
+            }
+            else {
+                cancellationReason.style.display = "none";
+            }
+        }
+
+        function windowToggle() {
+            toggleSample();
+            toggleCancellationReason();
+            toggleTrustPilotDate();
+        }
+
+        window.onload = windowToggle(); //trigger on load to show the field if appropriate value
+    </script>
+    
+}

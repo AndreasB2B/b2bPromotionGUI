@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KN.B2B.Web", "KN.B2B.Web\KN.B2B.Web.csproj", "{1CF54A7C-9B1C-4E22-B348-8170A900F899}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KN.B2B.Model", "KN.B2B.Model\KN.B2B.Model.csproj", "{B3C0DFC1-5BAA-4D62-B579-B4ED6532A633}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KN.B2B.Data", "KN.B2B.Data\KN.B2B.Data.csproj", "{FF410307-CDCF-4F3F-BCEC-363013BF692D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{F475D59B-836F-48A4-852B-2C52B386BAE6}"
+	ProjectSection(SolutionItems) = preProject
+		..\EFCore.CLI.Cheatsheet.md = ..\EFCore.CLI.Cheatsheet.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KN.Messaging.SendGrid", "KN.Messaging.SendGrid\KN.Messaging.SendGrid.csproj", "{3E87BCA4-BD56-43DB-9D7B-B9EC45131793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KN.B2B.Tests", "KN.B2B.Tests\KN.B2B.Tests.csproj", "{0676268F-F2EF-4D55-A2F1-7F37A766D593}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CF54A7C-9B1C-4E22-B348-8170A900F899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF54A7C-9B1C-4E22-B348-8170A900F899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF54A7C-9B1C-4E22-B348-8170A900F899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF54A7C-9B1C-4E22-B348-8170A900F899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C0DFC1-5BAA-4D62-B579-B4ED6532A633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C0DFC1-5BAA-4D62-B579-B4ED6532A633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C0DFC1-5BAA-4D62-B579-B4ED6532A633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C0DFC1-5BAA-4D62-B579-B4ED6532A633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF410307-CDCF-4F3F-BCEC-363013BF692D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF410307-CDCF-4F3F-BCEC-363013BF692D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF410307-CDCF-4F3F-BCEC-363013BF692D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF410307-CDCF-4F3F-BCEC-363013BF692D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E87BCA4-BD56-43DB-9D7B-B9EC45131793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E87BCA4-BD56-43DB-9D7B-B9EC45131793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E87BCA4-BD56-43DB-9D7B-B9EC45131793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E87BCA4-BD56-43DB-9D7B-B9EC45131793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0676268F-F2EF-4D55-A2F1-7F37A766D593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0676268F-F2EF-4D55-A2F1-7F37A766D593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0676268F-F2EF-4D55-A2F1-7F37A766D593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0676268F-F2EF-4D55-A2F1-7F37A766D593}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C184B367-023C-42D0-BF54-23ECF6F5D5D8}
+	EndGlobalSection
+EndGlobal

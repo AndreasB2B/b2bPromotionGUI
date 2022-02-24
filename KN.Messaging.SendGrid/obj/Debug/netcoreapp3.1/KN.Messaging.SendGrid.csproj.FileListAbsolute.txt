@@ -1,0 +1,10 @@
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.deps.json
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.pdb
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.csproj.AssemblyReference.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.AssemblyInfoInputs.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.AssemblyInfo.cs
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.csproj.CoreCompileInputs.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.pdb

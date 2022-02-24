@@ -1,0 +1,125 @@
+﻿@using KN.B2B.Model
+@model Customer
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input disabled asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Att" class="control-label"></label>
+            <input disabled asp-for="Att" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="JobTitle" class="control-label"></label>
+            <select disabled class="form-control" asp-for="JobTitle">
+                @if (Model.JobTitle != null)
+                {
+                    <option selected>@Model.JobTitle.Title</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input disabled asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ZipCode" class="control-label"></label>
+            <select disabled class="form-control" asp-for="ZipCode">
+                @if (Model.ZipCode != null)
+                {
+                    <option selected>@Model.ZipCode.ToString()</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telephone" class="control-label"></label>
+            <input disabled asp-for="Telephone" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input disabled asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input disabled class="form-check-input" asp-for="Showroom" />
+                Showroom visit?
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-md-offset-2">
+        <div class="form-group">
+            <label asp-for="Industry" class="control-label"></label>
+            <select disabled class="form-control" asp-for="Industry">
+                @if (Model.Industry != null)
+                {
+                    <option selected>@Model.Industry.Industry</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="CVR" class="control-label"></label>
+            <input disabled asp-for="CVR" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="EAN" class="control-label"></label>
+            <input disabled asp-for="EAN" class="form-control" />
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input disabled class="form-check-input" asp-for="Newsletter" />
+                Woud like a newsletter?
+            </label>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="InvoicingAddress" class="control-label"></label>
+                    <input disabled asp-for="InvoicingAddress" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="InvoicingZip" class="control-label"></label>
+                    <select disabled class="form-control" asp-for="InvoicingZip">
+                        @if (Model.InvoicingZip != null)
+                        {
+                            <option selected>@Model.InvoicingZip.ToString()</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InvoicingEmail" class="control-label"></label>
+                    <input disabled asp-for="InvoicingEmail" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Channel" class="control-label"></label>
+            <select disabled class="form-control" asp-for="Channel">
+                @if (Model.Channel != null)
+                {
+                    <option selected>@Model.Channel.Channel</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Reseller" class="control-label"></label>
+            <select disabled class="form-control" asp-for="Reseller">
+                @if (Model.Reseller != null)
+                {
+                    <option selected>@Model.Reseller.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="B2BResponsible" class="control-label"></label>
+            <select disabled class="form-control" asp-for="B2BResponsible">
+                @if (Model.B2BResponsible != null)
+                {
+                    <option selected>@Model.B2BResponsible.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>

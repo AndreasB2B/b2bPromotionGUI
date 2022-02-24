@@ -1,0 +1,156 @@
+﻿@page
+@{
+    Layout = null;
+}
+@model KN.B2B.Web.Pages.Private.Requests.Products.EditModel
+
+<form method="post">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Product.Id" />
+        <input type="hidden" asp-for="ParentRequest.Id" />
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Product.SKU" class="control-label"></label>
+                <input disabled placeholder="Upcoming feature" asp-for="Product.SKU" class="form-control" />
+                <span asp-validation-for="Product.SKU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Product.B2BCategory" />
+                <label asp-for="Product.B2BCategory" class="control-label"></label>
+                <select name="B2BCategorySelect" class="form-control" asp-for="Product.B2BCategory" asp-items="@Model.B2BCategories">
+                    @if (Model.Product.B2BCategory != null)
+                    {
+                        <option selected>@Model.Product.B2BCategory.Category</option>
+                        <option disabled></option>
+                        @*Empty option to separate current from available*@
+                    }
+                </select>
+                <span asp-validation-for="Product.B2BCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Product.Supplier" />
+                <label asp-for="Product.Supplier" class="control-label"></label>
+                <select name="SupplierSelect" class="form-control" asp-for="Product.Supplier" asp-items="@Model.Suppliers">
+                    @if (Model.Product.Supplier != null)
+                    {
+                        <option selected>@Model.Product.Supplier.Name</option>
+                        <option disabled></option>
+                        @*Empty option to separate current from available*@
+                    }
+                </select>
+                <span asp-validation-for="Product.Supplier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" rows="3" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Volume" class="control-label"></label>
+                <input asp-for="Product.Volume" class="form-control" />
+                <span asp-validation-for="Product.Volume" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Product.OrderDate" class="control-label"></label>
+                <input type="date" asp-for="Product.OrderDate" class="form-control" />
+                <span asp-validation-for="Product.OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.ShippingDate" class="control-label"></label>
+                <input type="date" asp-for="Product.ShippingDate" class="form-control" />
+                <span asp-validation-for="Product.ShippingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.DeliveryDate" class="control-label"></label>
+                <input type="date" asp-for="Product.DeliveryDate" class="form-control" />
+                <span asp-validation-for="Product.DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.TrackingCode" class="control-label"></label>
+                <input asp-for="Product.TrackingCode" class="form-control" />
+                <span asp-validation-for="Product.TrackingCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Comment" class="control-label"></label>
+                <textarea asp-for="Product.Comment" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Product.Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Product.Complaint" />
+                <label asp-for="Product.Complaint" class="control-label"></label>
+                <select name="ComplaintSelect" class="form-control" asp-for="Product.Complaint" asp-items="@Model.Complaints">
+                    @if (Model.Product.Complaint != null)
+                    {
+                        <option selected>@Model.Product.Complaint.Cause</option>
+                        <option disabled></option>
+                        @*Empty option to separate current from available*@
+                    }
+                    else
+                    {
+                        <option selected></option>
+                    }
+                </select>
+                <span asp-validation-for="Product.Complaint" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <div class="left-sided">
+            <button asp-page-handler="Product" class="btn btn-success" type="submit">
+                <i class="fas fa-save"></i>
+                Save
+            </button>
+            |
+            <a class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-list"></i>
+                Back
+            </a>
+        </div>
+        <div class="right-sided">
+            @if (Model.Product.Id == 0)
+            {
+                <button disabled class="btn btn-danger" type="reset">
+                    <i class="fas fa-trash-alt"></i>
+                    Delete
+                </button>
+            }
+            else
+            {
+                <button id="toggledDeleteButton" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="@Model.Product.Id">
+                    <i class="fas fa-trash-alt"></i>
+                    Delete
+                </button>
+            }
+            @*<button id="toggledConfirmDeleteButton" style="display:none" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="@Model.Product.Id">
+                    <i class="fas fa-trash-alt"></i>
+                    You sure?
+                </button>*@
+        </div>
+    </div>
+</form>
+
+@*<script>
+        //$(button).on('click', '#toggledDeleteButton', function () {
+        //    alert("Clicked");
+        //    $('#toggledDeleteButton').hide();
+        //    $('#toggledConfirmDeleteButton').show();
+        //});
+        //function toggleDeleteButton() {
+            //var butt1 = document.getElementById("toggledDeleteButton");
+            //var butt2 = document.getElementById("toggledConfirmDeleteButton");
+            //if (butt1.style.display !== "none") {
+            //    butt1.style.display = "none";
+            //    butt2.style.display = "block";
+            //    window.alert("Toggled! " + "Delete is: " + butt1.style.display + " Confirm is: " + butt2.style.display);
+            //} else {
+            //    butt1.style.display = "block";
+            //    butt2.style.display = "none";
+            //    window.alert("Toggled back! " + "Delete is: " + butt1.style.display + " Confirm is: " + butt2.style.display);
+            //}
+        //}
+    </script>*@
+

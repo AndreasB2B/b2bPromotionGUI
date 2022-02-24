@@ -1,0 +1,56 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Masterdata.EndStatuses.EditModel
+
+@{
+    ViewData["Title"] = "Edit End Status";
+}
+
+<h1>Edit</h1>
+
+<h4>End Status</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EndStatus.Id" />
+            <div class="form-group">
+                <label asp-for="EndStatus.Status" class="control-label"></label>
+                <input asp-for="EndStatus.Status" class="form-control" />
+                <span asp-validation-for="EndStatus.Status" class="text-danger"></span>
+            </div>
+            <hr />
+            <div>
+                <button id="save" class="btn btn-success" type="submit">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+                |
+                @if (Model.EndStatus.Id == 0)
+                {
+                    <button disabled class="btn btn-danger" type="reset">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </button>
+                }
+                else
+                {
+                    <a class="btn btn-danger" type="reset" asp-page="./Delete" asp-route-id="@Model.EndStatus.Id">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </a>
+                }
+                |
+                <a class="btn btn-secondary" type="reset" asp-page="./Index">
+                    <i class="fa fa-list"></i>
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/unsaved.js" asp-append-version="true"></script>
+}

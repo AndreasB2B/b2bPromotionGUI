@@ -1,0 +1,52 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Masterdata.CancellationReasons.IndexModel
+
+@{
+    ViewData["Title"] = "Cancellation Reason Index";
+}
+
+<h1>Cancellation Reasons</h1>
+
+<p>
+    <a asp-page="./Edit" class="btn btn-primary">
+        <i class="fa fa-plus"></i>
+        Add new
+    </a>
+    <a class="btn btn-secondary" asp-page="../Index">
+        <i class="fa fa-list"></i>
+        Main
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CancellationReasons[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CancellationReasons[0].Reason)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CancellationReasons) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td style="text-align:right">
+                <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@item.Id">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@item.Id">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

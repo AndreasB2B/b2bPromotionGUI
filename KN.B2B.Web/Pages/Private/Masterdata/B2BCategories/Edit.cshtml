@@ -1,0 +1,78 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Masterdata.B2BCategories.EditModel
+
+@{
+    ViewData["Title"] = "Edit B2BCategory";
+}
+
+<h1>Edit</h1>
+
+<h4>B2BCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="B2BCategory.Id" />
+            <div class="form-group">
+                <label asp-for="B2BCategory.Category" class="control-label"></label>
+                <input asp-for="B2BCategory.Category" class="form-control" />
+                <span asp-validation-for="B2BCategory.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCategory.CategoryDK" class="control-label"></label>
+                <input asp-for="B2BCategory.CategoryDK" class="form-control" />
+                <span asp-validation-for="B2BCategory.CategoryDK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="B2BCategory.CategoryGroup" />
+                @if (Model.B2BCategory.CategoryGroup == null)
+                {
+                    <label class="control-label">Please select a category group: </label>
+                    <select name="B2BGroupSelect" class="form-control" asp-for="B2BCategory.CategoryGroup" asp-items="@Model.B2BCategoryGroups"></select>
+                }
+                else
+                {
+                    <label asp-for="B2BCategory.CategoryGroup" class="control-label"></label>
+                    <select name="B2BGroupSelect" class="form-control" asp-for="B2BCategory.CategoryGroup" asp-items="@Model.B2BCategoryGroups">
+                        <option selected>@Model.B2BCategory.CategoryGroup.CategoryGroup</option>
+                        <option disabled></option> @*Empty option to separate current from available*@
+                    </select>
+                }
+                <span asp-validation-for="B2BCategory.CategoryGroup" class="text-danger"></span>
+            </div>
+            <hr />
+            <div>
+                <button id="save" class="btn btn-success" type="submit">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+                |
+                @if (Model.B2BCategory.Id == 0)
+                {
+                    <button disabled class="btn btn-danger" type="reset">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </button>
+                }
+                else
+                {
+                    <a class="btn btn-danger" type="reset" asp-page="./Delete" asp-route-id="@Model.B2BCategory.Id">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </a>
+                }
+                |
+                <a class="btn btn-secondary" type="reset" asp-page="./Index">
+                    <i class="fa fa-list"></i>
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/unsaved.js" asp-append-version="true"></script>
+}

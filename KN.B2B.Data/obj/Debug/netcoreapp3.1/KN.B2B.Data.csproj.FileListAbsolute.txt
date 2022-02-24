@@ -1,0 +1,13 @@
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\bin\Debug\netcoreapp3.1\KN.B2B.Data.deps.json
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\bin\Debug\netcoreapp3.1\KN.B2B.Data.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\bin\Debug\netcoreapp3.1\KN.B2B.Data.pdb
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\bin\Debug\netcoreapp3.1\KN.B2B.Model.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\bin\Debug\netcoreapp3.1\KN.B2B.Model.pdb
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.csproj.AssemblyReference.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.AssemblyInfoInputs.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.AssemblyInfo.cs
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.csproj.CoreCompileInputs.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.csproj.CopyComplete
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Data\obj\Debug\netcoreapp3.1\KN.B2B.Data.pdb

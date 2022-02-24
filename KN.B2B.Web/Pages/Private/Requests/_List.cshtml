@@ -1,0 +1,70 @@
+﻿@using KN.B2B.Model
+@model IList<Request>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Req. ID
+            </th>
+            <th>
+                Cust. ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Customer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].RequestDeadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].StartStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].EndStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].DueDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => request.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.Customer.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.Customer.Name)
+                </td>
+                <td>
+                    @request.RequestDeadline.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.StartStatus.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => request.EndStatus.Status)
+                </td>
+                <td>
+                    @if (request.DueDate.HasValue)
+                    {
+                        request.DueDate.Value.ToShortDateString();
+                    }
+                </td>
+                <td style="text-align:right" width="13%">
+                    <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@request.Id">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@request.Id">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

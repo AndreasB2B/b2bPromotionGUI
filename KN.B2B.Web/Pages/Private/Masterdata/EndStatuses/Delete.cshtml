@@ -1,0 +1,32 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Masterdata.EndStatuses.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete End Status";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <partial name="_Details" model="@Model.EndStatus" />
+    <hr />
+    <form method="post">
+        <input type="hidden" asp-for="EndStatus.Id" />
+        <button class="btn btn-danger" type="submit">
+            <i class="fas fa-trash-alt"></i>
+            Delete
+        </button>
+        |
+        <a class="btn btn-info" type="reset" asp-page="./Edit" asp-route-id="@Model.EndStatus.Id">
+            <i class="fas fa-edit"></i>
+            Edit
+        </a>
+        |
+        <a class="btn btn-secondary" asp-page="./Index">
+            <i class="fa fa-list"></i>
+            Back
+        </a>
+    </form>
+</div>

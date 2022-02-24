@@ -1,0 +1,149 @@
+﻿@using KN.B2B.Model
+@model Request
+
+<div class="card-group">
+    <div class="card border-dark mb-3">
+        <div class="card-body text-dark">
+            <div class="form-group">
+                <label asp-for="RequestDate" class="control-label"></label>
+                <input disabled type="date" asp-for="RequestDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Customer" />
+                <label asp-for="Customer" class="control-label"></label>
+                <select disabled name="CustomerSelect" class="form-control" asp-for="Customer">
+                    @if (Model.Customer != null)
+                    {
+                        <option selected>@Model.Customer.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <textarea disabled asp-for="Comment" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestDeadline" class="control-label"></label>
+                <input disabled type="date" asp-for="RequestDeadline" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="StartStatus" class="control-label"></label>
+                <select disabled id="startStatus" class="form-control" asp-for="StartStatus">
+                    @if (Model.StartStatus != null)
+                    {
+                        <option value="@Model.StartStatus.Id" selected>@Model.StartStatus.Status</option>
+                    }
+                </select>
+            </div>
+            <div class="card" id="sample" style="display:none">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="SampleRequested" class="control-label"></label>
+                        <input disabled type="date" asp-for="SampleRequested" class="form-control" />
+                        <span asp-validation-for="SampleRequested" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SampleSent" class="control-label"></label>
+                        <input disabled type="date" asp-for="SampleSent" class="form-control" />
+                        <span asp-validation-for="SampleSent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SampleApproved" class="control-label"></label>
+                        <input disabled type="date" asp-for="SampleApproved" class="form-control" />
+                        <span asp-validation-for="SampleApproved" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-dark mb-3">
+        <div class="card-body text-dark">
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input disabled class="form-check-input" asp-for="ExpressProduction" /> @Html.DisplayNameFor(model => model.ExpressProduction)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input disabled class="form-check-input" asp-for="ExpressDelivery" /> @Html.DisplayNameFor(model => model.ExpressDelivery)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryAddress" class="control-label"></label>
+                <input disabled asp-for="DeliveryAddress" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryZip" class="control-label"></label>
+                <select disabled name="ZipCodeSelect" class="form-control" asp-for="DeliveryZip">
+                    @if (Model.DeliveryZip != null)
+                    {
+                        <option selected>@Model.DeliveryZip.ToString()</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input disabled class="form-check-input" asp-for="LegalAction" />
+                    @Html.DisplayNameFor(model => model.LegalAction)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input disabled class="form-check-input" type="checkbox" asp-for="TrustPilot" />
+                    @Html.DisplayNameFor(model => model.TrustPilot)
+                </label>
+            </div>
+            <div id="trustPilotDate" class="form-group" style="display:none">
+                <label asp-for="TrustPilotDate" class="control-label"></label>
+                <input disabled type="date" asp-for="TrustPilotDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EndStatus" class="control-label"></label>
+                <select id="endStatus" disabled class="form-control" asp-for="EndStatus">
+                    @if (Model.EndStatus != null)
+                    {
+                        <option value="@Model.EndStatus.Id" selected>@Model.EndStatus.Status</option>
+                    }
+                </select>
+            </div>
+            <div style="display:none" id="cancellationReason" class="form-group">
+                <label asp-for="CancellationReason" class="control-label"></label>
+                <select disabled class="form-control" asp-for="CancellationReason">
+                    @if (Model.CancellationReason != null)
+                    {
+                        <option value="@Model.CancellationReason.Id" selected>@Model.CancellationReason.Reason</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card border-dark mb-3">
+        <div class="card-body text-dark">
+            <div class="form-group">
+                <label asp-for="B2bInvoiceNumber" class="control-label"></label>
+                <input disabled asp-for="B2bInvoiceNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceDate" class="control-label"></label>
+                <input disabled type="date" asp-for="InvoiceDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DueDate" class="control-label"></label>
+                <input disabled type="date" asp-for="DueDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentDate" class="control-label"></label>
+                <input disabled type="date" asp-for="PaymentDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentStatus" class="control-label"></label>
+                <select disabled class="form-control" asp-for="CurrentStatus">
+                    @if (Model.CurrentStatus != null)
+                    {
+                        <option value="@Model.CurrentStatus.Id" selected>@Model.CurrentStatus.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

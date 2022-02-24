@@ -1,0 +1,10 @@
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.deps.json
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.pdb
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.AssemblyReference.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.AssemblyInfoInputs.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.AssemblyInfo.cs
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.CoreCompileInputs.cache
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.dll
+C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.pdb

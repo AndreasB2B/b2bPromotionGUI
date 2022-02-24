@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = KN.Messaging.SendGrid
+build_property.ProjectDir = C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\

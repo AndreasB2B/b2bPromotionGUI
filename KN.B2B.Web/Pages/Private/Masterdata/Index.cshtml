@@ -1,0 +1,224 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Masterdata.IndexModel
+
+@{
+    ViewData["Title"] = "Masterdata";
+}
+
+<h1>Masterdata</h1>
+@if (TempData["Message"] != null && string.IsNullOrEmpty(TempData["Message"].ToString()) == false)
+{
+    <p style="color:red">
+        @TempData["Message"]
+    </p>
+}
+<hr />
+
+<form method="get">
+    <div class="card-deck">
+        <div class="card border-dark mb-2">
+            <div class="card-header">Suppliers</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.Suppliers
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="Suppliers/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">B2B Categories</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.B2BCategories
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="B2BCategories/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">B2B Category Groups</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.B2BCategoryGroups
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="B2BCategoryGroups/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">Job Titles</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.JobTitles
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="JobTitles/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="card-deck">
+        <div class="card border-dark mb-2">
+            <div class="card-header">Industries</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.Industries
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="Industries/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">Complaints</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.Complaints
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="Complaints/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">Start Statuses</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.StartStatuses
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="StartStatuses/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">End Statuses</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.EndStatuses
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="EndStatuses/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="card-deck">
+        <div class="card border-dark mb-2">
+            <div class="card-header">Resellers</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.Resellers
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="Resellers/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">B2B Responsibles</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.B2BResponsibles
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="B2BResponsibles/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">Cancellation Reasons</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.CancellationReasons
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="CancellationReasons/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">Customer Channels</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.CustomerChannels
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="CustomerChannels/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="card-deck">
+        <div class="card border-dark mb-2">
+            <div class="card-header">Current Statuses</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.CurrentStatuses
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="CurrentStatuses/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">Colours</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.Colours
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="Colours/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">B2B Print Positions</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.B2BPrintPositions
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="B2BPrintPositions/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+        <div class="card border-dark mb-2">
+            <div class="card-header">B2B Print Types</div>
+            <div class="card-body text-dark">
+                Total amount: @Model.B2BPrintTypes
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-page="B2BPrintTypes/Index">
+                    <i class="fas fa-info-circle"></i>
+                    View
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="card-deck">
+    </div>
+</form>

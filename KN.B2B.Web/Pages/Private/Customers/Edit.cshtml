@@ -1,0 +1,237 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Customers.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script src="~/js/unsaved.js" asp-append-version="true"></script>
+
+<h1>Edit</h1>
+@if (TempData["Message"] != null && string.IsNullOrEmpty(TempData["Message"].ToString()) == false)
+{
+    <p style="color:red">
+        @TempData["Message"]
+    </p>
+}
+
+<h4>Customer Details</h4>
+<hr />
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="B2BCustomer.Id" />
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Name" class="control-label"></label>
+                <input asp-for="B2BCustomer.Name" class="form-control" />
+                <span asp-validation-for="B2BCustomer.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Att" class="control-label"></label>
+                <input asp-for="B2BCustomer.Att" class="form-control" />
+                <span asp-validation-for="B2BCustomer.Att" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="B2BCustomer.JobTitle" />
+                <label asp-for="B2BCustomer.JobTitle" class="control-label"></label>
+                <select name="JobTitleSelect" class="form-control" asp-for="B2BCustomer.JobTitle" asp-items="@Model.JobTitles">
+                    @if (Model.B2BCustomer.JobTitle != null)
+                    {
+                        <option selected>@Model.B2BCustomer.JobTitle.Title</option>
+                        <option disabled></option>
+                        @*Empty option to separate current from available*@
+                    }
+                </select>
+                <span asp-validation-for="B2BCustomer.JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Address" class="control-label"></label>
+                <input asp-for="B2BCustomer.Address" class="form-control" />
+                <span asp-validation-for="B2BCustomer.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="B2BCustomer.ZipCode" />
+                <label asp-for="B2BCustomer.ZipCode" class="control-label"></label>
+                <select name="ZipCodeSelect" class="form-control" asp-for="B2BCustomer.ZipCode" asp-items="@Model.ZipCodes">
+                    @if (Model.B2BCustomer.ZipCode != null)
+                    {
+                        <option selected>@Model.B2BCustomer.ZipCode.ZipToZipRedux()</option>
+                        <option disabled></option>
+                        @*Empty option to separate current from available*@
+                    }
+                </select>
+                <span asp-validation-for="B2BCustomer.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Telephone" class="control-label"></label>
+                <input asp-for="B2BCustomer.Telephone" class="form-control" />
+                <span asp-validation-for="B2BCustomer.Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Email" class="control-label"></label>
+                <input asp-for="B2BCustomer.Email" class="form-control" />
+                <span asp-validation-for="B2BCustomer.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="B2BCustomer.Showroom" />
+                    Showroom visit?
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-md-offset-2">
+
+            @*CreationDate - Hidden - style="display:none" - (but not deleted) per request*@
+            <div style="display:none" class="form-group">
+                <label asp-for="B2BCustomer.CreationDate" class="control-label"></label>
+                <input type="date" asp-for="B2BCustomer.CreationDate" class="form-control" />
+                <span asp-validation-for="B2BCustomer.CreationDate" class="text-danger"></span>
+            </div>
+            @*----------------------------------------------------------------------------*@
+
+            <div class="form-group">
+                <input type="hidden" asp-for="B2BCustomer.Industry" />
+                <label asp-for="B2BCustomer.Industry" class="control-label"></label>
+                <select name="IndustrySelect" class="form-control" asp-for="B2BCustomer.Industry" asp-items="@Model.Industries">
+                    @if (Model.B2BCustomer.Industry != null)
+                    {
+                        <option selected>@Model.B2BCustomer.Industry.Industry</option>
+                    }
+                </select>
+                <span asp-validation-for="B2BCustomer.Industry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.CVR" class="control-label"></label>
+                <input asp-for="B2BCustomer.CVR" class="form-control" />
+                <span asp-validation-for="B2BCustomer.CVR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.EAN" class="control-label"></label>
+                <input asp-for="B2BCustomer.EAN" class="form-control" />
+                <span asp-validation-for="B2BCustomer.EAN" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="B2BCustomer.Newsletter" />
+                    Would like a newsletter?
+                    @*@Html.DisplayNameFor(model => model.B2BCustomer.Newsletter)*@
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsInvoicingDifferent" type="checkbox" onchange="toggleInvAddress()" />
+                    Is the invoice address different than the customer address?
+                </label>
+            </div>
+            <div class="card" id="invoicing" style="display:none">
+                <div class="card-body">
+                    <div id="invoiceAddress" class="form-group">
+                        <label asp-for="B2BCustomer.InvoicingAddress" class="control-label"></label>
+                        <input asp-for="B2BCustomer.InvoicingAddress" class="form-control" />
+                        <span asp-validation-for="B2BCustomer.InvoicingAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="B2BCustomer.InvoicingZip" />
+                        <label asp-for="B2BCustomer.InvoicingZip" class="control-label"></label>
+                        <select name="InvoiceZipCodeSelect" class="form-control" asp-for="B2BCustomer.InvoicingZip" asp-items="@Model.ZipCodes">
+                            @if (Model.B2BCustomer.InvoicingZip != null)
+                            {
+                                <option selected>@Model.B2BCustomer.InvoicingZip.ZipToZipRedux()</option>
+                                <option disabled></option>
+                                @*Empty option to separate current from available*@
+
+                            }
+                        </select>
+                        <span asp-validation-for="B2BCustomer.InvoicingZip" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="B2BCustomer.InvoicingEmail" class="control-label"></label>
+                        <input asp-for="B2BCustomer.InvoicingEmail" class="form-control" />
+                        <span asp-validation-for="B2BCustomer.InvoicingEmail" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Channel" class="control-label"></label>
+                <select name="ChannelSelect" class="form-control" asp-for="B2BCustomer.Channel" asp-items="@Model.Channels">
+                    @if (Model.B2BCustomer.Channel != null)
+                    {
+                        @*Default value - empty if creating a new B2BCustomer *@
+                        <option selected>@Model.B2BCustomer.Channel.Channel</option> 
+                    }
+                </select>
+                <span asp-validation-for="B2BCustomer.Channel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.Reseller" class="control-label"></label>
+                <select name="ResellerSelect" class="form-control" asp-for="B2BCustomer.Reseller" asp-items="@Model.Resellers">
+                    @if (Model.B2BCustomer.Reseller != null)
+                    {
+                        <option selected>@Model.B2BCustomer.Reseller.Name</option>
+                        @*Default value - empty if creating a new B2BCustomer *@
+                        <option disabled></option>
+                        @*Empty option to separate current from available*@
+                    }
+                </select>
+                <span asp-validation-for="B2BCustomer.Reseller" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B2BCustomer.B2BResponsible" class="control-label"></label>
+                <select name="B2BReposnsibleSelect" class="form-control" asp-for="B2BCustomer.B2BResponsible" asp-items="@Model.B2BResponsibles">
+                    @if (Model.B2BCustomer.B2BResponsible != null)
+                    {
+                        <option selected>@Model.B2BCustomer.B2BResponsible.Name</option>
+                        @*Default value - empty if creating a new B2BCustomer *@
+                    }
+                </select>
+                <span asp-validation-for="B2BCustomer.B2BResponsible" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <button id="save" class="btn btn-success" type="submit">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        |
+        @if (Model.B2BCustomer.Id == 0)
+        {
+            <button disabled class="btn btn-danger" type="reset">
+                <i class="fas fa-trash-alt"></i>
+                Delete
+            </button>
+        }
+        else
+        {
+            <a class="btn btn-danger" type="reset" asp-page="./Delete" asp-route-id="@Model.B2BCustomer.Id">
+                <i class="fas fa-trash-alt"></i>
+                Delete
+            </a>
+        }
+        |
+        <a class="btn btn-secondary" type="reset" asp-page="./Index">
+            <i class="fa fa-list"></i>
+            Back
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/unsaved.js" asp-append-version="true"></script>
+
+    <script>
+        function toggleInvAddress() {
+            var inv = document.getElementById("invoicing");
+            if (inv.style.display === "none") {
+                inv.style.display = "block";
+            } else {
+                inv.style.display = "none";
+            }
+        }
+    </script>
+}

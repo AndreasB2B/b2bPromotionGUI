@@ -1,0 +1,52 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Masterdata.B2BResponsibles.IndexModel
+
+@{
+    ViewData["Title"] = "B2B Responsible Index";
+}
+
+<h1>B2B Responsibles</h1>
+
+<p>
+    <a asp-page="./Edit" class="btn btn-primary">
+        <i class="fa fa-plus"></i>
+        Add new
+    </a>
+    <a class="btn btn-secondary" asp-page="../Index">
+        <i class="fa fa-list"></i>
+        Main
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.B2BResponsibles[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.B2BResponsibles[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.B2BResponsibles) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="text-align:right">
+                <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@item.Id">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@item.Id">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

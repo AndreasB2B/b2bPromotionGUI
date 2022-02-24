@@ -1,0 +1,60 @@
+﻿@page
+@{
+    Layout = null;
+}
+@model KN.B2B.Web.Pages.Private.Requests.Communications.EditModel
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Communication.Id" />
+            <input type="hidden" asp-for="ParentRequest.Id" />
+            <div class="form-group">
+                <label asp-for="Communication.Date" class="control-label"></label>
+                <input type="date" asp-for="Communication.Date" class="form-control" />
+                <span asp-validation-for="Communication.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Communication.Note" class="control-label"></label>
+                <textarea asp-for="Communication.Note" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Communication.Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Communication.Recipient" class="control-label"></label>
+                <input asp-for="Communication.Recipient" class="form-control" />
+                <span asp-validation-for="Communication.Recipient" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <div class="left-sided">
+            <button asp-page-handler="Comm" class="btn btn-success" type="submit">
+                <i class="fas fa-save"></i>
+                Save
+            </button>
+            |
+            <a class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-list"></i>
+                Back
+            </a>
+        </div>
+        <div class="right-sided">
+            @if (Model.Communication.Id == 0)
+            {
+                <button disabled class="btn btn-danger" type="reset">
+                    <i class="fas fa-trash-alt"></i>
+                    Delete
+                </button>
+            }
+            else
+            {
+                <button asp-page-handler="DeleteComm" class="btn btn-danger" asp-route-id="@Model.Communication.Id">
+                    <i class="fas fa-trash-alt"></i>
+                    Delete
+                </button>
+            }
+        </div>
+    </div>
+</form>
