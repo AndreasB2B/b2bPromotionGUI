@@ -1,0 +1,10 @@
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Release\netstandard2.1\KN.B2B.Model.deps.json
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Release\netstandard2.1\KN.B2B.Model.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Release\netstandard2.1\KN.B2B.Model.pdb
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.csproj.AssemblyReference.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.AssemblyInfoInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.AssemblyInfo.cs
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.csproj.CoreCompileInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Release\netstandard2.1\KN.B2B.Model.pdb

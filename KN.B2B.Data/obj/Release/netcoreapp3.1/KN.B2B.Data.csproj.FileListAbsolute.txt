@@ -1,0 +1,13 @@
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\bin\Release\netcoreapp3.1\KN.B2B.Data.deps.json
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\bin\Release\netcoreapp3.1\KN.B2B.Data.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\bin\Release\netcoreapp3.1\KN.B2B.Data.pdb
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\bin\Release\netcoreapp3.1\KN.B2B.Model.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\bin\Release\netcoreapp3.1\KN.B2B.Model.pdb
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.csproj.AssemblyReference.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.AssemblyInfoInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.AssemblyInfo.cs
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.csproj.CoreCompileInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.csproj.CopyComplete
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Data\obj\Release\netcoreapp3.1\KN.B2B.Data.pdb
