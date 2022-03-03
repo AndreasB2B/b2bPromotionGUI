@@ -8,3 +8,13 @@ C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromot
 C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.csproj.CoreCompileInputs.cache
 C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll
 C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.pdb
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.deps.json
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.pdb
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.csproj.AssemblyReference.cache
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.GeneratedMSBuildEditorConfig.editorconfig
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.AssemblyInfoInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.AssemblyInfo.cs
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.csproj.CoreCompileInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll
+C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.pdb
