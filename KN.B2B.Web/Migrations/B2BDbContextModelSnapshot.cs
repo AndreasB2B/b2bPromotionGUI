@@ -19,6 +19,45 @@ namespace KN.B2B.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("KN.B2B.Model.B2BPriceClass", b =>
+                {
+                    b.Property<int>("priceClass_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("priceClass_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("priceClass_price01")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_price02")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_price03")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_price04")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_price05")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_price06")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_price07")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priceClass_quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("priceClass_id");
+
+                    b.ToTable("B2BPriceClasses");
+                });
+
             modelBuilder.Entity("KN.B2B.Model.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -327,7 +366,30 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("fk_techniqueIdtechnique_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("print_express")
+                        .HasColumnType("int");
+
+                    b.Property<float>("print_height")
+                        .HasColumnType("real");
+
+                    b.Property<string>("print_position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("print_product")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("print_size")
+                        .HasColumnType("real");
+
+                    b.Property<string>("print_supplier")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("fk_techniqueIdtechnique_id");
 
                     b.ToTable("B2BPrintPositions");
                 });
@@ -571,6 +633,381 @@ namespace KN.B2B.Web.Migrations
                     b.ToTable("ZipCodes");
                 });
 
+            modelBuilder.Entity("KN.B2B.Model.products.B2BParrentProducts", b =>
+                {
+                    b.Property<int>("parrentProduct_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_B2BCategoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fk_B2BCategoryGroupsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("parrentProduct_dimensions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("parrentProduct_height")
+                        .HasColumnType("real");
+
+                    b.Property<float>("parrentProduct_length")
+                        .HasColumnType("real");
+
+                    b.Property<string>("parrentProduct_longDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("parrentProduct_mainCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("parrentProduct_masterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("parrentProduct_mertial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("parrentProduct_parrentSku")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("parrentProduct_printPositions")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("parrentProduct_printable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("parrentProduct_shortDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("parrentProduct_subCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("parrentProduct_width")
+                        .HasColumnType("real");
+
+                    b.HasKey("parrentProduct_id");
+
+                    b.HasIndex("fk_B2BCategoriesId");
+
+                    b.HasIndex("fk_B2BCategoryGroupsId");
+
+                    b.ToTable("B2BParrentProducts");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.B2BPrintTechnique", b =>
+                {
+                    b.Property<int>("technique_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_supplierHandleCodehandles_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("fk_supplierPriceCodeprintPrice_id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("technique_description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("technique_maxColors")
+                        .HasColumnType("int");
+
+                    b.Property<string>("technique_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("technique_supplier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("technique_id");
+
+                    b.HasIndex("fk_supplierHandleCodehandles_id");
+
+                    b.HasIndex("fk_supplierPriceCodeprintPrice_id");
+
+                    b.ToTable("B2BPrintTechniques");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierHandles", b =>
+                {
+                    b.Property<int>("handles_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("handles_code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("handles_description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("handles_price")
+                        .HasColumnType("real");
+
+                    b.HasKey("handles_id");
+
+                    b.ToTable("SupplierHandles");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintCost", b =>
+                {
+                    b.Property<int>("printCost_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_printPriceScalesscale_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("printCost_areaFrom")
+                        .HasColumnType("int");
+
+                    b.Property<int>("printCost_areaTo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("printCost_rangeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("printCost_id");
+
+                    b.HasIndex("fk_printPriceScalesscale_id");
+
+                    b.ToTable("SupplierPrintCosts");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", b =>
+                {
+                    b.Property<string>("printPrice_id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("fk_printCostprintCost_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("printPrice_code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_nextColourIndicator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_pricingType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_repeat")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_setup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("printPrice_id");
+
+                    b.HasIndex("fk_printCostprintCost_id");
+
+                    b.ToTable("SupplierPrintPrices");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPriceScales", b =>
+                {
+                    b.Property<int>("scale_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("scale_minimumQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("scale_nextPrice")
+                        .HasColumnType("int");
+
+                    b.Property<float>("scale_price")
+                        .HasColumnType("real");
+
+                    b.HasKey("scale_id");
+
+                    b.ToTable("SupplierPrintPriceScales");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BProduct", b =>
+                {
+                    b.Property<int>("product_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_ParentSKUparrentProduct_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fk_printPositionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("product_BatteryType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_ColorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_CommercialItemHeight")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_CommercialItemLength")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_CommercialItemWeight")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_CommercialItemWidth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_CountryOfOrigin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("product_DeliveryTimeMT_IL1_T1")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("product_Flavours")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_IntraCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("product_NumberOfBatteries")
+                        .HasColumnType("int");
+
+                    b.Property<int>("product_OrderUnit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("product_PriceClass_IL1_CN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_CN2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_CN3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_CN4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_CN5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_CN6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_T1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_T2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_T3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_T4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_T5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_PriceClass_IL1_T6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_ProductImageURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_Q_OnPallet")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_SearchTerms")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_Sizes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_WritingColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_brandNames")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_longDescriptionDK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_longDescriptionEN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_longDescriptionFI")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("product_shortDescriptionDK")
+                        .HasColumnType("nvarchar(31)")
+                        .HasMaxLength(31);
+
+                    b.Property<string>("product_shortDescriptionEN")
+                        .HasColumnType("nvarchar(31)")
+                        .HasMaxLength(31);
+
+                    b.Property<string>("product_shortDescriptionFI")
+                        .HasColumnType("nvarchar(31)")
+                        .HasMaxLength(31);
+
+                    b.Property<string>("product_sku")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("product_id");
+
+                    b.HasIndex("fk_ParentSKUparrentProduct_id");
+
+                    b.HasIndex("fk_printPositionId");
+
+                    b.ToTable("B2BProdducts");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScale", b =>
+                {
+                    b.Property<int>("scale_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_priceIdid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("scale_minimumQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("scale_price")
+                        .HasColumnType("real");
+
+                    b.HasKey("scale_id");
+
+                    b.HasIndex("fk_priceIdid");
+
+                    b.ToTable("B2BPriceScales");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BProductPrice", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_productSkuproduct_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("price_scale")
+                        .HasColumnType("int");
+
+                    b.Property<int>("price_startingPrice")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("fk_productSkuproduct_id");
+
+                    b.ToTable("B2BProductPrices");
+                });
+
             modelBuilder.Entity("KN.B2B.Model.Customer", b =>
                 {
                     b.HasOne("KN.B2B.Model.SystemTables.B2BResponsible", "B2BResponsible")
@@ -660,6 +1097,74 @@ namespace KN.B2B.Web.Migrations
                     b.HasOne("KN.B2B.Model.SystemTables.B2BCategoryGroup", "CategoryGroup")
                         .WithMany()
                         .HasForeignKey("CategoryGroupId");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.SystemTables.B2BPrintPosition", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.B2BPrintTechnique", "fk_techniqueId")
+                        .WithMany()
+                        .HasForeignKey("fk_techniqueIdtechnique_id");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BParrentProducts", b =>
+                {
+                    b.HasOne("KN.B2B.Model.SystemTables.B2BCategory", "fk_B2BCategories")
+                        .WithMany()
+                        .HasForeignKey("fk_B2BCategoriesId");
+
+                    b.HasOne("KN.B2B.Model.SystemTables.B2BCategoryGroup", "fk_B2BCategoryGroups")
+                        .WithMany()
+                        .HasForeignKey("fk_B2BCategoryGroupsId");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.B2BPrintTechnique", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierHandles", "fk_supplierHandleCode")
+                        .WithMany()
+                        .HasForeignKey("fk_supplierHandleCodehandles_id");
+
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", "fk_supplierPriceCode")
+                        .WithMany()
+                        .HasForeignKey("fk_supplierPriceCodeprintPrice_id");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintCost", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPriceScales", "fk_printPriceScales")
+                        .WithMany()
+                        .HasForeignKey("fk_printPriceScalesscale_id");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintCost", "fk_printCost")
+                        .WithMany()
+                        .HasForeignKey("fk_printCostprintCost_id");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BProduct", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BParrentProducts", "fk_ParentSKU")
+                        .WithMany()
+                        .HasForeignKey("fk_ParentSKUparrentProduct_id");
+
+                    b.HasOne("KN.B2B.Model.SystemTables.B2BPrintPosition", "fk_printPosition")
+                        .WithMany()
+                        .HasForeignKey("fk_printPositionId");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScale", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.productPrice.B2BProductPrice", "fk_priceId")
+                        .WithMany()
+                        .HasForeignKey("fk_priceIdid");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BProductPrice", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BProduct", "fk_productSku")
+                        .WithMany()
+                        .HasForeignKey("fk_productSkuproduct_id");
                 });
 #pragma warning restore 612, 618
         }

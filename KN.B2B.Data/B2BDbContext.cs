@@ -1,6 +1,9 @@
 ﻿using KN.B2B.Model;
 using KN.B2B.Model.SystemTables;
+using KN.B2B.Model.products;
 using Microsoft.EntityFrameworkCore;
+using KN.B2B.Model.products.B2BPrintPositions;
+using KN.B2B.Model.products.productPrice;
 
 namespace KN.B2B.Data
 {
@@ -33,7 +36,17 @@ namespace KN.B2B.Data
         public DbSet<CustomerChannel> CustomerChannels { get; set; }
         public DbSet<B2BPrintPosition> B2BPrintPositions { get; set; }
         public DbSet<B2BPrintType> B2BPrintTypes { get; set; }
-        public DbSet<> B2BProdducts { get; set; }
-        public DbSet<print>
+        // NEW TABLES
+        public DbSet<B2BProduct> B2BProdducts { get; set; }
+        public DbSet<B2BParrentProducts> B2BParrentProducts { get; set; }
+        //public DbSet<B2BPrintPosition2> B2BPrintPositions2 { get; set; }
+        public DbSet<B2BPrintTechnique> B2BPrintTechniques { get; set; }
+        public DbSet<SupplierHandles> SupplierHandles { get; set; }
+        public DbSet<SupplierPrintCost> SupplierPrintCosts { get; set; }
+        public DbSet<SupplierPrintPrice> SupplierPrintPrices { get; set; }
+        public DbSet<SupplierPrintPriceScales> SupplierPrintPriceScales { get; set; }
+        public DbSet<B2BPriceClass> B2BPriceClasses { get; set; }
+        public DbSet<B2BPriceScale> B2BPriceScales { get; set; }
+        public DbSet<B2BProductPrice> B2BProductPrices { get; set; }
     }
 }
