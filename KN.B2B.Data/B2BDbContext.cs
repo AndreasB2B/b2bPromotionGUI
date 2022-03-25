@@ -21,6 +21,7 @@ namespace KN.B2B.Data
         public DbSet<B2BResponsible> B2BResponsibles { get; set; }
         public DbSet<JobTitle> JobTitles { get; set; }
         public DbSet<ZipCode> ZipCodes { get; set; }
+        //public DbSet<B2BSupplierProducts> b2BSupplierProducts { get; set; }
         public DbSet<DUNSGroup> Industries { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
         public DbSet<StartStatus> StartStatuses { get; set; }
@@ -32,5 +33,7 @@ namespace KN.B2B.Data
         public DbSet<CustomerChannel> CustomerChannels { get; set; }
         public DbSet<B2BPrintPosition> B2BPrintPositions { get; set; }
         public DbSet<B2BPrintType> B2BPrintTypes { get; set; }
+        public DbSet<> B2BProdducts { get; set; }
+        public DbSet<print>
     }
 }

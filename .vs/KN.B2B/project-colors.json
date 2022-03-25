@@ -5,7 +5,17 @@
       "ProjectGuid": "1cf54a7c-9b1c-4e22-b348-8170a900f899",
       "DisplayName": "KN.B2B.Web",
       "ColorIndex": 0
+    },
+    "ff410307-cdcf-4f3f-bcec-363013bf692d": {
+      "ProjectGuid": "ff410307-cdcf-4f3f-bcec-363013bf692d",
+      "DisplayName": "KN.B2B.Data",
+      "ColorIndex": 1
+    },
+    "b3c0dfc1-5baa-4d62-b579-b4ed6532a633": {
+      "ProjectGuid": "b3c0dfc1-5baa-4d62-b579-b4ed6532a633",
+      "DisplayName": "KN.B2B.Model",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

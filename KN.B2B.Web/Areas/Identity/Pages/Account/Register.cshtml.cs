@@ -63,8 +63,8 @@ namespace KN.B2B.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
-            if (_signInManager.IsSignedIn(User) == false || User.IsInRole("admin") == false)
-                return RedirectToPage("./AccessDenied");
+            //if (_signInManager.IsSignedIn(User) == false || User.IsInRole("admin") == false)
+            //    return RedirectToPage("./AccessDenied");
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
