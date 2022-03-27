@@ -5,9 +5,9 @@ using System.Text;
 namespace KN.B2B.Model.SupplierTables.MidoceanAPI.Products
 {
 
-    public class Rootobject
+    public class MNRootobject
     {
-        public Class1[] Property1 { get; set; }
+        public List<Class1> Property1 { get; set; }
     }
 
     public class Class1
@@ -87,11 +87,11 @@ namespace KN.B2B.Model.SupplierTables.MidoceanAPI.Products
         public string gtin { get; set; }
         public string color_code { get; set; }
         public string pms_color { get; set; }
-        public Digital_Assets1[] digital_assets { get; set; }
+        public Assets2[] digital_assets { get; set; }
         public string size_textile { get; set; }
     }
 
-    public class Digital_Assets1
+    public class Assets2
     {
         public string url { get; set; }
         public string url_highress { get; set; }

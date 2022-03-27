@@ -7,10 +7,10 @@ namespace KN.B2B.Model.SupplierTables.MidoceanAPI.Products
 
     public class Rootobject
     {
-        public Class1[] Property1 { get; set; }
+        public MasterSku[] Property1 { get; set; }
     }
 
-    public class Class1
+    public class MasterSku
     {
         public string master_code { get; set; }
         public string master_id { get; set; }
@@ -49,13 +49,13 @@ namespace KN.B2B.Model.SupplierTables.MidoceanAPI.Products
         public string carton_gross_weight { get; set; }
         public string carton_gross_weight_unit { get; set; }
         public DateTime timestamp { get; set; }
-        public Digital_Assets[] digital_assets { get; set; }
+        public Assets[] digital_assets { get; set; }
         public string short_description { get; set; }
         public string long_description { get; set; }
         public string material { get; set; }
         public string printable { get; set; }
         public string polybag { get; set; }
-        public Variant[] variants { get; set; }
+        public Variants[] variants { get; set; }
         public string green { get; set; }
         public string themes { get; set; }
         public string commercial_description { get; set; }
@@ -65,14 +65,14 @@ namespace KN.B2B.Model.SupplierTables.MidoceanAPI.Products
         public string gender { get; set; }
     }
 
-    public class Digital_Assets
+    public class Assets
     {
         public string url { get; set; }
         public string type { get; set; }
         public string subtype { get; set; }
     }
 
-    public class Variant
+    public class Variants
     {
         public string variant_id { get; set; }
         public string sku { get; set; }
@@ -88,13 +88,13 @@ namespace KN.B2B.Model.SupplierTables.MidoceanAPI.Products
         public string gtin { get; set; }
         public string color_code { get; set; }
         public string pms_color { get; set; }
-        public Digital_Assets1[] digital_assets { get; set; }
+        public Assets1[] digital_assets { get; set; }
         public object discontinued_date { get; set; }
         public string product_variant_description { get; set; }
         public string size_textile { get; set; }
     }
 
-    public class Digital_Assets1
+    public class Assets1
     {
         public string url { get; set; }
         public string url_highress { get; set; }

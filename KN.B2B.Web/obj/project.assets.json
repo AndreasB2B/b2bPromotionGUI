@@ -9309,24 +9309,33 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.12",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.12",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Utils >= 3.1.5"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Utils >= 3.1.5",
+      "Newtonsoft.Json >= 12.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Showroom\\.nuget\\packages\\": {}
+    "C:\\Users\\Andre\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Web\\KN.B2B.Web.csproj",
+      "projectUniqueName": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Web\\KN.B2B.Web.csproj",
       "projectName": "KN.B2B.Web",
-      "projectPath": "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Web\\KN.B2B.Web.csproj",
-      "packagesPath": "C:\\Users\\Showroom\\.nuget\\packages\\",
-      "outputPath": "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Web\\obj\\",
+      "projectPath": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Web\\KN.B2B.Web.csproj",
+      "packagesPath": "C:\\Users\\Andre\\.nuget\\packages\\",
+      "outputPath": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Web\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Showroom\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -9339,14 +9348,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Data\\KN.B2B.Data.csproj": {
-              "projectPath": "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Data\\KN.B2B.Data.csproj"
+            "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Data\\KN.B2B.Data.csproj": {
+              "projectPath": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Data\\KN.B2B.Data.csproj"
             },
-            "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Model\\KN.B2B.Model.csproj": {
-              "projectPath": "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Model\\KN.B2B.Model.csproj"
+            "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Model\\KN.B2B.Model.csproj": {
+              "projectPath": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Model\\KN.B2B.Model.csproj"
             },
-            "C:\\github_repositories\\b2bPromotionGUI\\KN.Messaging.SendGrid\\KN.Messaging.SendGrid.csproj": {
-              "projectPath": "C:\\github_repositories\\b2bPromotionGUI\\KN.Messaging.SendGrid\\KN.Messaging.SendGrid.csproj"
+            "F:\\Github_Repositories\\b2bPromotionGUI\\KN.Messaging.SendGrid\\KN.Messaging.SendGrid.csproj": {
+              "projectPath": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.Messaging.SendGrid\\KN.Messaging.SendGrid.csproj"
             }
           }
         }
@@ -9400,6 +9409,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Utils": {
             "target": "Package",
             "version": "[3.1.5, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
           }
         },
         "imports": [
@@ -9420,7 +9433,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
