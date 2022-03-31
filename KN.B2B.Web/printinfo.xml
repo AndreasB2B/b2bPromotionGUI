@@ -1,0 +1,1656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PRINTINGINFORMATION>
+	<SUPPLIER>midocean</SUPPLIER>
+	<DATE>20220330</DATE>
+	<TIME>04:00:08</TIME>
+	<PRINTING_TECHNIQUE_DESCRIPTIONS>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="B">
+			<NAME language="RO">Debossing</NAME>
+			<NAME language="CS">Ražba</NAME>
+			<NAME language="DE">Prägung</NAME>
+			<NAME language="EN">Debossing</NAME>
+			<NAME language="FR">Embossage</NAME>
+			<NAME language="HU">Dombornyomás</NAME>
+			<NAME language="IT">Debossing</NAME>
+			<NAME language="DA">Prægning</NAME>
+			<NAME language="PL">Tłoczenie</NAME>
+			<NAME language="NL">Blinddruk</NAME>
+			<NAME language="PT">Impressão à quente</NAME>
+			<NAME language="RU">Тиснение</NAME>
+			<NAME language="ES">Termo grabado</NAME>
+			<NAME language="SV">Prägling</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="BP">
+			<NAME language="RO">Buton print</NAME>
+			<NAME language="CS">Placky</NAME>
+			<NAME language="DE">Button Druck</NAME>
+			<NAME language="EN">Button printing</NAME>
+			<NAME language="FR">Boutons</NAME>
+			<NAME language="HU">Kitűző nyomtatás</NAME>
+			<NAME language="IT">Stampa a bottone</NAME>
+			<NAME language="DA">Knapprint</NAME>
+			<NAME language="PL">Guziki</NAME>
+			<NAME language="NL">Button print</NAME>
+			<NAME language="PT">Impressão de botões</NAME>
+			<NAME language="RU">кнопок BP</NAME>
+			<NAME language="ES">Impresión en chapas</NAME>
+			<NAME language="SV">Tryck av knappar</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="DI">
+			<NAME language="RO">digitală interioară</NAME>
+			<NAME language="CS">Vložený digitální tisk</NAME>
+			<NAME language="DE">Digitaler Einleger</NAME>
+			<NAME language="EN">Digital inlay</NAME>
+			<NAME language="FR">Insertion numérique</NAME>
+			<NAME language="HU">Digitális betétlap</NAME>
+			<NAME language="IT">Digitale su carta</NAME>
+			<NAME language="DA">Digital folder</NAME>
+			<NAME language="PL">Cyfrowa inkrustacja</NAME>
+			<NAME language="NL">Digitale inleg</NAME>
+			<NAME language="PT">Papel Digital</NAME>
+			<NAME language="RU">цифровой шелкотрансфер</NAME>
+			<NAME language="ES">Papel Digital</NAME>
+			<NAME language="SV">Digitaltryckt kort</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="DL">
+			<NAME language="RO">Etichetă digitală</NAME>
+			<NAME language="CS">Digitální samolepka</NAME>
+			<NAME language="DE">Digital Label</NAME>
+			<NAME language="EN">Digital label</NAME>
+			<NAME language="FR">Étiquette numérique</NAME>
+			<NAME language="HU">Digitális matrica</NAME>
+			<NAME language="IT">Etichetta digitale</NAME>
+			<NAME language="DA">Digitalt klistermærke</NAME>
+			<NAME language="PL">Etykieta cyfrowa</NAME>
+			<NAME language="NL">Digitaal label</NAME>
+			<NAME language="PT">Etiqueta digital</NAME>
+			<NAME language="RU">Цифровая Этикетка</NAME>
+			<NAME language="ES">Etiqueta digital</NAME>
+			<NAME language="SV">Klisterdekal</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="DO">
+			<NAME language="RO">Doming</NAME>
+			<NAME language="CS">Doming</NAME>
+			<NAME language="DE">Doming</NAME>
+			<NAME language="EN">Doming</NAME>
+			<NAME language="FR">Doming</NAME>
+			<NAME language="HU">Műgyanta matrica</NAME>
+			<NAME language="IT">Doming</NAME>
+			<NAME language="DA">Doming</NAME>
+			<NAME language="PL">Naklejka epoksydowa</NAME>
+			<NAME language="NL">Doming</NAME>
+			<NAME language="PT">Doming</NAME>
+			<NAME language="RU">Конгревное тиснение</NAME>
+			<NAME language="ES">Gota de resina</NAME>
+			<NAME language="SV">Doming</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="DO1">
+			<NAME language="RO">Doming</NAME>
+			<NAME language="CS">Doming</NAME>
+			<NAME language="DE">Doming</NAME>
+			<NAME language="EN">Doming</NAME>
+			<NAME language="FR">Doming</NAME>
+			<NAME language="HU">Műgyanta matrica</NAME>
+			<NAME language="IT">Doming</NAME>
+			<NAME language="DA">Doming</NAME>
+			<NAME language="PL">Naklejka epoksydowa</NAME>
+			<NAME language="NL">Doming</NAME>
+			<NAME language="PT">Doming</NAME>
+			<NAME language="ES">Gota de resina</NAME>
+			<NAME language="SV">Doming</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="DO2">
+			<NAME language="RO">Doming</NAME>
+			<NAME language="CS">Doming</NAME>
+			<NAME language="DE">Doming</NAME>
+			<NAME language="EN">Doming</NAME>
+			<NAME language="FR">Doming</NAME>
+			<NAME language="HU">Műgyanta matrica</NAME>
+			<NAME language="IT">Doming</NAME>
+			<NAME language="DA">Doming</NAME>
+			<NAME language="PL">Naklejka epoksydowa</NAME>
+			<NAME language="NL">Doming</NAME>
+			<NAME language="PT">Doming</NAME>
+			<NAME language="RU">Конгревное тиснение</NAME>
+			<NAME language="ES">Gota de resina</NAME>
+			<NAME language="SV">Doming</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="DTG">
+			<NAME language="RO">to Garment</NAME>
+			<NAME language="CS">to Garment</NAME>
+			<NAME language="DE">to Garment</NAME>
+			<NAME language="EN">to Garment</NAME>
+			<NAME language="FR">to Garment</NAME>
+			<NAME language="HU">to Garment</NAME>
+			<NAME language="IT">to Garment</NAME>
+			<NAME language="DA">to Garment</NAME>
+			<NAME language="PL">to Garment</NAME>
+			<NAME language="NL">to Garment</NAME>
+			<NAME language="PT">to Garment</NAME>
+			<NAME language="RU">to Garment</NAME>
+			<NAME language="ES">to Garment</NAME>
+			<NAME language="SV">to Garment</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="E">
+			<NAME language="RO">Broderie</NAME>
+			<NAME language="CS">Výšivka</NAME>
+			<NAME language="DE">Bestickung</NAME>
+			<NAME language="EN">Embroidery</NAME>
+			<NAME language="FR">Broderie</NAME>
+			<NAME language="HU">Hímzés</NAME>
+			<NAME language="IT">Ricamo</NAME>
+			<NAME language="DA">Broderi</NAME>
+			<NAME language="PL">Haft</NAME>
+			<NAME language="NL">Borduren</NAME>
+			<NAME language="PT">Bordados</NAME>
+			<NAME language="RU">Вышивка</NAME>
+			<NAME language="ES">Bordado</NAME>
+			<NAME language="SV">Brodyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">Lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L0">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">Lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L1">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L2">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozas</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">Lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L3">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L4">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L5">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L6">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="L7">
+			<NAME language="RO">Gravare laser</NAME>
+			<NAME language="CS">Laserové gravírování</NAME>
+			<NAME language="DE">Laser</NAME>
+			<NAME language="EN">Laser engraving</NAME>
+			<NAME language="FR">Gravure laser</NAME>
+			<NAME language="HU">Lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser</NAME>
+			<NAME language="DA">lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe</NAME>
+			<NAME language="NL">Lasergravering</NAME>
+			<NAME language="PT">Gravação à láser</NAME>
+			<NAME language="RU">Лазерная гравировка</NAME>
+			<NAME language="ES">Grabado a láser</NAME>
+			<NAME language="SV">Lasergravyr</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="LC">
+			<NAME language="RO">Gravare laser (CO2)</NAME>
+			<NAME language="CS">Laserové gravírování (CO2)</NAME>
+			<NAME language="DE">Lasergravur (CO2)</NAME>
+			<NAME language="EN">laser engraving (CO2)</NAME>
+			<NAME language="FR">gravure laser (CO2)</NAME>
+			<NAME language="HU">Lézergravírozás (CO2)</NAME>
+			<NAME language="IT">laser (CO2)</NAME>
+			<NAME language="DA">lasergravering (CO2)</NAME>
+			<NAME language="PL">grawerowanie (CO2)</NAME>
+			<NAME language="NL">lasergravering (CO2)</NAME>
+			<NAME language="PT">Laser (CO2)</NAME>
+			<NAME language="RU">Лазерная гравировка (CO2)</NAME>
+			<NAME language="ES">grabado a láser (CO2)</NAME>
+			<NAME language="SV">lasergravyr (CO2)</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="LY">
+			<NAME language="RO">Gravare laser (YAG)</NAME>
+			<NAME language="CS">Laserové gravírování (YAG)</NAME>
+			<NAME language="DE">Lasergravur (YAG)</NAME>
+			<NAME language="EN">laser engraving (YAG)</NAME>
+			<NAME language="FR">gravure laser (YAG)</NAME>
+			<NAME language="HU">Lézergravírozás (YAG)</NAME>
+			<NAME language="IT">laser (YAG)</NAME>
+			<NAME language="DA">lasergravering (YAG)</NAME>
+			<NAME language="PL">grawerowanie (YAG)</NAME>
+			<NAME language="NL">lasergravering (YAG)</NAME>
+			<NAME language="PT">Laser (YAG)</NAME>
+			<NAME language="RU">Лазерная гравировка (YAG)</NAME>
+			<NAME language="ES">grabado a láser (YAG)</NAME>
+			<NAME language="SV">lasergravyr (YAG)</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P0">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P1">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P2">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P3">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P4">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P5">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P6">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="P7">
+			<NAME language="RO">Tampografie</NAME>
+			<NAME language="CS">Tamponový tisk</NAME>
+			<NAME language="DE">Tampondruck</NAME>
+			<NAME language="EN">Pad printing</NAME>
+			<NAME language="FR">Tampographie</NAME>
+			<NAME language="HU">Tamponnyomás</NAME>
+			<NAME language="IT">Tampografia</NAME>
+			<NAME language="DA">Tamponprint</NAME>
+			<NAME language="PL">Tampodruk</NAME>
+			<NAME language="NL">Tampondruk</NAME>
+			<NAME language="PT">Impressão de almofadas</NAME>
+			<NAME language="RU">Тампопечать</NAME>
+			<NAME language="ES">Tampografía</NAME>
+			<NAME language="SV">Tampotryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD">
+			<NAME language="DE">Druck Digital</NAME>
+			<NAME language="EN">Print digital</NAME>
+			<NAME language="FR">Marquage Numérique</NAME>
+			<NAME language="HU">Digitális nyomás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Print digital</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Print digital</NAME>
+			<NAME language="PT">Impressão Digital</NAME>
+			<NAME language="RU">Цифровая печать</NAME>
+			<NAME language="ES">Impresión Digital</NAME>
+			<NAME language="SV">Digitalt tryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD0">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 0</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD1">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 1</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD2">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 2</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD3">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 3</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD4">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 4</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD5">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 5</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD6">
+			<NAME language="RO">Imprimare digitală 360</NAME>
+			<NAME language="CS">Digitální tisk 360</NAME>
+			<NAME language="DE">Digitaldruck 360</NAME>
+			<NAME language="EN">Digital printing 360</NAME>
+			<NAME language="FR">Impression numérique 360</NAME>
+			<NAME language="HU">360-os digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale 360</NAME>
+			<NAME language="DA">Digitalt 360-print</NAME>
+			<NAME language="PL">Druk cyfrowy 360</NAME>
+			<NAME language="NL">Digitale bedrukking 360</NAME>
+			<NAME language="PT">Impressão digital 360</NAME>
+			<NAME language="RU">Цифровая печать 6</NAME>
+			<NAME language="ES">Impresión digital 360</NAME>
+			<NAME language="SV">Digitaltryck 360</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PD7">
+			<NAME language="RO">Imprimare digitală</NAME>
+			<NAME language="CS">Digitální tisk</NAME>
+			<NAME language="DE">Digitaldruck</NAME>
+			<NAME language="EN">Digital printing</NAME>
+			<NAME language="FR">Impression numérique</NAME>
+			<NAME language="HU">Digitális nyomtatás</NAME>
+			<NAME language="IT">Stampa digitale</NAME>
+			<NAME language="DA">Digitalt print</NAME>
+			<NAME language="PL">Druk cyfrowy</NAME>
+			<NAME language="NL">Digitale bedrukking</NAME>
+			<NAME language="PT">Impressão digital</NAME>
+			<NAME language="RU">Цифровая печать 7</NAME>
+			<NAME language="ES">Impresión digital</NAME>
+			<NAME language="SV">Digitaltryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="PH">
+			<NAME language="DE">Papier</NAME>
+			<NAME language="EN">Paper</NAME>
+			<NAME language="FR">Papier</NAME>
+			<NAME language="HU">Fénymásolás</NAME>
+			<NAME language="IT">Carta</NAME>
+			<NAME language="DA">Paper</NAME>
+			<NAME language="PL">Papier</NAME>
+			<NAME language="NL">Papier</NAME>
+			<NAME language="PT">Papel</NAME>
+			<NAME language="RU">Бумага</NAME>
+			<NAME language="ES">Papel</NAME>
+			<NAME language="SV">Papper</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RD0">
+			<NAME language="RO">Imprimare digitală 360</NAME>
+			<NAME language="CS">Digitální tisk 360</NAME>
+			<NAME language="DE">Digitaldruck 360° </NAME>
+			<NAME language="EN">Digital printing 360 </NAME>
+			<NAME language="FR">Impression numérique 360</NAME>
+			<NAME language="HU">360°-os digitális nyomtatá</NAME>
+			<NAME language="IT">Stampa digitale 360</NAME>
+			<NAME language="DA">Digitalt 360-print </NAME>
+			<NAME language="PL">Druk cyfrowy 360°</NAME>
+			<NAME language="NL">Digitale bedrukking 360</NAME>
+			<NAME language="PT">Impressão digital 360</NAME>
+			<NAME language="ES">Impresión digital 360°</NAME>
+			<NAME language="SV">Digitaltryck 360</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RD1">
+			<NAME language="RO">Imprimare digitală 360</NAME>
+			<NAME language="CS">Digitální tisk 360</NAME>
+			<NAME language="DE">Digitaldruck 360° </NAME>
+			<NAME language="EN">Digital printing 360 </NAME>
+			<NAME language="FR">Impression numérique 360</NAME>
+			<NAME language="HU">360°-os digitális nyomtatá</NAME>
+			<NAME language="IT">Stampa digitale 360</NAME>
+			<NAME language="DA">Digitalt 360-print </NAME>
+			<NAME language="PL">Druk cyfrowy 360°</NAME>
+			<NAME language="NL">Digitale bedrukking 360</NAME>
+			<NAME language="PT">Impressão digital 360</NAME>
+			<NAME language="ES">Impresión digital 360°</NAME>
+			<NAME language="SV">Digitaltryck 360</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RD2">
+			<NAME language="RO">Imprimare digitală 360</NAME>
+			<NAME language="CS">Digitální tisk 360</NAME>
+			<NAME language="DE">Digitaldruck 360° </NAME>
+			<NAME language="EN">Digital printing 360 </NAME>
+			<NAME language="FR">Impression numérique 360</NAME>
+			<NAME language="HU">360°-os digitális nyomtatá</NAME>
+			<NAME language="IT">Stampa digitale 360</NAME>
+			<NAME language="DA">Digitalt 360-print </NAME>
+			<NAME language="PL">Druk cyfrowy 360°</NAME>
+			<NAME language="NL">Digitale bedrukking 360</NAME>
+			<NAME language="PT">Impressão digital 360</NAME>
+			<NAME language="ES">Impresión digital 360°</NAME>
+			<NAME language="SV">Digitaltryck 360</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RD3">
+			<NAME language="RO">Imprimare digitală 360</NAME>
+			<NAME language="CS">Digitální tisk 360</NAME>
+			<NAME language="DE">Digitaldruck 360° </NAME>
+			<NAME language="EN">Digital printing 360 </NAME>
+			<NAME language="FR">Impression numérique 360</NAME>
+			<NAME language="HU">360°-os digitális nyomtatá</NAME>
+			<NAME language="IT">Stampa digitale 360</NAME>
+			<NAME language="DA">Digitalt 360-print </NAME>
+			<NAME language="PL">Druk cyfrowy 360°</NAME>
+			<NAME language="NL">Digitale bedrukking 360</NAME>
+			<NAME language="PT">Impressão digital 360</NAME>
+			<NAME language="ES">Impresión digital 360°</NAME>
+			<NAME language="SV">Digitaltryck 360</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RL">
+			<NAME language="RO">Gravare laser 360</NAME>
+			<NAME language="CS">Laserové gravírování 360</NAME>
+			<NAME language="DE">Laser 360° </NAME>
+			<NAME language="EN">Laser engraving 360</NAME>
+			<NAME language="FR">Gravure laser 360</NAME>
+			<NAME language="HU">360°-os lézergravírozás</NAME>
+			<NAME language="IT">Incisione laser 360</NAME>
+			<NAME language="DA">360 graders lasergravering</NAME>
+			<NAME language="PL">Grawerowanie laserowe 360°</NAME>
+			<NAME language="NL">Lasergravering 360</NAME>
+			<NAME language="PT">Gravação à láser 360</NAME>
+			<NAME language="ES">Grabado a láser 360°</NAME>
+			<NAME language="SV">Lasergravyr 360</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS0">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS1">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS2">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS3">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS4">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS5">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS6">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="RS7">
+			<NAME language="RO">Serigrafie rotundă</NAME>
+			<NAME language="CS">Rotační sítotisk</NAME>
+			<NAME language="DE">Rundum-Siebdruck</NAME>
+			<NAME language="EN">Round screen printing</NAME>
+			<NAME language="FR">Sérigraphie circulaire</NAME>
+			<NAME language="HU">Körszitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica rotativ</NAME>
+			<NAME language="DA">Rotationsserigrafi</NAME>
+			<NAME language="PL">Sitodruk na okrągło</NAME>
+			<NAME language="NL">Rondzeefdruk</NAME>
+			<NAME language="PT">Serigrafia redonda</NAME>
+			<NAME language="RU">Круговая печать</NAME>
+			<NAME language="ES">Serigrafía circular</NAME>
+			<NAME language="SV">Rund screen</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S0">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S1">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S2">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S3">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S4">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S5">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S6">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="S7">
+			<NAME language="RO">Serigrafie</NAME>
+			<NAME language="CS">Sítotisk</NAME>
+			<NAME language="DE">Siebdruck</NAME>
+			<NAME language="EN">Screen printing</NAME>
+			<NAME language="FR">Sérigraphie</NAME>
+			<NAME language="HU">Szitanyomás</NAME>
+			<NAME language="IT">Stampa serigrafica</NAME>
+			<NAME language="DA">Serigrafi</NAME>
+			<NAME language="PL">Sitodruk</NAME>
+			<NAME language="NL">Zeefdruk</NAME>
+			<NAME language="PT">Serigrafia</NAME>
+			<NAME language="RU">Шелкотрафаретная печать</NAME>
+			<NAME language="ES">Serigrafía</NAME>
+			<NAME language="SV">Screentryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="T1">
+			<NAME language="RO">Transfer serigrafic</NAME>
+			<NAME language="CS">Sítotiskový transfer</NAME>
+			<NAME language="DE">Transfer Siebdruck</NAME>
+			<NAME language="EN">Screen transfer</NAME>
+			<NAME language="FR">Transfert sérigraphique</NAME>
+			<NAME language="HU">Transzfernyomás</NAME>
+			<NAME language="IT">Transfer serigrafico</NAME>
+			<NAME language="DA">Skærmtransfer</NAME>
+			<NAME language="PL">Transfer sitodruk</NAME>
+			<NAME language="NL">Transfer</NAME>
+			<NAME language="PT">Transferência de ecrã</NAME>
+			<NAME language="RU">Термоперенос</NAME>
+			<NAME language="ES">Transfer serigráfico</NAME>
+			<NAME language="SV">Transfertryck</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TC">
+			<NAME language="RO">Transfer ceramic</NAME>
+			<NAME language="CS">Keramický transfer</NAME>
+			<NAME language="DE">Keramik Transfer</NAME>
+			<NAME language="EN">Ceramic transfer</NAME>
+			<NAME language="FR">Transfert céramique</NAME>
+			<NAME language="HU">Kerámia transzfer</NAME>
+			<NAME language="IT">Transfer su ceramica</NAME>
+			<NAME language="DA">Keramisk transfer</NAME>
+			<NAME language="PL">Transfer ceramiczny</NAME>
+			<NAME language="NL">Keramische transfer</NAME>
+			<NAME language="PT">Transferência cerâmica</NAME>
+			<NAME language="RU">Деколь</NAME>
+			<NAME language="ES">Transfer cerámico</NAME>
+			<NAME language="SV">Keramisk transfer</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TD">
+			<NAME language="RO">Transfer digital</NAME>
+			<NAME language="CS">Digitální transfer</NAME>
+			<NAME language="DE">Digitalertransferdruck</NAME>
+			<NAME language="EN">Digital transfer</NAME>
+			<NAME language="FR">Transfert numérique</NAME>
+			<NAME language="HU">Digitális transzfer</NAME>
+			<NAME language="IT">Transfer digitale</NAME>
+			<NAME language="DA">Digital transfer</NAME>
+			<NAME language="PL">Transfer cyfrowy</NAME>
+			<NAME language="NL">Digitale transfer</NAME>
+			<NAME language="PT">Transferência digital</NAME>
+			<NAME language="RU">Цифровой термоперенос</NAME>
+			<NAME language="ES">Transfer digital</NAME>
+			<NAME language="SV">Digital transfer</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TD1">
+			<NAME language="RO">Transfer digital</NAME>
+			<NAME language="CS">Digitální transfer</NAME>
+			<NAME language="DE">Digitalertransferdruck</NAME>
+			<NAME language="EN">Digital transfer</NAME>
+			<NAME language="FR">Transfert numérique</NAME>
+			<NAME language="HU">Digitális transzfer</NAME>
+			<NAME language="IT">Transfer digitale</NAME>
+			<NAME language="DA">Digital transfer</NAME>
+			<NAME language="PL">Transfer cyfrowy</NAME>
+			<NAME language="NL">Digitale transfer</NAME>
+			<NAME language="PT">Transferência digital</NAME>
+			<NAME language="RU">Цифровой термоперенос 1</NAME>
+			<NAME language="ES">Transfer digital</NAME>
+			<NAME language="SV">Digital transfer</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TS">
+			<NAME language="RO">Sublimare</NAME>
+			<NAME language="CS">Sublimace</NAME>
+			<NAME language="DE">Sublimationstransfer</NAME>
+			<NAME language="EN">Sublimation</NAME>
+			<NAME language="FR">Sublimation</NAME>
+			<NAME language="HU">Szublimáció</NAME>
+			<NAME language="IT">Sublimazione</NAME>
+			<NAME language="DA">Sublimation</NAME>
+			<NAME language="PL">Sublimacja</NAME>
+			<NAME language="NL">Sublimatie</NAME>
+			<NAME language="PT">Sublimação</NAME>
+			<NAME language="RU">Сублимация</NAME>
+			<NAME language="ES">Sublimación</NAME>
+			<NAME language="SV">Sublimering</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TS1">
+			<NAME language="RO">Sublimare</NAME>
+			<NAME language="CS">Sublimace</NAME>
+			<NAME language="DE">Sublimationstransfer</NAME>
+			<NAME language="EN">Sublimation</NAME>
+			<NAME language="FR">Sublimation</NAME>
+			<NAME language="HU">Szublimáció</NAME>
+			<NAME language="IT">Sublimazione</NAME>
+			<NAME language="DA">Sublimation</NAME>
+			<NAME language="PL">Sublimacja</NAME>
+			<NAME language="NL">Sublimatie</NAME>
+			<NAME language="PT">Sublimação</NAME>
+			<NAME language="RU">Сублимация</NAME>
+			<NAME language="ES">Sublimación</NAME>
+			<NAME language="SV">Sublimering</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TS2">
+			<NAME language="RO">Sublimare</NAME>
+			<NAME language="CS">Sublimace</NAME>
+			<NAME language="DE">Sublimationstransfer</NAME>
+			<NAME language="EN">Sublimation</NAME>
+			<NAME language="FR">Sublimation</NAME>
+			<NAME language="HU">Szublimáció</NAME>
+			<NAME language="IT">Sublimazione</NAME>
+			<NAME language="DA">Sublimation</NAME>
+			<NAME language="PL">Sublimacja</NAME>
+			<NAME language="NL">Sublimatie</NAME>
+			<NAME language="PT">Sublimação</NAME>
+			<NAME language="RU">Сублимация</NAME>
+			<NAME language="ES">Sublimación</NAME>
+			<NAME language="SV">Sublimering</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TS3">
+			<NAME language="RO">Sublimare</NAME>
+			<NAME language="CS">Sublimace</NAME>
+			<NAME language="DE">Sublimationstransfer</NAME>
+			<NAME language="EN">Sublimation</NAME>
+			<NAME language="FR">Sublimation</NAME>
+			<NAME language="HU">Szublimáció</NAME>
+			<NAME language="IT">Sublimazione</NAME>
+			<NAME language="DA">Sublimation</NAME>
+			<NAME language="PL">Sublimacja</NAME>
+			<NAME language="NL">Sublimatie</NAME>
+			<NAME language="PT">Sublimação</NAME>
+			<NAME language="RU">Сублимация</NAME>
+			<NAME language="ES">Sublimación</NAME>
+			<NAME language="SV">Sublimering</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TS4">
+			<NAME language="RO">Sublimare</NAME>
+			<NAME language="CS">Sublimace</NAME>
+			<NAME language="DE">Sublimationstransfer</NAME>
+			<NAME language="EN">Sublimation</NAME>
+			<NAME language="FR">Sublimation</NAME>
+			<NAME language="HU">Szublimáció</NAME>
+			<NAME language="IT">Sublimazione</NAME>
+			<NAME language="DA">Sublimation</NAME>
+			<NAME language="PL">Sublimacja</NAME>
+			<NAME language="NL">Sublimatie</NAME>
+			<NAME language="PT">Sublimação</NAME>
+			<NAME language="RU">Сублимация</NAME>
+			<NAME language="ES">Sublimación</NAME>
+			<NAME language="SV">Sublimering</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+		<PRINTING_TECHNIQUE_DESCRIPTION id="TSM">
+			<NAME language="RO">Sublimare</NAME>
+			<NAME language="CS">Sublimace</NAME>
+			<NAME language="DE">Sublimationstransfer</NAME>
+			<NAME language="EN">Sublimation</NAME>
+			<NAME language="FR">Sublimation</NAME>
+			<NAME language="HU">Szublimáció</NAME>
+			<NAME language="IT">Sublimazione</NAME>
+			<NAME language="DA">Sublimation</NAME>
+			<NAME language="PL">Sublimacja</NAME>
+			<NAME language="NL">Sublimatie</NAME>
+			<NAME language="PT">Sublimação</NAME>
+			<NAME language="RU">Сублимация  на кружках</NAME>
+			<NAME language="ES">Sublimación</NAME>
+			<NAME language="SV">Sublimering</NAME>
+		</PRINTING_TECHNIQUE_DESCRIPTION>
+	</PRINTING_TECHNIQUE_DESCRIPTIONS>
+	<PRODUCTS>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1249</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000011</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>16</ITEM_COLOR_NUMBER>
+			<MANIPULATION>B</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>TOP COMPASS</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>5</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>25</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1249_16_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>TOP BOX</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>40</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>60</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1249_16_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>DL</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P5</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>LASER COMPASS</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>55</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>55</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1249_16_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>PD BOX</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>82</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>105</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1249_16_POS4.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>PD3</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1249.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1253</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000012</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>16</ITEM_COLOR_NUMBER>
+			<MANIPULATION>B</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>BELOW BUTTONS</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>9</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>65</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1253_16_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>P3</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>RIGHT OF SOLAR CEL</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>8</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>25</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1253_16_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>P3</ID>
+						<MAX_COLORS>2</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>LEFT OF SOLAR CEL</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>8</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>25</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1253_16_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>P3</ID>
+						<MAX_COLORS>2</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1253.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1470</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000048</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>01</ITEM_COLOR_NUMBER>
+			<MANIPULATION>D</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>FRONT POCKET</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>120</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>140</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="01">https://shopdocs.midocean.com/printpositions/AR1470_01_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>S5</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>FRONT TRANSFER</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>140</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>140</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="01">https://shopdocs.midocean.com/printpositions/AR1470_01_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>T1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>TD1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>TOP</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>100</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>190</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="01">https://shopdocs.midocean.com/printpositions/AR1470_01_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>T1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>TD1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1470.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1589</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000080</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>03</ITEM_COLOR_NUMBER>
+			<MANIPULATION>B</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>FRONT SIVLER PART</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>15</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>15</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1589_03_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>DO1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>L2</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P4</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BACK SILVER PART</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>15</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>15</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1589_03_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>DO1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>L2</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P4</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>FRONT LEATHER PART</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>10</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>12</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1589_03_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>B</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>L2</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BACK LEATHER PART</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>10</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>12</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1589_03_POS4.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>B</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>L2</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1589.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1800</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000186</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>03;04;05;06;10;12;37;48</ITEM_COLOR_NUMBER>
+			<MANIPULATION>A</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>FRONT</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>120</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>70</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1800_03_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1800_04_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1800_05_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1800_06_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1800_10_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1800_12_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1800_37_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1800_48_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>B</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>S2</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>T1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>TD</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>FRONT PD</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>144</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>90</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1800_03_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1800_04_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1800_05_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1800_06_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1800_10_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1800_12_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1800_37_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1800_48_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>PD4</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BACK</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>120</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>50</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1800_03_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1800_04_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1800_05_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1800_06_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1800_10_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1800_12_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1800_37_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1800_48_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>B</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>S2</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>T1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>TD</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BACK PD</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>144</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>60</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1800_03_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1800_04_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1800_05_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1800_06_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1800_10_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1800_12_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1800_37_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1800_48_POS4.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>PD4</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>FRONT PAD</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>30</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>50</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1800_03_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1800_04_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1800_05_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1800_06_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1800_10_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1800_12_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1800_37_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1800_48_POS5.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>P3</ID>
+						<MAX_COLORS>2</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1800.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1804</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000190</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>03;04;05;06;10;12;37;48</ITEM_COLOR_NUMBER>
+			<MANIPULATION>A</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>FRONT</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>190</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>120</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1804_03_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1804_04_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1804_05_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1804_06_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1804_10_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1804_12_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1804_37_POS1.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1804_48_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>B</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>S2</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>T1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>TD</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>FRONT PD</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>210</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>147</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1804_03_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1804_04_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1804_05_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1804_06_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1804_10_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1804_12_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1804_37_POS2.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1804_48_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>PD4</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BACK</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>190</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>90</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1804_03_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1804_04_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1804_05_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1804_06_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1804_10_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1804_12_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1804_37_POS3.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1804_48_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>B</ID>
+						<MAX_COLORS>1</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>S2</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>T1</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>TD</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BACK PD</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>210</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>111</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1804_03_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1804_04_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1804_05_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1804_06_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1804_10_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1804_12_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1804_37_POS4.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1804_48_POS4.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>PD4</ID>
+						<MAX_COLORS>8</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>FRONT PAD</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>30</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>50</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="03">https://shopdocs.midocean.com/printpositions/AR1804_03_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="04">https://shopdocs.midocean.com/printpositions/AR1804_04_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="05">https://shopdocs.midocean.com/printpositions/AR1804_05_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="06">https://shopdocs.midocean.com/printpositions/AR1804_06_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="10">https://shopdocs.midocean.com/printpositions/AR1804_10_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="12">https://shopdocs.midocean.com/printpositions/AR1804_12_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="37">https://shopdocs.midocean.com/printpositions/AR1804_37_POS5.jpg</PRINT_POSITION_URL>
+					<PRINT_POSITION_URL color="48">https://shopdocs.midocean.com/printpositions/AR1804_48_POS5.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>P3</ID>
+						<MAX_COLORS>2</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1804.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+		<PRODUCT>
+			<PRODUCT_BASE_NUMBER>AR1810</PRODUCT_BASE_NUMBER>
+			<PRODUCT_PRINT_ID>40000196</PRODUCT_PRINT_ID>
+			<PRINT_EXPRESS_POSSIBLE>N</PRINT_EXPRESS_POSSIBLE>
+			<ITEM_COLOR_NUMBER>16</ITEM_COLOR_NUMBER>
+			<MANIPULATION>C</MANIPULATION>
+			<PRINTING_POSITIONS>
+				<PRINTING_POSITION>
+					<ID>BASE FRONT</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>28</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>28</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1810_16_POS1.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P5</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>BASE BACK</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>28</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>28</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1810_16_POS2.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P5</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>PUZZLE FRONT</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>28</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>28</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1810_16_POS3.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P5</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+				<PRINTING_POSITION>
+					<ID>PUZZLE BACK</ID>
+					<PRINTING_SIZE_UNIT>mm</PRINTING_SIZE_UNIT>
+					<MAX_PRINT_SIZE_HEIGHT>28</MAX_PRINT_SIZE_HEIGHT>
+					<MAX_PRINT_SIZE_WIDTH>28</MAX_PRINT_SIZE_WIDTH>
+					<PRINT_POSITION_URL color="16">https://shopdocs.midocean.com/printpositions/AR1810_16_POS4.jpg</PRINT_POSITION_URL>
+					<PRINTING_TECHNIQUE>
+						<ID>L3</ID>
+						<MAX_COLORS>0</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+					<PRINTING_TECHNIQUE>
+						<ID>P5</ID>
+						<MAX_COLORS>4</MAX_COLORS>
+					</PRINTING_TECHNIQUE>
+				</PRINTING_POSITION>
+			</PRINTING_POSITIONS>
+			<PRINT_POSITION_DOCUMENT>https://shopdocs.midocean.com/templates/AR1810.PDF</PRINT_POSITION_DOCUMENT>
+		</PRODUCT>
+	</PRODUCTS>
+</PRINTINGINFORMATION>

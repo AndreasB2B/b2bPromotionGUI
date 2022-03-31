@@ -9,8 +9,9 @@ namespace KN.B2B.Model.products.B2BPrintPositions
     {
         [Key]
         public int scale_id {get; set;}
-        public int scale_minimumQuantity {get; set;}
+        public float scale_minimumQuantity {get; set;}
         public float scale_price {get; set;}
-        public int scale_nextPrice {get; set;}
+        public float scale_nextPrice {get; set;}
+        public SupplierPrintCost fk_supplerPrintCost {get; set;} 
     }
 }

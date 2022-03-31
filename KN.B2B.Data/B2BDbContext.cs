@@ -46,7 +46,7 @@ namespace KN.B2B.Data
         public DbSet<SupplierPrintPrice> SupplierPrintPrices { get; set; }
         public DbSet<SupplierPrintPriceScales> SupplierPrintPriceScales { get; set; }
         public DbSet<B2BPriceClass> B2BPriceClasses { get; set; }
-        public DbSet<B2BPriceScale> B2BPriceScales { get; set; }
-        public DbSet<B2BProductPrice> B2BProductPrices { get; set; }
+        public DbSet<B2BPriceScaling> B2BPriceScaling { get; set; }
+        public DbSet<B2BProductPrices> B2BProductPrices { get; set; }
     }
 }

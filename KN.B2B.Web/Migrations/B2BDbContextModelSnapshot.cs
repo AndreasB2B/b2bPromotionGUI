@@ -369,8 +369,8 @@ namespace KN.B2B.Web.Migrations
                     b.Property<int?>("fk_techniqueIdtechnique_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("print_express")
-                        .HasColumnType("int");
+                    b.Property<bool>("print_express")
+                        .HasColumnType("bit");
 
                     b.Property<float>("print_height")
                         .HasColumnType("real");
@@ -378,14 +378,11 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("print_position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("print_product")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("print_size")
-                        .HasColumnType("real");
-
                     b.Property<string>("print_supplier")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("print_width")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -759,21 +756,21 @@ namespace KN.B2B.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("fk_printPriceScalesscale_id")
-                        .HasColumnType("int");
+                    b.Property<string>("fk_supplierPrintPriceprintPrice_id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("printCost_areaFrom")
-                        .HasColumnType("int");
+                    b.Property<float>("printCost_areaFrom")
+                        .HasColumnType("real");
 
-                    b.Property<int>("printCost_areaTo")
-                        .HasColumnType("int");
+                    b.Property<float>("printCost_areaTo")
+                        .HasColumnType("real");
 
-                    b.Property<int>("printCost_rangeId")
-                        .HasColumnType("int");
+                    b.Property<string>("printCost_rangeId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("printCost_id");
 
-                    b.HasIndex("fk_printPriceScalesscale_id");
+                    b.HasIndex("fk_supplierPrintPriceprintPrice_id");
 
                     b.ToTable("SupplierPrintCosts");
                 });
@@ -781,12 +778,10 @@ namespace KN.B2B.Web.Migrations
             modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", b =>
                 {
                     b.Property<string>("printPrice_id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("fk_printCostprintCost_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("printPrice_code")
+                    b.Property<string>("printPrice_description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("printPrice_nextColourIndicator")
@@ -803,8 +798,6 @@ namespace KN.B2B.Web.Migrations
 
                     b.HasKey("printPrice_id");
 
-                    b.HasIndex("fk_printCostprintCost_id");
-
                     b.ToTable("SupplierPrintPrices");
                 });
 
@@ -815,16 +808,21 @@ namespace KN.B2B.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("scale_minimumQuantity")
+                    b.Property<int?>("fk_supplerPrintCostprintCost_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("scale_nextPrice")
-                        .HasColumnType("int");
+                    b.Property<float>("scale_minimumQuantity")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_nextPrice")
+                        .HasColumnType("real");
 
                     b.Property<float>("scale_price")
                         .HasColumnType("real");
 
                     b.HasKey("scale_id");
+
+                    b.HasIndex("fk_supplerPrintCostprintCost_id");
 
                     b.ToTable("SupplierPrintPriceScales");
                 });
@@ -965,7 +963,7 @@ namespace KN.B2B.Web.Migrations
                     b.ToTable("B2BProdducts");
                 });
 
-            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScale", b =>
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScaling", b =>
                 {
                     b.Property<int>("scale_id")
                         .ValueGeneratedOnAdd()
@@ -985,28 +983,26 @@ namespace KN.B2B.Web.Migrations
 
                     b.HasIndex("fk_priceIdid");
 
-                    b.ToTable("B2BPriceScales");
+                    b.ToTable("B2BPriceScaling");
                 });
 
-            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BProductPrice", b =>
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BProductPrices", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("fk_productSkuproduct_id")
-                        .HasColumnType("int");
+                    b.Property<string>("parrentSku")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("price_scale")
-                        .HasColumnType("int");
+                    b.Property<string>("price_startingPrice")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("price_startingPrice")
-                        .HasColumnType("int");
+                    b.Property<string>("price_validUntill")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
-
-                    b.HasIndex("fk_productSkuproduct_id");
 
                     b.ToTable("B2BProductPrices");
                 });
@@ -1133,16 +1129,16 @@ namespace KN.B2B.Web.Migrations
 
             modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintCost", b =>
                 {
-                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPriceScales", "fk_printPriceScales")
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", "fk_supplierPrintPrice")
                         .WithMany()
-                        .HasForeignKey("fk_printPriceScalesscale_id");
+                        .HasForeignKey("fk_supplierPrintPriceprintPrice_id");
                 });
 
-            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", b =>
+            modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPriceScales", b =>
                 {
-                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintCost", "fk_printCost")
+                    b.HasOne("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintCost", "fk_supplerPrintCost")
                         .WithMany()
-                        .HasForeignKey("fk_printCostprintCost_id");
+                        .HasForeignKey("fk_supplerPrintCostprintCost_id");
                 });
 
             modelBuilder.Entity("KN.B2B.Model.products.B2BProduct", b =>
@@ -1156,18 +1152,11 @@ namespace KN.B2B.Web.Migrations
                         .HasForeignKey("fk_printPositionId");
                 });
 
-            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScale", b =>
+            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScaling", b =>
                 {
-                    b.HasOne("KN.B2B.Model.products.productPrice.B2BProductPrice", "fk_priceId")
+                    b.HasOne("KN.B2B.Model.products.productPrice.B2BProductPrices", "fk_priceId")
                         .WithMany()
                         .HasForeignKey("fk_priceIdid");
-                });
-
-            modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BProductPrice", b =>
-                {
-                    b.HasOne("KN.B2B.Model.products.B2BProduct", "fk_productSku")
-                        .WithMany()
-                        .HasForeignKey("fk_productSkuproduct_id");
                 });
 #pragma warning restore 612, 618
         }

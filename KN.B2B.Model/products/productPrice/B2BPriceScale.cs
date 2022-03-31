@@ -5,12 +5,13 @@ using System.Text;
 
 namespace KN.B2B.Model.products.productPrice
 {
-    public class B2BPriceScale
+    public class B2BPriceScaling
     {
         [Key]
         public int scale_id {get; set;}
         public int scale_minimumQuantity {get; set;}
         public float scale_price {get; set;}
-        public B2BProductPrice fk_priceId {get; set;}
+
+        public B2BProductPrices fk_priceId { get; set; }
     }
 }

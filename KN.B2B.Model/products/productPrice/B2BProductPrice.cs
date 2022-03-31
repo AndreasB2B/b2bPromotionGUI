@@ -5,12 +5,12 @@ using System.Text;
 
 namespace KN.B2B.Model.products.productPrice
 {
-    public class B2BProductPrice
+    public class B2BProductPrices
     {
         [Key]
         public int id {get; set;}
-        public B2BProduct fk_productSku {get; set;}
-        public int price_startingPrice {get; set;}
-        public int price_scale {get; set;}
+        public string parrentSku{get; set;}
+        public string price_startingPrice {get; set;}
+        public string price_validUntill { get; set;}
     }
 }

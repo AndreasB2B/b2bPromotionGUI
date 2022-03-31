@@ -926,3 +926,4 @@ F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Web\obj\Debug\netcoreapp3.1\KN.B2B
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Web\obj\Debug\netcoreapp3.1\KN.B2B.Web.pdb
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Web\obj\Debug\netcoreapp3.1\KN.B2B.Web.genruntimeconfig.cache
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Private\Requests\Products\viewAll.cshtml.g.cs
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Private\Requests\Products\viewAll.cshtml.g.cs
