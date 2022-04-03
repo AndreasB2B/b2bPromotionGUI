@@ -71,10 +71,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //sendMail();
             //fetchFtpFile();
             //fetchXmlFiles();
-            //fetchMNPriceList();
+            fetchMNPriceList();
             //fetchTechniquePrices();
             //fetchMNManipulations();
-            fetchMNCategoryAndExport();
+            //fetchMNCategoryAndExport();
         }
         public void fetchMNManipulations()
         {
@@ -389,7 +389,6 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             WebReqDk.Method = "GET";
             WebReqDk.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
-            //WebReqDk.Credentials = new NetworkCredential("Casper@b2bpromotion.eu", "123456");
             HttpWebResponse WebRespDk = (HttpWebResponse)WebReqDk.GetResponse();
 
             string jsonStringDk;
@@ -402,24 +401,11 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             Console.WriteLine(jsonStringDk);
 
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            };
             List<MNRootObj> result = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringDk);
             Console.WriteLine(result);
 
             foreach (MNRootObj product in result)
             {
-
-                //B2BCategory b2Bcategory = new B2BCategory
-                //{
-                    //Id = 1;
-                    //        CategoryGroup 
-                    //        Category
-                    //        CategoryDK
-                    //    }
 
                 B2BParrentProducts obj = new B2BParrentProducts();
                 obj.parrentProduct_productName = product.product_name;
@@ -465,14 +451,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     Console.WriteLine(b2bProdcut);
 
                 }
-
-
-                Console.WriteLine(obj);
-
             }
-
-            //Console.WriteLine(myDeserializedClass);
-
         }
 
         public void fetchMNPriceList()
@@ -481,7 +460,6 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             WebReqDk.Method = "GET";
             WebReqDk.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
-            //WebReqDk.Credentials = new NetworkCredential("Casper@b2bpromotion.eu", "123456");
             HttpWebResponse WebRespDk = (HttpWebResponse)WebReqDk.GetResponse();
 
             string jsonStringDk;
@@ -503,6 +481,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             foreach (Price priceObj in result.price)
             {
+
+        // === CREATING PARRENT PRODUCT ===
                 CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
                 ci.NumberFormat.CurrencyDecimalSeparator = ",";
                 B2BProductPrices productPrice = new B2BProductPrices();
@@ -515,31 +495,280 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 _db.SaveChanges();
                 if (priceObj.scale != null)
                 {
-                    foreach (Scale scaleObj in priceObj.scale)
+        // === CHECK IF MISSING 1 INDEX / TOTAL OF 6
+                    if (priceObj.scale.Count() == 6 )
                     {
-                        CultureInfo cd = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-                        cd.NumberFormat.CurrencyDecimalSeparator = ".";
-                        B2BPriceScaling priceScale = new B2BPriceScaling();
-                        priceScale.scale_minimumQuantity = Int32.Parse(scaleObj.minimum_quantity);
-                        priceScale.scale_price = float.Parse(scaleObj.price, NumberStyles.Any, cd);
-                        priceScale.fk_priceId = productPrice;
+                        Console.WriteLine(priceObj.scale.Count());
+                        var lastMinimumPrice = float.Parse(priceObj.scale[priceObj.scale.Count() -5].price, NumberStyles.Any, ci);
+                        var lastMinimumQ = Int32.Parse(priceObj.scale[priceObj.scale.Count() - 5].minimum_quantity);
+                        int finallyq = 1;
+                        if(lastMinimumQ <= 200000 && lastMinimumQ >= 5000){
+                            finallyq = 10000;
+                        }
+                        else if(lastMinimumQ <= 4999 && lastMinimumQ >= 2500)
+                        {
+                            finallyq = 5000;
+                        }
+                        else if (lastMinimumQ <= 2499 && lastMinimumQ >= 1001)
+                        {
+                            finallyq = 2500;
+                        }
+                        else if (lastMinimumQ <= 1000 && lastMinimumQ >= 801)
+                        {
+                            finallyq = 1000;
+                        }
+                        else if (lastMinimumQ <= 800 && lastMinimumQ >= 500)
+                        {
+                            finallyq = 500;
+                        }
+                        else if (lastMinimumQ <= 499 && lastMinimumQ >= 250)
+                        {
+                            finallyq = 250;
+                        }
+                        else if (lastMinimumQ <= 249 && lastMinimumQ >= 125)
+                        {
+                            finallyq = 125;
+                        }
+                        else if (lastMinimumQ <= 125 && lastMinimumQ >= 50)
+                        {
+                            finallyq = 50;
+                        }
+                        else if (lastMinimumQ <= 49 && lastMinimumQ >= 1)
+                        {
+                            finallyq = 25;
+                        }
 
-                        _db.B2BPriceScaling.Add(priceScale);
-                        _db.SaveChanges();
+                        Scale priceScaleMin = new Scale
+                        {
+                            price = lastMinimumPrice.ToString(),
+                            minimum_quantity = finallyq.ToString()
+                        };
+                        priceObj.scale.Insert(priceObj.scale.Count(), priceScaleMin);
+                    }
+        // === CHECK IF MISSING 2 INDEXES / TOTAL OF 6
+                    if (priceObj.scale.Count() == 5)
+                    {
+                        Console.WriteLine(priceObj.scale.Count());
+                        var lastMinimumPrice = float.Parse(priceObj.scale[priceObj.scale.Count() - 4].price, NumberStyles.Any, ci);
+                        var lastMinimumQ = Int32.Parse(priceObj.scale[priceObj.scale.Count() - 4].minimum_quantity);
+                        int finallyq1 = 2;
+                        int finallyq2 = 2;
+                        if (lastMinimumQ <= 200000 && lastMinimumQ >= 5000)
+                        {
+                            finallyq1 = 10000;
+                            finallyq2 = 5000;
+                        }
+                        else if (lastMinimumQ <= 4999 && lastMinimumQ >= 2500)
+                        {
+                            finallyq1 = 5000;
+                            finallyq2 = 2500;
+                        }
+                        else if (lastMinimumQ <= 2499 && lastMinimumQ >= 1001)
+                        {
+                            finallyq1 = 2500;
+                            finallyq2 = 1000;
+                        }
+                        else if (lastMinimumQ <= 1000 && lastMinimumQ >= 500)
+                        {
+                            finallyq1 = 1000;
+                            finallyq2 = 500;
+                        }
+                        else if (lastMinimumQ <= 499 && lastMinimumQ >= 125)
+                        {
+                            finallyq1 = 250;
+                            finallyq2 = 125;
+                        }
+                        else if (lastMinimumQ <= 124 && lastMinimumQ >= 50)
+                        {
+                            finallyq1 = 125;
+                            finallyq2 = 50;
+                        }
+                        else if (lastMinimumQ <= 49 && lastMinimumQ >= 1)
+                        {
+                            finallyq1 = 50;
+                            finallyq2 = 25;
+                        }
+
+                        Scale priceScaleMin = new Scale
+                        {
+                            price = lastMinimumPrice.ToString(),
+                            minimum_quantity = finallyq1.ToString(),
+                        };
+
+                        Scale priceScaleMin2 = new Scale
+                        {
+                            price = lastMinimumPrice.ToString(),
+                            minimum_quantity = finallyq2.ToString(),
+                        };
+                        priceObj.scale.Insert(priceObj.scale.Count(), priceScaleMin);
+                        priceObj.scale.Insert(priceObj.scale.Count(),priceScaleMin2);
+
+
                     }
 
+        // === CHECK IF MISSING 3 INDEXES / TOTAL OF 6
+                    if (priceObj.scale.Count() == 4)
+                    {
+                        Console.WriteLine(priceObj.scale.Count());
+                        var lastMinimumPrice = float.Parse(priceObj.scale[priceObj.scale.Count() - 3].price, NumberStyles.Any, ci);
+                        var lastMinimumQ = Int32.Parse(priceObj.scale[priceObj.scale.Count() - 3].minimum_quantity);
+                        int finallyq1 = 3;
+                        int finallyq2 = 4;
+                        int finallyq3 = 5;
+                        if (lastMinimumQ <= 200000 && lastMinimumQ >= 5000)
+                        {
+                            finallyq1 = 10000;
+                            finallyq2 = 5000;
+                            finallyq3 = 2500;
+                        }
+                        else if (lastMinimumQ <= 4999 && lastMinimumQ >= 2500)
+                        {
+                            finallyq1 = 5000;
+                            finallyq2 = 2500;
+                            finallyq3 = 1000;
+                        }
+                        else if (lastMinimumQ <= 2499 && lastMinimumQ >= 500)
+                        {
+                            finallyq1 = 2500;
+                            finallyq2 = 1000;
+                            finallyq3 = 500;
+                        }
+                        else if (lastMinimumQ <= 1000 && lastMinimumQ >= 500)
+                        {
+                            finallyq1 = 500;
+                            finallyq2 = 250;
+                            finallyq3 = 125;
+                        }
+                        else if (lastMinimumQ <= 499 && lastMinimumQ >= 250)
+                        {
+                            finallyq1 = 250;
+                            finallyq2 = 125;
+                            finallyq3 = 50;
+                        }
+                        else if (lastMinimumQ <= 249 && lastMinimumQ >= 1)
+                        {
+                            finallyq1 = 125;
+                            finallyq2 = 50;
+                            finallyq3 = 25;
+                        }
+
+
+                        Scale priceScaleMin = new Scale
+                        {
+                            price = lastMinimumPrice.ToString(),
+                            minimum_quantity = finallyq1.ToString(),
+                        };
+
+                        Scale priceScaleMin2 = new Scale
+                        {
+                            price = lastMinimumPrice.ToString(),
+                            minimum_quantity = finallyq2.ToString(),
+                        }; 
+                        
+                        Scale priceScaleMin3 = new Scale
+                        {
+                            price = lastMinimumPrice.ToString(),
+                            minimum_quantity = finallyq3.ToString(),
+                        };
+
+                        priceObj.scale.Insert(priceObj.scale.Count(), priceScaleMin);
+                        priceObj.scale.Insert(priceObj.scale.Count(), priceScaleMin2);
+                        priceObj.scale.Insert(priceObj.scale.Count(), priceScaleMin3);
+                    }
+                    int breakLoop = 0;
+
+
+            // ======== INSERTING PRICE SCALE ========
+                    for (int i = priceObj.scale.Count()-1; i >= 0; i--)
+                    {
+
+
+
+
+                        if (priceObj.scale.Count() > i && i > breakLoop)
+                        {
+                            CultureInfo cd = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+                            cd.NumberFormat.CurrencyDecimalSeparator = ".";
+                            B2BPriceScaling priceScale = new B2BPriceScaling();
+
+                    // === MINIMUM QUANITITY ===
+                            if (Int32.Parse(priceObj.scale[i].minimum_quantity) == 1)
+                            {
+                                int index = priceObj.scale.FindIndex(a => Int32.Parse(a.minimum_quantity) == 1);
+                                priceScale.scale_minimumQuantity = Int32.Parse(priceObj.scale[index-1].minimum_quantity) / 2;
+                            }
+                            else
+                            {
+                                priceScale.scale_minimumQuantity = Int32.Parse(priceObj.scale[i].minimum_quantity);
+                            }
+                            string totalPrice = "";
+                            float _price = float.Parse(priceObj.scale[i].price, NumberStyles.Any, cd);
+
+                    // === PRICE STACKERS ===
+                            switch (i)
+                            {
+                                case 6:
+                                    totalPrice = String.Format("{0:0.00}", _price * 1.75);
+                                    break;
+                                case 5:
+                                    totalPrice = String.Format("{0:0.00}", _price * 1.65);
+
+                                    break;
+                                case 4:
+                                    totalPrice = String.Format("{0:0.00}", _price * 1.6);
+
+                                    break;
+                                case 3:
+                                    totalPrice = String.Format("{0:0.00}", _price * 1.55);
+
+                                    break;
+                                case 2:
+                                    totalPrice = String.Format("{0:0.00}", _price * 1.5);
+
+                                    break;
+                                case 1:
+                                    totalPrice = String.Format("{0:0.00}", _price * 1.45);
+
+                                    break;
+
+                            }
+                            string totalEuPrice = String.Format("{0:0.00}", Convert.ToDouble(totalPrice) * 0.13);
+                            string totalFIPrice = String.Format("{0:0.00}", Convert.ToDouble(totalPrice) * 0.79);
+                            priceScale.scale_supplierPrice = priceObj.scale[i].price;
+                // TODO == Round to numbers here
+                    // === DK PRICES ===
+                            priceScale.scale_priceDK = totalPrice;
+                    // === EU PRICES===
+                            priceScale.scale_priceEU = totalEuPrice;
+                    // === FI PRICES ===
+                            priceScale.scale_priceFI = totalFIPrice;
+                            // =============================
+
+                    // === FINALE FK_PRICEID ===
+                            priceScale.fk_priceId = productPrice;
+
+
+                    // == ALERTS ==
+                            priceScale.alertActive = false;
+                            priceScale.alert = "noAlert";
+
+                            if (priceScale.scale_minimumQuantity == 1)
+                            {
+                                priceScale.alertActive = true;
+                                priceScale.alert = "Error: with minimumQuanity";
+                            }if(Int32.Parse(priceObj.scale[i].minimum_quantity) == 1 && priceScale.scale_minimumQuantity > 250)
+                            {
+                                priceScale.alertActive = true;
+                                priceScale.alert = "Warning: q1 seems to high = " + priceScale.scale_minimumQuantity;
+                            }
+
+                            _db.B2BPriceScaling.Add(priceScale);
+                            _db.SaveChanges();
+                        }
+                    }
 
                 }
-
-
-
                 Console.WriteLine(priceObj);
-                //foreach(Price priceObj in rootObj.price)
-                //{
-
-                //}
-
-
             }
 
 
@@ -670,18 +899,6 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             }
 
         }
-        //foreach (PRINTINGINFORMATIONPRODUCTPRINTING_POSITIONPRINTING_TECHNIQUE technique in printPos.pRINTING_TECHNIQUEField)
-        //{
-
-        //                                foreach(B2BPrintTechnique fk_technique in techniquesList)
-        //                        {
-        //                            //B2BPrintTechnique techniqueObj = fk_technique;
-        //                            if(technique.idField == fk_technique.technique_name)
-        //                            {
-        //                                b2BPrintPosition.fk_techniqueId = fk_technique;
-        //                            }
-        //}
-        //}
 
     }
 }

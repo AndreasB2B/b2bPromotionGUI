@@ -10,8 +10,12 @@ namespace KN.B2B.Model.products.productPrice
         [Key]
         public int scale_id {get; set;}
         public int scale_minimumQuantity {get; set;}
-        public float scale_price {get; set;}
-
+        public string scale_supplierPrice {get; set;}
+        public string scale_priceDK { get; set;}
+        public string scale_priceEU { get; set;}
+        public string scale_priceFI { get; set;}
+        public bool alertActive { get; set; }
+        public string alert { get; set; }
         public B2BProductPrices fk_priceId { get; set; }
     }
 }

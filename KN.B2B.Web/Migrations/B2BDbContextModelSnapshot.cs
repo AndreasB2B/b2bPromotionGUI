@@ -970,14 +970,29 @@ namespace KN.B2B.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("alert")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("alertActive")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("fk_priceIdid")
                         .HasColumnType("int");
 
                     b.Property<int>("scale_minimumQuantity")
                         .HasColumnType("int");
 
-                    b.Property<float>("scale_price")
-                        .HasColumnType("real");
+                    b.Property<string>("scale_priceDK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("scale_priceEU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("scale_priceFI")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("scale_supplierPrice")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("scale_id");
 

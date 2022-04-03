@@ -13,6 +13,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll" target="lib\netcoreapp3.1\KN.Messaging.SendGrid.dll" />
+    <file src="F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll" target="lib\netcoreapp3.1\KN.Messaging.SendGrid.dll" />
   </files>
 </package>
