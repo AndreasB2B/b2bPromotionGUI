@@ -406,9 +406,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             foreach (MNRootObj product in result)
             {
-
+    //TODO === FILL COMMERCIAL TEXT
+                string commercialText = "";
                 B2BParrentProducts obj = new B2BParrentProducts();
-                obj.parrentProduct_productName = product.product_name;
+                obj.parrentProduct_productName = product.product_name + product.short_description.Substring(0,31);
                 obj.parrentProduct_masterId = Int32.Parse(product.master_id);
                 obj.parrentProduct_parrentSku = product.master_code;
                 obj.parrentProduct_printPositions = Int32.Parse(product.number_of_print_positions);
@@ -417,7 +418,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 obj.parrentProduct_width = float.Parse(product.width);
                 obj.parrentProduct_height = float.Parse(product.height);
                 obj.parrentProduct_longDescription = product.long_description;
-                obj.parrentProduct_shortDescription = product.short_description;
+                obj.parrentProduct_shortDescription = product.short_description + commercialText + product.dimensions;
                 if (product.printable == "yes")
                 {
                     obj.parrentProduct_printable = true;
@@ -681,10 +682,6 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             // ======== INSERTING PRICE SCALE ========
                     for (int i = priceObj.scale.Count()-1; i >= 0; i--)
                     {
-
-
-
-
                         if (priceObj.scale.Count() > i && i > breakLoop)
                         {
                             CultureInfo cd = (CultureInfo)CultureInfo.CurrentCulture.Clone();
