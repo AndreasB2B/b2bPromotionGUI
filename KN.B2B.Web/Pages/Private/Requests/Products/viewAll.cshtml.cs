@@ -24,6 +24,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using KN.B2B.Web.Models;
+using System.Collections;
 
 namespace KN.B2B.Web.Pages.Private.Requests.Products
 {
@@ -72,6 +74,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //fetchMNPriceList();
             //fetchTechniquePrices();
             //fetchMNManipulations();
+            fetchMNCategoryAndExport();
         }
         public void fetchMNManipulations()
         {
@@ -137,8 +140,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             };
             MNPrintPricesRoot result = JsonConvert.DeserializeObject<MNPrintPricesRoot>(jsonStringDk);
             //List<MNRootObj> result = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringDk);
-            Console.WriteLine(result);
-
+            //Console.WriteLine(result);
 
             foreach (PrintTechnique printTechnique in result.print_techniques)
             {
@@ -206,6 +208,180 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             }
 
         }
+        public void fetchMNCategoryAndExport()
+        {
+            HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language=da"));
+            HttpWebRequest WebReqEN = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language=en"));
+            HttpWebRequest WebReqFI = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language=fi"));
+
+            WebReqDk.Method = "GET";
+            WebReqDk.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
+            HttpWebResponse WebRespDk = (HttpWebResponse)WebReqDk.GetResponse();
+
+            WebReqEN.Method = "GET";
+            WebReqEN.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
+            HttpWebResponse WebRespEN = (HttpWebResponse)WebReqEN.GetResponse();
+
+            WebReqFI.Method = "GET";
+            WebReqFI.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
+            HttpWebResponse WebRespFI = (HttpWebResponse)WebReqFI.GetResponse();
+
+            string jsonStringDk;
+            using (Stream stream = WebRespDk.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+
+                jsonStringDk = reader.ReadToEnd();
+            }
+
+            string jsonStringEN;
+            using (Stream stream = WebRespEN.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+
+                jsonStringEN = reader.ReadToEnd();
+            }
+
+            string jsonStringFI;
+            using (Stream stream = WebRespFI.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+
+                jsonStringFI = reader.ReadToEnd();
+            }
+
+            List<MNRootObj> resultDK = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringDk);
+            List<MNRootObj> resultEN = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringEN);
+            List<MNRootObj> resultFI = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringFI);
+
+            List<string> categoryListLevel1DK = new List<string>();
+            List<string> categoryListLevel2DK = new List<string>();
+            List<string> categoryListLevel3DK = new List<string>();
+            List<string> master_colorDK= new List<string>();
+
+            List<string> categoryListLevel1FI = new List<string>();
+            List<string> categoryListLevel2FI = new List<string>();
+            List<string> categoryListLevel3FI = new List<string>();
+            List<string> master_colorFI = new List<string>();
+
+            List<string> categoryListLevel1EN = new List<string>();
+            List<string> categoryListLevel2EN = new List<string>();
+            List<string> categoryListLevel3EN = new List<string>();
+            List<string> master_colorEN = new List<string>();
+
+            foreach (MNRootObj product in resultDK)
+            {
+                foreach (Variant childProduct in product.variants)
+                {
+                    categoryListLevel1DK.Add(childProduct.category_level1);
+                    categoryListLevel2DK.Add(childProduct.category_level2);
+                    categoryListLevel3DK.Add(childProduct.category_level3);
+                    master_colorDK.Add(childProduct.color_group);
+                }
+            }
+
+            foreach (MNRootObj product in resultEN)
+            {
+                foreach (Variant childProduct in product.variants)
+                {
+                    categoryListLevel1EN.Add(childProduct.category_level1);
+                    categoryListLevel2EN.Add(childProduct.category_level2);
+                    categoryListLevel3EN.Add(childProduct.category_level3);
+                    master_colorEN.Add(childProduct.color_group);
+                }
+            }
+
+            foreach (MNRootObj product in resultFI)
+            {
+                foreach (Variant childProduct in product.variants)
+                {
+                    categoryListLevel1FI.Add(childProduct.category_level1);
+                    categoryListLevel2FI.Add(childProduct.category_level2);
+                    categoryListLevel3FI.Add(childProduct.category_level3);
+                    master_colorFI.Add(childProduct.color_group);
+                }
+            }
+
+            List<string> categoryListLevel1SortedDK = categoryListLevel1DK.Distinct().ToList();
+            List<string> categoryListLevel2SortedDK = categoryListLevel2DK.Distinct().ToList();
+            List<string> categoryListLevel3SortedDK = categoryListLevel3DK.Distinct().ToList();
+            List<string> master_colorSortedDK = master_colorDK.Distinct().ToList();
+
+            List<string> categoryListLevel1SortedFI = categoryListLevel1FI.Distinct().ToList();
+            List<string> categoryListLevel2SortedFI = categoryListLevel2FI.Distinct().ToList();
+            List<string> categoryListLevel3SortedFI = categoryListLevel3FI.Distinct().ToList();
+            List<string> master_colorSortedFI = master_colorFI.Distinct().ToList();
+
+            List<string> categoryListLevel1SortedEN = categoryListLevel1EN.Distinct().ToList();
+            List<string> categoryListLevel2SortedEN = categoryListLevel2EN.Distinct().ToList();
+            List<string> categoryListLevel3SortedEN = categoryListLevel3EN.Distinct().ToList();
+            List<string> master_colorSortedEN = master_colorEN.Distinct().ToList();
+
+
+            patchToExcel(categoryListLevel1SortedDK, categoryListLevel2SortedDK, categoryListLevel3SortedDK, master_colorSortedDK, "DANISH");
+            patchToExcel(categoryListLevel1SortedEN, categoryListLevel2SortedEN, categoryListLevel3SortedEN, master_colorSortedEN, "ENGLISH");
+            patchToExcel(categoryListLevel1SortedFI, categoryListLevel2SortedFI, categoryListLevel3SortedFI, master_colorSortedFI, "FINNISH");
+        }
+
+        public void patchToExcel(List<string> categoryLevel1, List<string> categoryLevel2, List<string> categoryLevel3, List<string> master_color, string country)
+        {
+
+            string filePath = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss") + "-" + country + ".csv";
+            try
+            {
+
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    file.WriteLine("Country;Category_Level1_MN;Category1_Translated_B2B;");
+
+                    for (int i = 0; categoryLevel1.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + categoryLevel1[i]);
+
+                    }
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine("Country;Category_Level2_MN;Category2_Translated_B2B;");
+                    for (int i = 0; categoryLevel2.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + categoryLevel2[i]);
+
+                    }
+
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine("Country;Category_Level3_MN;Category3_Translated_B2B;");
+                    for (int i = 0; categoryLevel3.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + categoryLevel3[i]);
+
+                    }
+
+                }
+
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine("Country;Master_Color_MN;Master_color_B2B");
+
+                    for (int i = 0; master_color.Count() > i; i++)
+                    {
+                        if(master_color[i] != null)
+                        {
+                            file.WriteLine(country + ";" + master_color[i] +";;");
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did an oopsie :", ex);
+            }
+        }
 
         public void fetchMNData()
         {
@@ -233,6 +409,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             };
             List<MNRootObj> result = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringDk);
             Console.WriteLine(result);
+
             foreach (MNRootObj product in result)
             {
 
