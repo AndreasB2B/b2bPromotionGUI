@@ -39,4 +39,8 @@
     <ProjectReference Include="..\KN.Messaging.SendGrid\KN.Messaging.SendGrid.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="assets\images\" />
+  </ItemGroup>
+
 </Project>

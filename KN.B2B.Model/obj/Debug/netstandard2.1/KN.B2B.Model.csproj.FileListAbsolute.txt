@@ -27,4 +27,3 @@ F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.CoreCompileInputs.cache
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.dll
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.pdb
-F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.AssemblyReference.cache

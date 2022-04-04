@@ -1,5 +1,6 @@
 using KN.B2B.Data;
 using KN.B2B.Model;
+using KN.B2B.Model.products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.Extensions.Logging;
+using KN.B2B.Web.Models;
+using System.Collections;
+using System.Web;
 
 namespace KN.B2B.Web.Pages.Private.Requests.Products
 {
@@ -28,6 +34,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public IEnumerable<SelectListItem> Suppliers { get; set; }
         public IEnumerable<SelectListItem> B2BCategories { get; set; }
         public IEnumerable<SelectListItem> Complaints { get; set; }
+        public B2BProduct product { get; set; }
+        public B2BParrentProducts parrentProduct { get; set; }
         #endregion
 
         public EditModel(B2BDbContext context)
@@ -35,11 +43,14 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             _context = context;
         }
 
-        public async Task<IActionResult> OnGet(int? id, int reqId)
+        public async Task<IActionResult> OnGet(int? id)
         {
             if (id.HasValue)
             {
-                Product = await _context.RequestProducts.FirstOrDefaultAsync(x => x.Id == id.Value);
+                //b2bProduct = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU == id.Value);
+
+                parrentProduct = await _context.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == id.Value);
+                product = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU.parrentProduct_id == id.Value);
             }
             else
             {
@@ -48,7 +59,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 //Product.ShippingDate = DateTime.UtcNow.AddHours(ConstValues.DanishTimeZone);
                 //Product.DeliveryDate = DateTime.UtcNow.AddHours(ConstValues.DanishTimeZone);
             }
-            ParentRequest = _context.Requests.FirstOrDefault(x => x.Id == reqId); //a parent request will always be present
+
+
+
+            //ParentRequest = _context.Requests.FirstOrDefault(x => x.Id == reqId); //a parent request will always be present
             Suppliers = await LoadCollections.LoadSuppliers(_context);
             B2BCategories = await LoadCollections.LoadB2BCategories(_context);
             Complaints = await LoadCollections.LoadComplaints(_context);

@@ -26,6 +26,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using KN.B2B.Web.Models;
 using System.Collections;
+using System.Web;
 
 namespace KN.B2B.Web.Pages.Private.Requests.Products
 {
@@ -37,6 +38,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
         public string message { get; set; }
         public string searchQuery { get; set; }
+        public B2BProduct B2BProduct { get; set; }
 
         public IEnumerable<B2BParrentProducts> parrentProductsList { get; set; }
 
@@ -62,16 +64,18 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //        .OrderByDescending(x => x.Id)
             //        .ToListAsync();
             //else
+                
                 parrentProductsList = await _db.B2BParrentProducts
                     //.Include(x => x.parrentProduct_productName)
                     //.Include(x => x.parrentProduct_shortDescription)
                     .OrderByDescending(x => x.parrentProduct_id)
                     .ToListAsync();
+
             //fetchMNData();
             //sendMail();
             //fetchFtpFile();
             //fetchXmlFiles();
-            fetchMNPriceList();
+            //fetchMNPriceList();
             //fetchTechniquePrices();
             //fetchMNManipulations();
             //fetchMNCategoryAndExport();
@@ -407,9 +411,20 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             foreach (MNRootObj product in result)
             {
     //TODO === FILL COMMERCIAL TEXT
+    //TODO === ADD COMMENTS
                 string commercialText = "";
+                string productName = product.product_name + product.short_description;
+
                 B2BParrentProducts obj = new B2BParrentProducts();
-                obj.parrentProduct_productName = product.product_name + product.short_description.Substring(0,31);
+                if (productName.Length > 31)
+                {
+                    obj.parrentProduct_productName = productName.Substring(0, 31);
+
+                }
+                else
+                {
+                    obj.parrentProduct_productName = productName;
+                }
                 obj.parrentProduct_masterId = Int32.Parse(product.master_id);
                 obj.parrentProduct_parrentSku = product.master_code;
                 obj.parrentProduct_printPositions = Int32.Parse(product.number_of_print_positions);
@@ -445,11 +460,16 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     b2bProdcut.product_brandNames = product.brand;
                     b2bProdcut.product_shortDescriptionDK = product.short_description;
                     b2bProdcut.product_longDescriptionDK = product.long_description;
-
                     _db.B2BProdducts.Add(b2bProdcut);
                     _db.SaveChanges();
 
+                    int imgCount = 00;
                     Console.WriteLine(b2bProdcut);
+                    foreach(DigitalAsset img in childProduct.digital_assets)
+                    {
+                        downloadImages(img.url, childProduct.sku + "_" + imgCount.ToString() + ".jpg");
+                        imgCount++;
+                    }
 
                 }
             }
@@ -895,6 +915,21 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             }
 
+        }
+
+        //=== SUB METHODS ===
+        public void downloadImages(string linkName, string imgName)
+        {
+            using (WebClient webclient = new WebClient())
+            // TODO - SAVES UNINDENTIFIED FORMAT
+                webclient.DownloadFile(linkName, "assets\\images\\" + imgName);
+            string serverFolder = "assets\\images\\";
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string specificFolder = Path.Combine(folder, "assets\\images\\");
+            string file = @imgName;
+            if (!Directory.Exists(specificFolder))
+                Directory.CreateDirectory(specificFolder);
+            System.IO.File.Copy(serverFolder + file, Path.Combine(specificFolder, Path.GetFileName(file)),true);
         }
 
     }

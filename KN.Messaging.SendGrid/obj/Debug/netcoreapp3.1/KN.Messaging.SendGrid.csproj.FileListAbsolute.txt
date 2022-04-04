@@ -21,7 +21,6 @@ C:\github_repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreap
 F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.deps.json
 F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.dll
 F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\bin\Debug\netcoreapp3.1\KN.Messaging.SendGrid.pdb
-F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.csproj.AssemblyReference.cache
 F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.GeneratedMSBuildEditorConfig.editorconfig
 F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.AssemblyInfoInputs.cache
 F:\Github_Repositories\b2bPromotionGUI\KN.Messaging.SendGrid\obj\Debug\netcoreapp3.1\KN.Messaging.SendGrid.AssemblyInfo.cs
