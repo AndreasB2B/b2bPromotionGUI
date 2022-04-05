@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using KN.B2B.Web.Models;
 using System.Collections;
 using System.Web;
+using KN.B2B.Model.products.B2BPrintPositions;
+using KN.B2B.Model.SystemTables;
 
 namespace KN.B2B.Web.Pages.Private.Requests.Products
 {
@@ -36,6 +38,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public IEnumerable<SelectListItem> B2BCategories { get; set; }
         public IEnumerable<SelectListItem> Complaints { get; set; }
         public IEnumerable<B2BProduct> childProducts { get; set; }
+        public IEnumerable<B2BPrintPosition> positions { get; set; }
+        public IEnumerable<B2BPrintTechnique> printTechniques { get; set; }
+        public IEnumerable<B2BPrintTechnique> techniques { get; set; }
+        public IEnumerable<SupplierPrintPrice> printPrices { get; set; }
         public B2BParrentProducts parrentProduct { get; set; }
         #endregion
 
@@ -52,6 +58,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
                 parrentProduct = await _context.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == id.Value);
                 childProducts = await LoadCollections.LoadProductsWherePId(_context, id);
+                positions = await LoadCollections.LoadPrintPositionsWProductSKU(_context, parrentProduct.parrentProduct_parrentSku);
+                techniques = await LoadCollections.LoadAllPrintTechniques(_context);
+                printPrices = await LoadCollections.LoadAllPrintPrices(_context);
+                //printTechniques = await _context
                 //product = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU.parrentProduct_id == id.Value);
             }
             else

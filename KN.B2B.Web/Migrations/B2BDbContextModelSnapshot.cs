@@ -774,6 +774,15 @@ namespace KN.B2B.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("alert")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("alertMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("alertStatus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("fk_supplierPrintPriceprintPrice_id")
                         .HasColumnType("nvarchar(450)");
 
@@ -796,7 +805,20 @@ namespace KN.B2B.Web.Migrations
             modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", b =>
                 {
                     b.Property<string>("printPrice_id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("alert")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("alertMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("alertStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_descId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("printPrice_description")
                         .HasColumnType("nvarchar(max)");
@@ -831,13 +853,31 @@ namespace KN.B2B.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("alert")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("alertMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("alertStatus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("fk_supplerPrintCostprintCost_id")
                         .HasColumnType("int");
 
                     b.Property<float>("scale_minimumQuantity")
                         .HasColumnType("real");
 
-                    b.Property<float>("scale_nextPrice")
+                    b.Property<float>("scale_nextPriceDK")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_nextPriceEU")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_nextPriceFI")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_nextPriceSupplier")
                         .HasColumnType("real");
 
                     b.Property<float>("scale_priceDK")

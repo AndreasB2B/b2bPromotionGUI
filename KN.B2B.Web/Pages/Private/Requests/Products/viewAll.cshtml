@@ -11,17 +11,17 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Sku</th>
             <th scope="col">Product Name</th>
             <th scope="col">Product Description</th>
-            <th scope="col">Handle</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach(var prod in Model.parrentProductsList)
         {
         <tr>
-            <th scope="row">@prod.parrentProduct_id</th>
+            <th scope="row">@prod.parrentProduct_parrentSku</th>
             <td>@prod.parrentProduct_productName</td>
             <td>@prod.parrentProduct_shortDescription</td>
             <td>

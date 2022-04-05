@@ -1,6 +1,7 @@
 ﻿using KN.B2B.Data;
 using KN.B2B.Model;
 using KN.B2B.Model.products;
+using KN.B2B.Model.products.B2BPrintPositions;
 using KN.B2B.Model.SystemTables;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,27 @@ namespace KN.B2B.Web
             var products = await _context.B2BProdducts.Where(x => x.fk_ParentSKU.parrentProduct_id == parrentId).ToListAsync();
             
             return products;
+        }
+
+        public static async Task<IEnumerable<B2BPrintPosition>> LoadPrintPositionsWProductSKU(B2BDbContext _context, string parrentSku)
+        {
+            var position = await _context.B2BPrintPositions.Where(x => x.Position == parrentSku).ToListAsync();
+
+            return position;
+        }
+
+        public static async Task<IEnumerable<SupplierPrintPrice>> LoadAllPrintPrices(B2BDbContext _context)
+        {
+            var printPrices = await _context.SupplierPrintPrices.ToListAsync();
+
+            return printPrices;
+        }
+
+        public static async Task<IEnumerable<B2BPrintTechnique>> LoadAllPrintTechniques(B2BDbContext _context)
+        {
+            var techniques = await _context.B2BPrintTechniques.ToListAsync();
+
+            return techniques;
         }
 
         public static async Task<IEnumerable<RequestCommunication>> LoadCommunications(B2BDbContext _context, int requestId)

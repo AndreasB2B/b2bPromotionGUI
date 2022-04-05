@@ -36,6 +36,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         private readonly B2BDbContext _db;
         private readonly IConfiguration _config;
 
+        SupplierPrintPrice supplierPrintPrice { get; set; }
+
         public string message { get; set; }
         public string searchQuery { get; set; }
         public B2BProduct B2BProduct { get; set; }
@@ -71,10 +73,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     .OrderByDescending(x => x.parrentProduct_id)
                     .ToListAsync();
 
-            fetchMNData();
+            //fetchMNData();
             //sendMail();
             //fetchFtpFile();
-            //fetchXmlFiles();
+            //await fetchPrintTechniques();
             //fetchMNPriceList();
             //fetchTechniquePrices();
             //fetchMNManipulations();
@@ -125,10 +127,9 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         }
         public void fetchTechniquePrices() {
             HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/printpricelist/2.0/"));
-
             WebReqDk.Method = "GET";
             WebReqDk.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
-            //WebReqDk.Credentials = new NetworkCredential("Casper@b2bpromotion.eu", "123456");
+
             HttpWebResponse WebRespDk = (HttpWebResponse)WebReqDk.GetResponse();
 
             string jsonStringDk;
@@ -141,27 +142,29 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             Console.WriteLine(jsonStringDk);
 
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            };
             MNPrintPricesRoot result = JsonConvert.DeserializeObject<MNPrintPricesRoot>(jsonStringDk);
-            //List<MNRootObj> result = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringDk);
-            //Console.WriteLine(result);
 
             foreach (PrintTechnique printTechnique in result.print_techniques)
             {
+
+                bool alert = false;
+                string alertmsg = "";
+                string alertStatus = "green";
                 double _price = double.Parse(printTechnique.setup) * 1.5;
 
                 SupplierPrintPrice printObj = new SupplierPrintPrice();
+                printObj.printPrice_descId = printTechnique.id;
                 printObj.printPrice_description = printTechnique.description;
                 printObj.printPrice_pricingType = printTechnique.pricing_type;
-                printObj.printPrice_setupDK = _price.ToString();
-                printObj.printPrice_setupEU = (_price * 0.13).ToString();
-                printObj.printPrice_setupFI = (_price * 0.13).ToString();
+                printObj.printPrice_setupDK = Math.Round(_price, 2).ToString();
+                printObj.printPrice_setupEU = Math.Round((_price * 0.13),2).ToString();
+                printObj.printPrice_setupFI = Math.Round((_price * 0.13), 2).ToString();
                 printObj.printPrice_repeat = printTechnique.setup_repeat;
                 printObj.printPrice_nextColourIndicator = printTechnique.next_colour_cost_indicator;
+
+                printObj.alert = alert;
+                printObj.alertMessage = alertmsg;
+                printObj.alertStatus = alertStatus;
 
                 _db.SupplierPrintPrices.Add(printObj);
                 _db.SaveChanges();
@@ -169,15 +172,22 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
                 foreach(VarCost varCost in printTechnique.var_costs)
                 {
+                    alert = false;
+                    alertmsg = "";
+                    alertStatus = "green";
+
                     SupplierPrintCost costObj = new SupplierPrintCost();
                     costObj.printCost_rangeId = varCost.range_id;
+
                     if(varCost.area_from != "")
                     {
+
                         costObj.printCost_areaFrom = float.Parse(varCost.area_from);
                     }
                     else
                     {
                         costObj.printCost_areaFrom = 0;
+
                     }
                     if(varCost.area_to != "")
                     {
@@ -186,33 +196,61 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     else
                     {
                         costObj.printCost_areaTo = 0;
+
                     }
                     costObj.fk_supplierPrintPrice = printObj;
+
+                    costObj.alert = alert;
+                    costObj.alertMessage = alertmsg;
+                    costObj.alertStatus = alertStatus;
 
                     _db.SupplierPrintCosts.Add(costObj);
                     _db.SaveChanges();
 
                     foreach(Scales scale in varCost.scales)
                     {
+                        alert = false;
+                        alertmsg = "";
+                        alertStatus = "green";
+
                         CultureInfo cv = (CultureInfo)CultureInfo.CurrentCulture.Clone();
                         cv.NumberFormat.CurrencyDecimalSeparator = ",";
                         SupplierPrintPriceScales scaleObj = new SupplierPrintPriceScales();
                         scaleObj.scale_minimumQuantity = float.Parse(scale.minimum_quantity);
-                        double convertedPrice = (float.Parse(scale.price) * 1.5);
-                        scaleObj.scale_priceDK = (float)Math.Round(float.Parse(scale.price) * 1.5, 2);
-                        scaleObj.scale_priceEU = (float)Math.Round(convertedPrice * 0.13, 2);
-                        scaleObj.scale_priceFI = (float)Math.Round(convertedPrice * 0.13, 2);
+                        double convertedPrice = Math.Round((float.Parse(scale.price) * 1.5),2);
+                        double EUValuta = Math.Round(convertedPrice * 0.13, 2);
+                        scaleObj.scale_priceDK = (float)convertedPrice;
+                        scaleObj.scale_priceEU = (float)EUValuta;
+                        scaleObj.scale_priceFI = (float)EUValuta;
                         scaleObj.scale_supplierPrice = float.Parse(scale.price);
                         if (scale.next_price != "")
                         {
-                            scaleObj.scale_nextPrice = float.Parse(scale.next_price);
+                            double originalNextPrice = Math.Round(double.Parse(varCost.area_to),2);
+                            double areaToB2BNextPrice = originalNextPrice * 1.5;
+                            double areaToFIEUNextPrice = Math.Round(areaToB2BNextPrice * 0.13, 2);
+                            scaleObj.scale_nextPriceSupplier = (float)originalNextPrice;
+                            scaleObj.scale_nextPriceDK = (float)originalNextPrice;
+                            scaleObj.scale_nextPriceFI = (float)originalNextPrice;
+                            scaleObj.scale_nextPriceEU = (float)originalNextPrice;
+
 
                         }
                         else
                         {
-                            scaleObj.scale_nextPrice = 0;
+                            scaleObj.scale_nextPriceSupplier = 0;
+                            scaleObj.scale_nextPriceDK = 0;
+                            scaleObj.scale_nextPriceEU = 0;
+                            scaleObj.scale_nextPriceFI = 0;
+
+                            alert = true;
+                            alertmsg += "Missing next prices; ";
+                            alertStatus = "yellow";
                         }
                         scaleObj.fk_supplerPrintCost = costObj;
+
+                        scaleObj.alert = alert;
+                        scaleObj.alertMessage = alertmsg;
+                        scaleObj.alertStatus = alertStatus;
 
                         _db.SupplierPrintPriceScales.Add(scaleObj);
                         _db.SaveChanges();
@@ -569,15 +607,15 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
                     int imgCount = 00;
                     Console.WriteLine(b2bProdcut);
-                    foreach(DigitalAsset img in childProduct.digital_assets)
-                    {
-                        downloadImages(img.url, childProduct.sku + "_" + imgCount.ToString() + ".jpg");
-                        imgCount++;
-                    }
+                    //foreach(DigitalAsset img in childProduct.digital_assets)
+                    //{
+                    //    downloadImages(img.url, childProduct.sku + "_" + imgCount.ToString() + ".jpg");
+                    //    imgCount++;
+                    //}
 
                 }
             }
-            patchProdDesc(productList, country);
+            //patchProdDesc(productList, country);
 
         }
         public void patchProdDesc(List<B2BParrentProducts> product, string country)
@@ -963,7 +1001,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //response.Close();
         }
 
-        public void fetchXmlFiles()
+        public async Task fetchPrintTechniques()
         {
             string xmlString = string.Empty;
 
@@ -983,11 +1021,16 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
 
 
-            //foreach(PRINTINGINFORMATIONPRINTING_TECHNIQUE_DESCRIPTION technique in o.pRINTING_TECHNIQUE_DESCRIPTIONSField)
+            //foreach (PRINTINGINFORMATIONPRINTING_TECHNIQUE_DESCRIPTION technique in o.pRINTING_TECHNIQUE_DESCRIPTIONSField)
             //{
+            //    supplierPrintPrice = await _db.SupplierPrintPrices.FirstOrDefaultAsync(c => c.printPrice_descId == technique.idField);
+            //    //var = await _db.SupplierHandles.FirstOrDefaultAsync(c => c.printPrice_descId == technique.idField);
+
             //    B2BPrintTechnique printTechnique = new B2BPrintTechnique();
             //    printTechnique.technique_name = technique.idField;
             //    printTechnique.technique_description = technique.nAMEField[7].valueField;
+            //    printTechnique.technique_supplier = "midocean";
+            //    printTechnique.fk_supplierPriceCode = supplierPrintPrice;
             //    _db.B2BPrintTechniques.Add(printTechnique);
             //    _db.SaveChanges();
             //    Console.WriteLine(printTechnique);
@@ -1003,7 +1046,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
                 foreach (PRINTINGINFORMATIONPRODUCTPRINTING_POSITION printPos in product.pRINTING_POSITIONSField)
                 {
-                    foreach(PRINTINGINFORMATIONPRODUCTPRINTING_POSITIONPRINTING_TECHNIQUE technique in printPos.pRINTING_TECHNIQUEField)
+                    foreach (PRINTINGINFORMATIONPRODUCTPRINTING_POSITIONPRINTING_TECHNIQUE technique in printPos.pRINTING_TECHNIQUEField)
                     {
                         B2BPrintPosition b2BPrintPosition = new B2BPrintPosition();
                         b2BPrintPosition.print_supplier = o.sUPPLIERField;
@@ -1025,7 +1068,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                                 Console.WriteLine(fk_technique);
                                 break;
                             }
-                           
+
                         }
                         b2BPrintPosition.print_position = printPos.idField;
                         b2BPrintPosition.print_width = float.Parse(printPos.mAX_PRINT_SIZE_WIDTHField);
