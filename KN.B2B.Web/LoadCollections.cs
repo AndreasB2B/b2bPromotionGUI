@@ -1,5 +1,6 @@
 ﻿using KN.B2B.Data;
 using KN.B2B.Model;
+using KN.B2B.Model.products;
 using KN.B2B.Model.SystemTables;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,13 @@ namespace KN.B2B.Web
                 selectList.Add(new SelectListItem(customer.Name, customer.Id.ToString()));
             }
             return selectList;
+        }
+
+        public static async Task<IEnumerable<B2BProduct>> LoadProductsWherePId(B2BDbContext _context, int? parrentId)
+        {
+            var products = await _context.B2BProdducts.Where(x => x.fk_ParentSKU.parrentProduct_id == parrentId).ToListAsync();
+            
+            return products;
         }
 
         public static async Task<IEnumerable<RequestCommunication>> LoadCommunications(B2BDbContext _context, int requestId)

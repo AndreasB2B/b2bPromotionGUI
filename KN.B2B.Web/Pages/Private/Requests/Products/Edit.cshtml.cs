@@ -28,13 +28,14 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public RequestProduct Product { get; set; }
         [BindProperty]
         public Request ParentRequest { get; set; }
+        //public B2BProduct childProducts { get; set; }
         #endregion
 
         #region Properties
         public IEnumerable<SelectListItem> Suppliers { get; set; }
         public IEnumerable<SelectListItem> B2BCategories { get; set; }
         public IEnumerable<SelectListItem> Complaints { get; set; }
-        public B2BProduct product { get; set; }
+        public IEnumerable<B2BProduct> childProducts { get; set; }
         public B2BParrentProducts parrentProduct { get; set; }
         #endregion
 
@@ -50,7 +51,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 //b2bProduct = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU == id.Value);
 
                 parrentProduct = await _context.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == id.Value);
-                product = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU.parrentProduct_id == id.Value);
+                childProducts = await LoadCollections.LoadProductsWherePId(_context, id);
+                //product = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU.parrentProduct_id == id.Value);
             }
             else
             {

@@ -12,6 +12,9 @@ namespace KN.B2B.Model.products.B2BPrintPositions
         // Throws data to = B2BPrintTechnique {get; set;}
         public string handles_code {get; set;}
         public string handles_description {get; set;}
-        public float handles_price {get; set;}
+        public float handles_priceDK {get; set;}
+        public float handles_priceEU { get; set;}
+        public float handles_priceFI { get; set;}
+        public float handles_supplierPrice { get; set;}
     }
 }

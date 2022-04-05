@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20220325090124_pushNewTables3.Designer.cs" />
     <Compile Remove="Migrations\20220325090300_pushNewTables3.cs" />
     <Compile Remove="Migrations\20220325090300_pushNewTables3.Designer.cs" />
+    <Compile Remove="Migrations\20220405113042_updatePrices4.cs" />
+    <Compile Remove="Migrations\20220405113042_updatePrices4.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

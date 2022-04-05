@@ -637,6 +637,15 @@ namespace KN.B2B.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("alert")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("alertMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("alertStatus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("fk_B2BCategoriesId")
                         .HasColumnType("int");
 
@@ -658,8 +667,8 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("parrentProduct_mainCategory")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("parrentProduct_masterId")
-                        .HasColumnType("int");
+                    b.Property<string>("parrentProduct_masterId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("parrentProduct_material")
                         .HasColumnType("nvarchar(max)");
@@ -741,7 +750,16 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("handles_description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("handles_price")
+                    b.Property<float>("handles_priceDK")
+                        .HasColumnType("real");
+
+                    b.Property<float>("handles_priceEU")
+                        .HasColumnType("real");
+
+                    b.Property<float>("handles_priceFI")
+                        .HasColumnType("real");
+
+                    b.Property<float>("handles_supplierPrice")
                         .HasColumnType("real");
 
                     b.HasKey("handles_id");
@@ -778,7 +796,6 @@ namespace KN.B2B.Web.Migrations
             modelBuilder.Entity("KN.B2B.Model.products.B2BPrintPositions.SupplierPrintPrice", b =>
                 {
                     b.Property<string>("printPrice_id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("printPrice_description")
@@ -793,7 +810,13 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("printPrice_repeat")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("printPrice_setup")
+                    b.Property<string>("printPrice_setupDK")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_setupEU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("printPrice_setupFI")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("printPrice_id");
@@ -817,7 +840,16 @@ namespace KN.B2B.Web.Migrations
                     b.Property<float>("scale_nextPrice")
                         .HasColumnType("real");
 
-                    b.Property<float>("scale_price")
+                    b.Property<float>("scale_priceDK")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_priceEU")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_priceFI")
+                        .HasColumnType("real");
+
+                    b.Property<float>("scale_supplierPrice")
                         .HasColumnType("real");
 
                     b.HasKey("scale_id");

@@ -11,7 +11,7 @@ namespace KN.B2B.Model.products
         [Key]
         public int parrentProduct_id {get; set;}
         public string parrentProduct_productName { get; set; }
-        public int parrentProduct_masterId {get; set;}
+        public string parrentProduct_masterId {get; set;}
         // Throw parrentsku to B2BProducts entity
         public string parrentProduct_parrentSku {get; set;}
         public int parrentProduct_printPositions {get; set;}
@@ -25,6 +25,9 @@ namespace KN.B2B.Model.products
         public string parrentProduct_material { get; set;}
         public string parrentProduct_mainCategory {get; set;}
         public string parrentProduct_subCategory {get; set;}
+        public bool alert { get; set; }
+        public string alertStatus { get; set; }
+        public string alertMessage { get; set; }
         // Get data from cagetgory groups
         public B2BCategoryGroup fk_B2BCategoryGroups {get; set;}
         // Get data from categories

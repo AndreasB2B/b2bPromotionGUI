@@ -71,7 +71,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     .OrderByDescending(x => x.parrentProduct_id)
                     .ToListAsync();
 
-            //fetchMNData();
+            fetchMNData();
             //sendMail();
             //fetchFtpFile();
             //fetchXmlFiles();
@@ -113,7 +113,11 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 SupplierHandles handleObj = new SupplierHandles();
                 handleObj.handles_code = maniItem.code;
                 handleObj.handles_description = maniItem.description;
-                handleObj.handles_price = float.Parse(maniItem.price);
+                double convertedPrice = (float.Parse(maniItem.price) * 1.5);
+                handleObj.handles_priceDK = (float)convertedPrice;
+                handleObj.handles_priceEU = (float)(float)Math.Round(convertedPrice * 0.13, 2);
+                handleObj.handles_priceFI = (float)(float)Math.Round(convertedPrice * 0.13, 2);
+                handleObj.handles_supplierPrice = float.Parse(maniItem.price);
 
                 _db.SupplierHandles.Add(handleObj);
                 _db.SaveChanges();
@@ -148,66 +152,73 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             foreach (PrintTechnique printTechnique in result.print_techniques)
             {
-            SupplierPrintPrice printObj = new SupplierPrintPrice();
-            //printObj.printPrice_id = 
-            printObj.printPrice_description = printTechnique.description;
-            printObj.printPrice_pricingType = printTechnique.pricing_type;
-            printObj.printPrice_setup = printTechnique.setup;
-            printObj.printPrice_repeat = printTechnique.setup_repeat;
-            printObj.printPrice_nextColourIndicator = printTechnique.next_colour_cost_indicator;
+                double _price = double.Parse(printTechnique.setup) * 1.5;
 
-            _db.SupplierPrintPrices.Add(printObj);
-            _db.SaveChanges();
+                SupplierPrintPrice printObj = new SupplierPrintPrice();
+                printObj.printPrice_description = printTechnique.description;
+                printObj.printPrice_pricingType = printTechnique.pricing_type;
+                printObj.printPrice_setupDK = _price.ToString();
+                printObj.printPrice_setupEU = (_price * 0.13).ToString();
+                printObj.printPrice_setupFI = (_price * 0.13).ToString();
+                printObj.printPrice_repeat = printTechnique.setup_repeat;
+                printObj.printPrice_nextColourIndicator = printTechnique.next_colour_cost_indicator;
 
-
-            foreach(VarCost varCost in printTechnique.var_costs)
-            {
-                SupplierPrintCost costObj = new SupplierPrintCost();
-                costObj.printCost_rangeId = varCost.range_id;
-                if(varCost.area_from != "")
-                {
-                    costObj.printCost_areaFrom = float.Parse(varCost.area_from);
-                }
-                else
-                {
-                    costObj.printCost_areaFrom = 0;
-                }
-                if(varCost.area_to != "")
-                {
-                    costObj.printCost_areaTo = float.Parse(varCost.area_to);
-                }
-                else
-                {
-                    costObj.printCost_areaTo = 0;
-                }
-                costObj.fk_supplierPrintPrice = printObj;
-
-                _db.SupplierPrintCosts.Add(costObj);
+                _db.SupplierPrintPrices.Add(printObj);
                 _db.SaveChanges();
 
-                foreach(Scales scale in varCost.scales)
-                {
-                    CultureInfo cv = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-                    cv.NumberFormat.CurrencyDecimalSeparator = ",";
-                    SupplierPrintPriceScales scaleObj = new SupplierPrintPriceScales();
-                    scaleObj.scale_minimumQuantity = float.Parse(scale.minimum_quantity);
-                    scaleObj.scale_price = float.Parse(scale.price);
-                    if(scale.next_price != "")
-                    {
-                        scaleObj.scale_nextPrice = float.Parse(scale.next_price);
 
+                foreach(VarCost varCost in printTechnique.var_costs)
+                {
+                    SupplierPrintCost costObj = new SupplierPrintCost();
+                    costObj.printCost_rangeId = varCost.range_id;
+                    if(varCost.area_from != "")
+                    {
+                        costObj.printCost_areaFrom = float.Parse(varCost.area_from);
                     }
                     else
                     {
-                        scaleObj.scale_nextPrice = 0;
+                        costObj.printCost_areaFrom = 0;
                     }
-                    scaleObj.fk_supplerPrintCost = costObj;
+                    if(varCost.area_to != "")
+                    {
+                        costObj.printCost_areaTo = float.Parse(varCost.area_to);
+                    }
+                    else
+                    {
+                        costObj.printCost_areaTo = 0;
+                    }
+                    costObj.fk_supplierPrintPrice = printObj;
 
-                    _db.SupplierPrintPriceScales.Add(scaleObj);
+                    _db.SupplierPrintCosts.Add(costObj);
                     _db.SaveChanges();
 
+                    foreach(Scales scale in varCost.scales)
+                    {
+                        CultureInfo cv = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+                        cv.NumberFormat.CurrencyDecimalSeparator = ",";
+                        SupplierPrintPriceScales scaleObj = new SupplierPrintPriceScales();
+                        scaleObj.scale_minimumQuantity = float.Parse(scale.minimum_quantity);
+                        double convertedPrice = (float.Parse(scale.price) * 1.5);
+                        scaleObj.scale_priceDK = (float)Math.Round(float.Parse(scale.price) * 1.5, 2);
+                        scaleObj.scale_priceEU = (float)Math.Round(convertedPrice * 0.13, 2);
+                        scaleObj.scale_priceFI = (float)Math.Round(convertedPrice * 0.13, 2);
+                        scaleObj.scale_supplierPrice = float.Parse(scale.price);
+                        if (scale.next_price != "")
+                        {
+                            scaleObj.scale_nextPrice = float.Parse(scale.next_price);
+
+                        }
+                        else
+                        {
+                            scaleObj.scale_nextPrice = 0;
+                        }
+                        scaleObj.fk_supplerPrintCost = costObj;
+
+                        _db.SupplierPrintPriceScales.Add(scaleObj);
+                        _db.SaveChanges();
+
+                    }
                 }
-            }
                 Console.WriteLine(printObj);
             }
 
@@ -387,9 +398,11 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             }
         }
 
+        
         public void fetchMNData()
         {
-            HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language=da"));
+            string country = "fi";
+            HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language={country}"));
 
             WebReqDk.Method = "GET";
             WebReqDk.Headers.Add("x-gateway-APIKey", "538d5726-fc8e-4917-9d1e-0c6e2c7fe205");
@@ -406,16 +419,21 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             Console.WriteLine(jsonStringDk);
 
             List<MNRootObj> result = JsonConvert.DeserializeObject<List<MNRootObj>>(jsonStringDk);
-            Console.WriteLine(result);
-
+            List<B2BParrentProducts> productList = new List<B2BParrentProducts>();
+            
             foreach (MNRootObj product in result)
             {
     //TODO === FILL COMMERCIAL TEXT
     //TODO === ADD COMMENTS
                 string commercialText = "";
                 string productName = product.product_name + product.short_description;
-
+                string productShortDesc = "";
+                bool alert = false;
+                string alertMessage = "";
+                string alertStatus = "";
                 B2BParrentProducts obj = new B2BParrentProducts();
+
+                // === CHECK IF PRODUCT NAME > 31 CHARS ===
                 if (productName.Length > 31)
                 {
                     obj.parrentProduct_productName = productName.Substring(0, 31);
@@ -425,15 +443,92 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 {
                     obj.parrentProduct_productName = productName;
                 }
-                obj.parrentProduct_masterId = Int32.Parse(product.master_id);
+
+                // === CHECK IF SHORT DESC == NULL ==
+                if(product.short_description == null)
+                {
+                    productShortDesc = "";
+                    alert = true;
+                    alertStatus = "red";
+                    alertMessage += " Ingen short description;";
+                }
+                else
+                {
+                    // === CHECK IF SHORT DESC > 31 CHARS ===
+                    if (product.short_description.Length > 31)
+                    {
+                        productShortDesc = product.short_description.Substring(0, 31);
+                    }
+                    else
+                    {
+                        productShortDesc = product.short_description;
+                    }
+                }
+
+
+                obj.parrentProduct_masterId = product.master_id;
                 obj.parrentProduct_parrentSku = product.master_code;
-                obj.parrentProduct_printPositions = Int32.Parse(product.number_of_print_positions);
+
+            // === CHECK IF PRODUCT PRINT POSITIONS == NULL ===
+                if (product.number_of_print_positions != null)
+                {
+                    obj.parrentProduct_printPositions = Int32.Parse(product.number_of_print_positions);
+                }
+                else
+                {
+                    obj.parrentProduct_printPositions = 0;
+                }
                 obj.parrentProduct_dimensions = product.dimensions;
-                obj.parrentProduct_length = float.Parse(product.length);
-                obj.parrentProduct_width = float.Parse(product.width);
-                obj.parrentProduct_height = float.Parse(product.height);
-                obj.parrentProduct_longDescription = product.long_description;
-                obj.parrentProduct_shortDescription = product.short_description + commercialText + product.dimensions;
+
+            // === CHECK IF PRODUCT LENGTH == NULL ===
+                if(product.length != null)
+                {
+                    obj.parrentProduct_length = float.Parse(product.length);
+                }
+                else
+                {
+                    obj.parrentProduct_length = 0;
+                    alert = true;
+                    alertStatus = "red";
+                    alertMessage += " missing product length;";
+                }
+
+            // === CHECK IF PRODUCT WIDTH == NULL ===
+                if (product.width != null)
+                {
+                    obj.parrentProduct_width = float.Parse(product.width);
+                }
+                else
+                {
+                    obj.parrentProduct_height = 0;
+                    alert = true;
+                    alertStatus = "red";
+                    alertMessage += " missing product width;";
+                }
+
+            // === CHECK IF PRODUCT HEIGHT == NULL ===
+                if (product.height != null)
+                {
+                    obj.parrentProduct_height = float.Parse(product.height);
+                }
+                else
+                {
+                    obj.parrentProduct_height = 0;
+                    alert = true;
+                    alertStatus = "red";
+                    alertMessage += " missing product height;";
+                }
+                if(product.long_description != null && product.dimensions != null)
+                {
+                    obj.parrentProduct_longDescription = product.long_description + commercialText + product.dimensions;
+                }
+                else
+                {
+                    alert = true;
+                    alertStatus = "red";
+                    alertMessage += " No long description;";
+                }
+                obj.parrentProduct_shortDescription = productShortDesc;
                 if (product.printable == "yes")
                 {
                     obj.parrentProduct_printable = true;
@@ -447,19 +542,28 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 obj.parrentProduct_subCategory = "none";
                 obj.fk_B2BCategories = null;
                 obj.fk_B2BCategories = null;
+                obj.alert = alert;
+                obj.alertMessage = alertMessage;
+                obj.alertStatus = alertStatus;
 
+                productList.Add(obj);
                 _db.B2BParrentProducts.Add(obj);
                 _db.SaveChanges();
 
                 foreach (Variant childProduct in product.variants)
                 {
+
                     B2BProduct b2bProdcut = new B2BProduct();
+                    string _productName = product.product_name + product.short_description;
+
+
                     b2bProdcut.product_sku = childProduct.sku;
                     b2bProdcut.fk_ParentSKU = obj;
                     b2bProdcut.product_ColorName = childProduct.color_description;
                     b2bProdcut.product_brandNames = product.brand;
-                    b2bProdcut.product_shortDescriptionDK = product.short_description;
                     b2bProdcut.product_longDescriptionDK = product.long_description;
+                    b2bProdcut.product_shortDescriptionDK = productShortDesc;
+
                     _db.B2BProdducts.Add(b2bProdcut);
                     _db.SaveChanges();
 
@@ -472,6 +576,33 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     }
 
                 }
+            }
+            patchProdDesc(productList, country);
+
+        }
+        public void patchProdDesc(List<B2BParrentProducts> product, string country)
+        {
+            string filePath = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss") + "_" + "ProductInformation" + "-" + country + ".csv";
+            try
+            {
+
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    file.WriteLine("Country;productName;shortDesc;longDesc;");
+
+                    for (int i = 0; product.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + product[i].parrentProduct_productName + ";" + product[i].parrentProduct_shortDescription + "," + product[i].parrentProduct_longDescription + ",");
+
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did an oopsie :", ex);
             }
         }
 
