@@ -10,7 +10,10 @@ namespace KN.B2B.Model.products.productPrice
         [Key]
         public int id {get; set;}
         public string parrentSku{get; set;}
-        public string price_startingPrice {get; set;}
+        public string price_startingPriceSupplier {get; set;}
+        public string price_startingPriceDK {get; set;}
+        public string price_startingPriceEU {get; set;}
+        public string price_startingPriceFI { get; set;}
         public string price_validUntill { get; set;}
     }
 }

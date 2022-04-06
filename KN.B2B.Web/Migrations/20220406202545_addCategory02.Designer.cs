@@ -4,14 +4,16 @@ using KN.B2B.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KN.B2B.Web.Migrations
 {
     [DbContext(typeof(B2BDbContext))]
-    partial class B2BDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406202545_addCategory02")]
+    partial class addCategory02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -700,9 +702,6 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("parrentProduct_subCategoryFI")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("parrentProduct_supplierSubCategory")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("parrentProduct_width")
                         .HasColumnType("real");
 
@@ -1095,16 +1094,7 @@ namespace KN.B2B.Web.Migrations
                     b.Property<string>("parrentSku")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("price_startingPriceDK")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("price_startingPriceEU")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("price_startingPriceFI")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("price_startingPriceSupplier")
+                    b.Property<string>("price_startingPrice")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("price_validUntill")

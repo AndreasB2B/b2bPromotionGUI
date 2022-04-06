@@ -24,7 +24,10 @@ namespace KN.B2B.Model.products
         public bool parrentProduct_printable { get; set; }
         public string parrentProduct_material { get; set;}
         public string parrentProduct_mainCategory {get; set;}
-        public string parrentProduct_subCategory {get; set;}
+        public string parrentProduct_supplierSubCategory {get; set;}
+        public string parrentProduct_subCategoryDK {get; set;}
+        public string parrentProduct_subCategoryFI {get; set;}
+        public string parrentProduct_subCategoryEN {get; set; }
         public bool alert { get; set; }
         public string alertStatus { get; set; }
         public string alertMessage { get; set; }

@@ -7,7 +7,16 @@
 }
 
 <h1>All Products</h1>
-
+<form asp-page="./viewAll" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by SKU/Product Name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./viewAll">Back to full List</a>
+        </p>
+    </div>
+</form>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -18,21 +27,41 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var prod in Model.parrentProductsList)
+        @foreach (var prod in Model.productPaging)
         {
-        <tr>
-            <th scope="row">@prod.parrentProduct_parrentSku</th>
-            <td>@prod.parrentProduct_productName</td>
-            <td>@prod.parrentProduct_shortDescription</td>
-            <td>
-                <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@prod.parrentProduct_id">
-                    <i class="fas fa-info-circle"></i>
-                </a>
-                <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@prod.parrentProduct_id">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </td>
-        </tr>   
+            <tr>
+                <th scope="row">@prod.parrentProduct_parrentSku</th>
+                <td>@prod.parrentProduct_productName</td>
+                <td>@prod.parrentProduct_shortDescription</td>
+                <td>
+                    <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@prod.parrentProduct_id">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@prod.parrentProduct_id">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+
         }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.productPaging.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.productPaging.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./viewAll"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.productPaging.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./viewAll"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.productPaging.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

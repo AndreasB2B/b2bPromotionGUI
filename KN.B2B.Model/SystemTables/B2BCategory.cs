@@ -6,5 +6,6 @@
         public B2BCategoryGroup CategoryGroup { get; set; }
         public string Category { get; set; }
         public string CategoryDK { get; set; }
+        public string CategoryFI { get; set; }
     }
 }

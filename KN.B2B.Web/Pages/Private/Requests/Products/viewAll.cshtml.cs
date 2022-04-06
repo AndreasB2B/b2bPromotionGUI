@@ -41,10 +41,12 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public string message { get; set; }
         public string searchQuery { get; set; }
         public B2BProduct B2BProduct { get; set; }
-
         public IEnumerable<B2BParrentProducts> parrentProductsList { get; set; }
-
-
+        public PaginatedList<B2BParrentProducts> productPaging { get; set; }
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
 
         public viewAllModel(B2BDbContext db, ILogger<IndexModel> logger, IConfiguration config)
         {
@@ -54,8 +56,24 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
 
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
         {
+            //https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/sort-filter-page?view=aspnetcore-6.0
+            CurrentSort = sortOrder;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            CurrentFilter = searchString;
+
+            IQueryable<B2BParrentProducts> products = from s in _db.B2BParrentProducts select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.parrentProduct_parrentSku.Contains(searchString) || s.parrentProduct_productName.Contains(searchString));
+            }
+
+
+
             message = _config["Message"];
             //if (string.IsNullOrEmpty(searchQuery) == false)
             //    parrentProductsList = await _db.B2BParrentProducts
@@ -66,12 +84,14 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //        .OrderByDescending(x => x.Id)
             //        .ToListAsync();
             //else
-                
-                parrentProductsList = await _db.B2BParrentProducts
-                    //.Include(x => x.parrentProduct_productName)
-                    //.Include(x => x.parrentProduct_shortDescription)
-                    .OrderByDescending(x => x.parrentProduct_id)
-                    .ToListAsync();
+
+            //parrentProductsList = await _db.B2BParrentProducts
+            //    //.Include(x => x.parrentProduct_productName)
+            //    //.Include(x => x.parrentProduct_shortDescription)
+            //    .OrderByDescending(x => x.parrentProduct_id)
+            //    .ToListAsync();
+
+
 
             //fetchMNData();
             //sendMail();
@@ -81,6 +101,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //fetchTechniquePrices();
             //fetchMNManipulations();
             //fetchMNCategoryAndExport();
+            //insertCategories();
+            var pageSize = _config.GetValue("PageSize", 4);
+            productPaging = await PaginatedList<B2BParrentProducts>.CreateAsync(
+                products.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
         public void fetchMNManipulations()
         {
@@ -464,7 +488,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
     //TODO === FILL COMMERCIAL TEXT
     //TODO === ADD COMMENTS
                 string commercialText = "";
-                string productName = product.product_name + product.short_description;
+                string productName = product.product_name+ " " + product.short_description;
                 string productShortDesc = "";
                 bool alert = false;
                 string alertMessage = "";
@@ -505,7 +529,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
 
                 obj.parrentProduct_masterId = product.master_id;
-                obj.parrentProduct_parrentSku = product.master_code;
+                obj.parrentProduct_parrentSku = "MN" + product.master_code;
 
             // === CHECK IF PRODUCT PRINT POSITIONS == NULL ===
                 if (product.number_of_print_positions != null)
@@ -577,7 +601,25 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 }
                 obj.parrentProduct_material = product.material;
                 obj.parrentProduct_mainCategory = product.product_class;
-                obj.parrentProduct_subCategory = "none";
+
+            // === VALIDATING SUBCATEGORY ===
+                foreach(Variant searchSubCategory in product.variants)
+                {
+                    obj.parrentProduct_supplierSubCategory = searchSubCategory.category_level2;
+                    var foundCategory = asignCategories(searchSubCategory, country);
+                    if(foundCategory != null)
+                    {
+                        obj.parrentProduct_subCategoryDK = foundCategory.CategoryDK;
+                        obj.parrentProduct_subCategoryEN = foundCategory.Category;
+                        obj.parrentProduct_subCategoryFI = foundCategory.CategoryFI;
+                    }
+                    else
+                    {
+                        alert = true;
+                        alertMessage += "Missing Subcategory; ";
+                        alertStatus = "red";
+                    }
+                }
                 obj.fk_B2BCategories = null;
                 obj.fk_B2BCategories = null;
                 obj.alert = alert;
@@ -676,7 +718,11 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
                 ci.NumberFormat.CurrencyDecimalSeparator = ",";
                 B2BProductPrices productPrice = new B2BProductPrices();
-                productPrice.price_startingPrice = priceObj.price;
+                var startingPrice = Math.Round(double.Parse(priceObj.price) * 1.5);
+                productPrice.price_startingPriceSupplier = priceObj.price;
+                productPrice.price_startingPriceDK = startingPrice.ToString();
+                productPrice.price_startingPriceFI = String.Format("{0:0.00}", startingPrice * 1.75);
+                productPrice.price_startingPriceEU = String.Format("{0:0.00}", startingPrice * 1.75);
                 productPrice.price_validUntill = priceObj.valid_until;
                 productPrice.parrentSku = priceObj.sku;
 
@@ -1105,6 +1151,773 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 Directory.CreateDirectory(specificFolder);
             System.IO.File.Copy(serverFolder + file, Path.Combine(specificFolder, Path.GetFileName(file)),true);
         }
+        public void insertCategories()
+        {
 
+            List<B2BCategory> categories = new List<B2BCategory>();
+
+            B2BCategory category2 = new B2BCategory
+            {
+                Category = "Office & work",
+                CategoryDK = "Toimisto",
+                CategoryFI = "Kontor & Arbejde",
+            };
+
+            B2BCategory category3 = new B2BCategory
+            {
+                Category = "Leisure & Outdoor life",
+                CategoryDK = "Vapaa-aika & Ulkoilu",
+                CategoryFI = "Fritid & Udeliv",
+            };
+
+            B2BCategory category4 = new B2BCategory
+            {
+                Category = "Keychains & Lanyards",
+                CategoryDK = "Avaimenperät & Avainnauhat",
+                CategoryFI = "Nøgleringe & Nøglesnore",
+            };
+
+            B2BCategory category6 = new B2BCategory
+            {
+                Category = "Notebooks & Notepads",
+                CategoryFI = "Muistikirjat & Muistivihkot",
+                CategoryDK = "Muistikirjat & Muistivihkot",
+            };
+
+            B2BCategory category5 = new B2BCategory
+            {
+                Category = "Drinking bottles and Thermos",
+                CategoryFI = "Juomapullot & Termokset",
+                CategoryDK = "Drikkedunke & Termoflasker",
+            };
+            B2BCategory category7 = new B2BCategory
+            {
+                Category = "Kitchen",
+                CategoryFI = "Keittiö",
+                CategoryDK = "Køkken",
+            };
+            B2BCategory category8 = new B2BCategory
+            {
+                Category = "Umbrellas & Raincoats",
+                CategoryFI = "Sateenvarjot & Sadeasut",
+                CategoryDK = "Paraplyer & Regnslag",
+            };
+
+            B2BCategory category9 = new B2BCategory
+            {
+                Category = "Antistress",
+                CategoryFI = "Stressilelut",
+                CategoryDK = "Antistress",
+            };
+
+            B2BCategory category11 = new B2BCategory
+            {
+                Category = "Tote Bags & Shopping Bags",
+                CategoryFI = "Ostos- & Kangaskassit",
+                CategoryDK = "Muleposer & Indkøbstasker",
+            };
+
+            B2BCategory category12 = new B2BCategory
+            {
+                Category = "Suitcase & Travel Products",
+                CategoryFI = "Matkustaminen",
+                CategoryDK = "Kuffert- & Rejseprodukter",
+            };
+
+            B2BCategory category13 = new B2BCategory
+            {
+                Category = "Bags & backpacks",
+                CategoryFI = "Laukut & Reput",
+                CategoryDK = "Tasker & rygsække",
+            };
+
+            B2BCategory category14 = new B2BCategory
+            {
+                Category = "Health & wellness",
+                CategoryFI = "Hyvinvointi",
+                CategoryDK = "Helse & velvære",
+            };
+
+            B2BCategory category15 = new B2BCategory
+            {
+                Category = "Food & Wine accessories",
+                CategoryFI = "Ruoka- & Viinitarvikkeet",
+                CategoryDK = "Mad- & Vintilbehør",
+            };
+
+            B2BCategory category16 = new B2BCategory
+            {
+                Category = "At home",
+                CategoryFI = "Koti",
+                CategoryDK = "Hjemme",
+            };
+
+            B2BCategory category17 = new B2BCategory
+            {
+                Category = "Flashlights & Tools",
+                CategoryFI = "Taskulamput & Työkalut",
+                CategoryDK = "Lommelygter & Værktøj",
+            };
+
+            B2BCategory category18 = new B2BCategory
+            {
+                Category = "Pens & Pencils",
+                CategoryFI = "Kynät & Kirjoitusvälineet",
+                CategoryDK = "Kuglepenne & Blyanter",
+            };
+
+
+
+            B2BCategory category19 = new B2BCategory
+            {
+                Category = "Document & Portfolio",
+                CategoryFI = "Dokumenttikansiot & Portfoliot",
+                CategoryDK = "Dokument & Portfolio",
+            };
+
+            B2BCategory category20 = new B2BCategory
+            {
+                Category = "Toys & Games",
+                CategoryFI = "Lelut & Pelit",
+                CategoryDK = "Legetøj & Spil",
+            };
+
+            B2BCategory category21 = new B2BCategory
+            {
+                Category = "Hats",
+                CategoryFI = "Päähineet",
+                CategoryDK = "Huer",
+            };
+
+            B2BCategory category22 = new B2BCategory
+            {
+                Category = "Health & wellness",
+                CategoryFI = "Hyvinvointi",
+                CategoryDK = "Helse & velvære",
+            };
+
+            B2BCategory category23 = new B2BCategory
+            {
+                Category = "USB & Accessories",
+                CategoryFI = "USB & Tarvikkeet",
+                CategoryDK = "USB & Tilbehør",
+            };
+
+
+            B2BCategory category24 = new B2BCategory
+            {
+                Category = "Belts & Accessories",
+                CategoryFI = "Vyöt & Asusteet",
+                CategoryDK = "Bælter & Accessories",
+            };
+
+            B2BCategory category25 = new B2BCategory
+            {
+                Category = "Electronics & Gadgets",
+                CategoryFI = "Elektroniikka & Laitteet",
+                CategoryDK = "Elektronik & Gadgets",
+            };
+
+            B2BCategory category26 = new B2BCategory
+            {
+                Category = "Health & wellness",
+                CategoryFI = "Hyvinvointi",
+                CategoryDK = "Helse & velvære",
+            };
+
+            categories.Add(category2);
+            categories.Add(category3);
+            categories.Add(category4);
+            categories.Add(category5);
+            categories.Add(category6);
+            categories.Add(category7);
+            categories.Add(category8);
+            categories.Add(category9);
+            categories.Add(category11);
+            categories.Add(category12);
+            categories.Add(category13);
+            categories.Add(category14);
+            categories.Add(category15);
+            categories.Add(category16);
+            categories.Add(category17);
+            categories.Add(category18);
+            categories.Add(category19);
+            categories.Add(category20);
+            categories.Add(category21);
+            categories.Add(category22);
+            categories.Add(category23);
+            categories.Add(category24);
+            categories.Add(category25);
+            categories.Add(category26);
+
+            for(int i = 0; categories.Count > i; i++)
+            {
+                _db.B2BCategories.Add(categories[i]);
+                _db.SaveChanges();
+            }
+
+
+        }
+
+        public B2BCategory asignCategories(Variant product, string country)
+        {
+            B2BCategory category;
+
+            if (country == "fi")
+            {
+
+            switch (product.category_level2)
+            {
+                case "Office accessories":
+                    category = new B2BCategory
+                    {
+                        Category = "Office & work",
+                        CategoryDK = "Toimisto",
+                        CategoryFI = "Kontor & Arbejde",
+                    };
+                    return category;
+                case "Outdoor":
+                    category = new B2BCategory
+                    {
+                        Category = "Leisure & Outdoor life",
+                        CategoryDK = "Vapaa-aika & Ulkoilu",
+                        CategoryFI = "Fritid & Udeliv",
+                    };
+                    return category;
+                case "Key rings":
+                    category = new B2BCategory
+                    {
+                        Category = "Keychains & Lanyards",
+                        CategoryDK = "Avaimenperät & Avainnauhat",
+                        CategoryFI = "Nøgleringe & Nøglesnore",
+                    };
+                    return category;
+                case "Notebooks":
+                    category = new B2BCategory
+                    {
+                        Category = "Notebooks & Notepads",
+                        CategoryFI = "Muistikirjat & Muistivihkot",
+                        CategoryDK = "Muistikirjat & Muistivihkot",
+                    };
+                    return category;
+                case "Drinkware":
+                    category = new B2BCategory
+                    {
+                        Category = "Drinking bottles and Thermos",
+                        CategoryFI = "Juomapullot & Termokset",
+                        CategoryDK = "Drikkedunke & Termoflasker",
+                    };
+                    return category;
+                case "Stuffed animals":
+                    category = new B2BCategory
+                    {
+                        Category = "Toys & Games",
+                        CategoryFI = "Lelut & Pelit",
+                        CategoryDK = "Legetøj & Spil",
+                    };
+                    return category;
+                case "Kitchenware":
+                    category = new B2BCategory
+                    {
+                        Category = "Kitchen",
+                        CategoryFI = "Keittiö",
+                        CategoryDK = "Køkken",
+                    };
+                    return category;
+                case "Rain gear":
+                    category = new B2BCategory
+                    {
+                        Category = "Umbrellas & Raincoats",
+                        CategoryFI = "Sateenvarjot & Sadeasut",
+                        CategoryDK = "Paraplyer & Regnslag",
+                    };
+                    return category;
+                case "Anti stress/Candies":
+                    category = new B2BCategory
+                    {
+                        Category = "Antistress",
+                        CategoryFI = "Stressilelut",
+                        CategoryDK = "Antistress",
+                    };
+                    return category;
+                case "Shopping bags":
+                    category = new B2BCategory
+                    {
+                        Category = "Tote Bags & Shopping Bags",
+                        CategoryFI = "Ostos- & Kangaskassit",
+                        CategoryDK = "Muleposer & Indkøbstasker",
+                    };
+                    return category;
+                case "Travel accessories":
+                    category = new B2BCategory
+                    {
+                        Category = "Suitcase & Travel Products",
+                        CategoryFI = "Matkustaminen",
+                        CategoryDK = "Kuffert- & Rejseprodukter",
+                    };
+                    return category;
+                case "Backpacks & Business bags":
+                    category = new B2BCategory
+                    {
+                        Category = "Bags & backpacks",
+                        CategoryFI = "Laukut & Reput",
+                        CategoryDK = "Tasker & rygsække",
+                    };
+                    return category;
+                case "Personal care":
+                    category = new B2BCategory
+                    {
+                        Category = "Health & wellness",
+                        CategoryFI = "Hyvinvointi",
+                        CategoryDK = "Helse & velvære",
+                    };
+                    return category;
+                case "Barware":
+                    category = new B2BCategory
+                    {
+                        Category = "Food & Wine accessories",
+                        CategoryFI = "Ruoka- & Viinitarvikkeet",
+                        CategoryDK = "Mad- & Vintilbehør",
+                    };
+                    return category;
+                case "Home & Living":
+                    category = new B2BCategory
+                    {
+                        Category = "At home",
+                        CategoryFI = "Koti",
+                        CategoryDK = "Hjemme",
+                    };
+                    return category;
+                case "Tools & Torches":
+                    category = new B2BCategory
+                    {
+                        Category = "Flashlights & Tools",
+                        CategoryFI = "Taskulamput & Työkalut",
+                        CategoryDK = "Lommelygter & Værktøj",
+                    };
+                    return category;
+                case "Writing":
+                    category = new B2BCategory
+                    {
+                        Category = "pens & pencils",
+                        CategoryFI = "kynät & kirjoitusvälineet",
+                        CategoryDK = "kuglepenne & blyanter",
+                    };
+                    return category;
+                case "Portfolios":
+                    category = new B2BCategory
+                    {
+                        Category = "Document & Portfolio",
+                        CategoryFI = "Dokumenttikansiot & Portfoliot",
+                        CategoryDK = "Dokument & Portfolio",
+                    };
+                    return category;
+                case "Head gear":
+                    category = new B2BCategory
+                    {
+                        Category = "Hats",
+                        CategoryFI = "Päähineet",
+                        CategoryDK = "Huer",
+                    };
+                    return category;
+                case "Games":
+                    category = new B2BCategory
+                    {
+                        Category = "Toys & Games",
+                        CategoryFI = "Lelut & Pelit",
+                        CategoryDK = "Legetøj & Spil",
+                    };
+                    return category;
+                case "Car accessories":
+                    category = new B2BCategory
+                    {
+                        Category = "Leisure & Outdoor life",
+                        CategoryDK = "Vapaa-aika & Ulkoilu",
+                        CategoryFI = "Fritid & Udeliv",
+                    };
+                    return category;
+                case "Umbrellas":
+                    category = new B2BCategory
+                    {
+                        Category = "Umbrellas & Raincoats",
+                        CategoryFI = "Sateenvarjot & Sadeasut",
+                        CategoryDK = "Paraplyer & Regnslag",
+                    };
+                    return category;
+                case "Sport & Health":
+                    category = new B2BCategory
+                    {
+                        Category = "Leisure & Outdoor life",
+                        CategoryDK = "Vapaa-aika & Ulkoilu",
+                        CategoryFI = "Fritid & Udeliv",
+                    };
+                    return category;
+                case "First aid":
+                    category = new B2BCategory
+                    {
+                        Category = "Health & wellness",
+                        CategoryFI = "Hyvinvointi",
+                        CategoryDK = "Helse & velvære",
+                    };
+                    return category;
+                case "USBs":
+                    category = new B2BCategory
+                    {
+                        Category = "USB & Accessories",
+                        CategoryFI = "USB & Tarvikkeet",
+                        CategoryDK = "USB & Tilbehør",
+                    };
+                    return category;
+                case "Chargers":
+                    category = new B2BCategory
+                    {
+                        Category = "Electronics & Gadgets",
+                        CategoryFI = "Elektroniikka & Laitteet",
+                        CategoryDK = "Elektronik & Gadgets",
+                    };
+                    return category;
+                case "Phone accessories":
+                    category = new B2BCategory
+                    {
+                        Category = "Electronics & Gadgets",
+                        CategoryFI = "Elektroniikka & Laitteet",
+                        CategoryDK = "Elektronik & Gadgets",
+                    };
+                    return category;
+                case "Eye wear":
+                    category = new B2BCategory
+                    {
+                        Category = "Belts & Accessories",
+                        CategoryFI = "Vyöt & Asusteet",
+                        CategoryDK = "Bælter & Accessories",
+                    };
+                    return category;
+                case "Lunchware":
+                    category = new B2BCategory
+                    {
+                        Category = "Kitchen",
+                        CategoryFI = "Keittiö",
+                        CategoryDK = "Køkken",
+                    };
+                    return category;
+                case "Audio & Sound":
+                    category = new B2BCategory
+                    {
+                        Category = "Electronics & Gadgets",
+                        CategoryFI = "Elektroniikka & Laitteet",
+                        CategoryDK = "Elektronik & Gadgets",
+                    };
+                    return category;
+                case "Wireless Chargers":
+                    category = new B2BCategory
+                    {
+                        Category = "Electronics & Gadgets",
+                        CategoryFI = "Elektroniikka & Laitteet",
+                        CategoryDK = "Elektronik & Gadgets",
+                    };
+                    return category;
+                case "Power banks":
+                    category = new B2BCategory
+                    {
+                        Category = "Electronics & Gadgets",
+                        CategoryFI = "Elektroniikka & Laitteet",
+                        CategoryDK = "Elektronik & Gadgets",
+                    };
+                    return category;
+                case "Windproof Umbrellas":
+                    category = new B2BCategory
+                    {
+                        Category = "Umbrellas & Raincoats",
+                        CategoryFI = "Sateenvarjot & Sadeasut",
+                        CategoryDK = "Paraplyer & Regnslag",
+                    };
+                    return category;
+                case "Care essentials":
+                    category = new B2BCategory
+                    {
+                        Category = "Health & wellness",
+                        CategoryFI = "Hyvinvointi",
+                        CategoryDK = "Helse & velvære",
+                    };
+                    return category;
+                default:
+                    return null;
+                }
+            }
+            if(country == "dk")
+            {
+                switch (product.category_level2)
+                {
+                    case "Kontorstilbehør":
+                        category = new B2BCategory
+                        {
+                            Category = "Office & work",
+                            CategoryDK = "Toimisto",
+                            CategoryFI = "Kontor & Arbejde",
+                        };
+                        return category;
+                    case "Udendørs":
+                        category = new B2BCategory
+                        {
+                            Category = "Leisure & Outdoor life",
+                            CategoryDK = "Vapaa-aika & Ulkoilu",
+                            CategoryFI = "Fritid & Udeliv",
+                        };
+                        return category;
+                    case "Nøgleringe":
+                        category = new B2BCategory
+                        {
+                            Category = "Keychains & Lanyards",
+                            CategoryDK = "Avaimenperät & Avainnauhat",
+                            CategoryFI = "Nøgleringe & Nøglesnore",
+                        };
+                        return category;
+                    case "Notesbøger":
+                        category = new B2BCategory
+                        {
+                            Category = "Notebooks & Notepads",
+                            CategoryFI = "Muistikirjat & Muistivihkot",
+                            CategoryDK = "Muistikirjat & Muistivihkot",
+                        };
+                        return category;
+                    case "Drikkevarer":
+                        category = new B2BCategory
+                        {
+                            Category = "Drinking bottles and Thermos",
+                            CategoryFI = "Juomapullot & Termokset",
+                            CategoryDK = "Drikkedunke & Termoflasker",
+                        };
+                        return category;
+                    case "Bamser":
+                        category = new B2BCategory
+                        {
+                            Category = "Toys & Games",
+                            CategoryFI = "Lelut & Pelit",
+                            CategoryDK = "Legetøj & Spil",
+                        };
+                        return category;
+                    case "Køkkenprodukter":
+                        category = new B2BCategory
+                        {
+                            Category = "Kitchen",
+                            CategoryFI = "Keittiö",
+                            CategoryDK = "Køkken",
+                        };
+                        return category;
+                    case "Regntøj":
+                        category = new B2BCategory
+                        {
+                            Category = "Umbrellas & Raincoats",
+                            CategoryFI = "Sateenvarjot & Sadeasut",
+                            CategoryDK = "Paraplyer & Regnslag",
+                        };
+                        return category;
+                    case "Anti stress/slik":
+                        category = new B2BCategory
+                        {
+                            Category = "Antistress",
+                            CategoryFI = "Stressilelut",
+                            CategoryDK = "Antistress",
+                        };
+                        return category;
+                    case "Indkøbsposer":
+                        category = new B2BCategory
+                        {
+                            Category = "Tote Bags & Shopping Bags",
+                            CategoryFI = "Ostos- & Kangaskassit",
+                            CategoryDK = "Muleposer & Indkøbstasker",
+                        };
+                        return category;
+                    case "Rejsetilbehør":
+                        category = new B2BCategory
+                        {
+                            Category = "Suitcase & Travel Products",
+                            CategoryFI = "Matkustaminen",
+                            CategoryDK = "Kuffert- & Rejseprodukter",
+                        };
+                        return category;
+                    case "Rygsæk & Portofølger":
+                        category = new B2BCategory
+                        {
+                            Category = "Bags & backpacks",
+                            CategoryFI = "Laukut & Reput",
+                            CategoryDK = "Tasker & rygsække",
+                        };
+                        return category;
+                    case "Personlig pleje":
+                        category = new B2BCategory
+                        {
+                            Category = "Health & wellness",
+                            CategoryFI = "Hyvinvointi",
+                            CategoryDK = "Helse & velvære",
+                        };
+                        return category;
+                    case "Barprodukter":
+                        category = new B2BCategory
+                        {
+                            Category = "Food & Wine accessories",
+                            CategoryFI = "Ruoka- & Viinitarvikkeet",
+                            CategoryDK = "Mad- & Vintilbehør",
+                        };
+                        return category;
+                    case "Hjem & Livsstil":
+                        category = new B2BCategory
+                        {
+                            Category = "At home",
+                            CategoryFI = "Koti",
+                            CategoryDK = "Hjemme",
+                        };
+                        return category;
+                    case "Værktøj og Lommelygter":
+                        category = new B2BCategory
+                        {
+                            Category = "Flashlights & Tools",
+                            CategoryFI = "Taskulamput & Työkalut",
+                            CategoryDK = "Lommelygter & Værktøj",
+                        };
+                        return category;
+                    case "Skriveredskaber":
+                        category = new B2BCategory
+                        {
+                            Category = "pens & pencils",
+                            CategoryFI = "kynät & kirjoitusvälineet",
+                            CategoryDK = "kuglepenne & blyanter",
+                        };
+                        return category;
+                    case "Portofølger":
+                        category = new B2BCategory
+                        {
+                            Category = "Document & Portfolio",
+                            CategoryFI = "Dokumenttikansiot & Portfoliot",
+                            CategoryDK = "Dokument & Portfolio",
+                        };
+                        return category;
+                    case "Kasketter & Huer":
+                        category = new B2BCategory
+                        {
+                            Category = "Hats",
+                            CategoryFI = "Päähineet",
+                            CategoryDK = "Huer",
+                        };
+                        return category;
+                    case "Spil":
+                        category = new B2BCategory
+                        {
+                            Category = "Toys & Games",
+                            CategoryFI = "Lelut & Pelit",
+                            CategoryDK = "Legetøj & Spil",
+                        };
+                        return category;
+                    case "Biltilbehør":
+                        category = new B2BCategory
+                        {
+                            Category = "Leisure & Outdoor life",
+                            CategoryDK = "Vapaa-aika & Ulkoilu",
+                            CategoryFI = "Fritid & Udeliv",
+                        };
+                        return category;
+                    case "Paraplyer":
+                        category = new B2BCategory
+                        {
+                            Category = "Umbrellas & Raincoats",
+                            CategoryFI = "Sateenvarjot & Sadeasut",
+                            CategoryDK = "Paraplyer & Regnslag",
+                        };
+                        return category;
+                    case "Sport & Sundhed":
+                        category = new B2BCategory
+                        {
+                            Category = "Leisure & Outdoor life",
+                            CategoryDK = "Vapaa-aika & Ulkoilu",
+                            CategoryFI = "Fritid & Udeliv",
+                        };
+                        return category;
+                    case "Førstehjælp":
+                        category = new B2BCategory
+                        {
+                            Category = "Health & wellness",
+                            CategoryFI = "Hyvinvointi",
+                            CategoryDK = "Helse & velvære",
+                        };
+                        return category;
+                    case "USB":
+                        category = new B2BCategory
+                        {
+                            Category = "USB & Accessories",
+                            CategoryFI = "USB & Tarvikkeet",
+                            CategoryDK = "USB & Tilbehør",
+                        };
+                        return category;
+                    case "Opladere":
+                        category = new B2BCategory
+                        {
+                            Category = "Electronics & Gadgets",
+                            CategoryFI = "Elektroniikka & Laitteet",
+                            CategoryDK = "Elektronik & Gadgets",
+                        };
+                        return category;
+                    case "Mobiltilbehør":
+                        category = new B2BCategory
+                        {
+                            Category = "Electronics & Gadgets",
+                            CategoryFI = "Elektroniikka & Laitteet",
+                            CategoryDK = "Elektronik & Gadgets",
+                        };
+                        return category;
+                    case "Solbriller":
+                        category = new B2BCategory
+                        {
+                            Category = "Belts & Accessories",
+                            CategoryFI = "Vyöt & Asusteet",
+                            CategoryDK = "Bælter & Accessories",
+                        };
+                        return category;
+                    case "Madkasse":
+                        category = new B2BCategory
+                        {
+                            Category = "Kitchen",
+                            CategoryFI = "Keittiö",
+                            CategoryDK = "Køkken",
+                        };
+                        return category;
+                    case "Audio & lyd":
+                        category = new B2BCategory
+                        {
+                            Category = "Electronics & Gadgets",
+                            CategoryFI = "Elektroniikka & Laitteet",
+                            CategoryDK = "Elektronik & Gadgets",
+                        };
+                        return category;
+                    case "Trådløse opladere":
+                        category = new B2BCategory
+                        {
+                            Category = "Electronics & Gadgets",
+                            CategoryFI = "Elektroniikka & Laitteet",
+                            CategoryDK = "Elektronik & Gadgets",
+                        };
+                        return category;
+                    case "Powerbanks":
+                        category = new B2BCategory
+                        {
+                            Category = "Electronics & Gadgets",
+                            CategoryFI = "Elektroniikka & Laitteet",
+                            CategoryDK = "Elektronik & Gadgets",
+                        };
+                        return category;
+                    case "Stormsikker paraply":
+                        category = new B2BCategory
+                        {
+                            Category = "Umbrellas & Raincoats",
+                            CategoryFI = "Sateenvarjot & Sadeasut",
+                            CategoryDK = "Paraplyer & Regnslag",
+                        };
+                        return category;
+                    default:
+                        return null;
+                }
+            }
+            return null;
+
+        }
     }
 }
