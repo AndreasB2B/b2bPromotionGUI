@@ -2,6 +2,7 @@
 using KN.B2B.Model;
 using KN.B2B.Model.products;
 using KN.B2B.Model.products.B2BPrintPositions;
+using KN.B2B.Model.products.productPrice;
 using KN.B2B.Model.SystemTables;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace KN.B2B.Web
             return selectList;
         }
 
-        public static async Task<IEnumerable<B2BProduct>> LoadProductsWherePId(B2BDbContext _context, int? parrentId)
+        public static async Task<List<B2BProduct>> LoadProductsWherePId(B2BDbContext _context, int? parrentId)
         {
             var products = await _context.B2BProdducts.Where(x => x.fk_ParentSKU.parrentProduct_id == parrentId).ToListAsync();
             
@@ -33,21 +34,35 @@ namespace KN.B2B.Web
 
         public static async Task<IEnumerable<B2BPrintPosition>> LoadPrintPositionsWProductSKU(B2BDbContext _context, string parrentSku)
         {
-            var position = await _context.B2BPrintPositions.Where(x => x.Position == parrentSku).ToListAsync();
+            var position = await _context.B2BPrintPositions.Where(x => x.print_productName == parrentSku).ToListAsync();
 
             return position;
+        }
+        public static async Task<IEnumerable<B2BPriceScaling>> LoadProductPricesWSku(B2BDbContext _context, string parrentSku)
+        {
+            IEnumerable<B2BPriceScaling> printPrices;
+            B2BProductPrices productPrices;
+
+            productPrices = await _context.B2BProductPrices.FirstOrDefaultAsync(x => x.parrentSku == parrentSku);
+            printPrices = await _context.B2BPriceScaling.Where(x => x.fk_priceId.id == productPrices.id).ToListAsync();
+
+            return printPrices;
         }
 
         public static async Task<IEnumerable<SupplierPrintPrice>> LoadAllPrintPrices(B2BDbContext _context)
         {
-            var printPrices = await _context.SupplierPrintPrices.ToListAsync();
+            IEnumerable<SupplierPrintPrice> printPrices;
+            printPrices = await _context.SupplierPrintPrices.ToListAsync();
 
             return printPrices;
         }
 
         public static async Task<IEnumerable<B2BPrintTechnique>> LoadAllPrintTechniques(B2BDbContext _context)
         {
-            var techniques = await _context.B2BPrintTechniques.ToListAsync();
+            IEnumerable<B2BPrintTechnique> techniques;
+            techniques = await _context.B2BPrintTechniques.ToListAsync();
+
+            //techniques = await _context.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
 
             return techniques;
         }

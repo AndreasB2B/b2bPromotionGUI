@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "View All Products";
     var tmpTechniqueId = "";
+    var alertColor = "";
 }
 @model KN.B2B.Web.Pages.Private.Requests.Products.EditModel
 
@@ -12,15 +13,155 @@
         <input type="hidden" asp-for="parrentProduct.parrentProduct_id" />
         <div class="row col-md-12">
 
-
+        @*=== PARRENT SKU *@
             <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="parrentProduct.parrentProduct_parrentSku" class="control-label"></label>
-                    <input asp-for="parrentProduct.parrentProduct_parrentSku" class="form-control" />
+                    <input asp-for="parrentProduct.parrentProduct_parrentSku" disabled class="form-control" />
                     <span asp-validation-for="parrentProduct.parrentProduct_parrentSku" class="text-danger"></span>
                 </div>
             </div>
+        @*=== SHORT DESC *@
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="parrentProduct.parrentProduct_shortDescription" class="control-label"></label>
+                    <input asp-for="parrentProduct.parrentProduct_shortDescription" name="shortDesc" class="form-control" />
+                    <span asp-validation-for="parrentProduct.parrentProduct_shortDescription" class="text-danger"></span>
+                </div>
+            </div>
+        @*=== LONG DESC *@
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="parrentProduct.parrentProduct_longDescription" class="control-label"></label>
+                    <input asp-for="parrentProduct.parrentProduct_longDescription" name="longDesc" class="form-control" />
+                    <span asp-validation-for="parrentProduct.parrentProduct_longDescription" class="text-danger"></span>
+                </div>
+            </div>
+        @*=== MAIN CATEGORY *@
+        @*TODO ==> Make select dropdown*@
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="parrentProduct.parrentProduct_subCategoryDK" class="control-label"></label>
+                    <input asp-for="parrentProduct.parrentProduct_subCategoryDK" name="category" class="form-control" />
+                    <span asp-validation-for="parrentProduct.parrentProduct_subCategoryDK" class="text-danger"></span>
+                </div>
+            </div>
+        @*=== PRINT POSITIONS *@
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="parrentProduct.parrentProduct_printPositions" class="control-label"></label>
+                    <input asp-for="parrentProduct.parrentProduct_printPositions" class="form-control" />
+                    <span asp-validation-for="parrentProduct.parrentProduct_printPositions" class="text-danger"></span>
+                </div>
+            </div>
+        @*=== PRODUCT PRINTABLE *@
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="parrentProduct.parrentProduct_printable" class="control-label"></label>
+                    <input asp-for="parrentProduct.parrentProduct_printable" disabled class="form-control" />
+                    <span asp-validation-for="parrentProduct.parrentProduct_printable" class="text-danger"></span>
+                </div>
+            </div>
+        @*=== DIMENSIONS *@
+            <div class="col-md-12">
+                <h4 class="mt-5 mb-3 ml-auto mr-auto">Product Dimensions in CM</h4>
+            @*=== HEIGHT *@
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="parrentProduct.parrentProduct_height" class="control-label"></label>
+                        <input asp-for="parrentProduct.parrentProduct_height" class="form-control" />
+                        <span asp-validation-for="parrentProduct.parrentProduct_height" class="text-danger"></span>
+                    </div>
+                </div>
+            @*=== WIDTH *@
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="parrentProduct.parrentProduct_width" class="control-label"></label>
+                        <input asp-for="parrentProduct.parrentProduct_width" class="form-control" />
+                        <span asp-validation-for="parrentProduct.parrentProduct_width" class="text-danger"></span>
+                    </div>
+                </div>
+            @*=== LENGTH *@
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="parrentProduct.parrentProduct_length" class="control-label"></label>
+                        <input asp-for="parrentProduct.parrentProduct_length" class="form-control" />
+                        <span asp-validation-for="parrentProduct.parrentProduct_length" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+        @*=== BUTTONS*@
+            <div class="left-sided">
+                <button asp-page-handler="parrentProduct" class="btn btn-success" type="submit">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+                |
+                <a class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fa fa-list"></i>
+                    Back
+                </a>
+            </div>
+            <div class="right-sided">
+               @* @if (Model.parrentProduct.parrentProduct_id == 0)
+                {
+                    <button disabled class="btn btn-danger" type="reset">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </button>
+                }
+                else
+                {
+                    <button id="toggledDeleteButton" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="@Model.parrentProduct.parrentProduct_id">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </button>
+                }*@
+                <button id="toggledConfirmDeleteButton" style="display:none" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="">
+                    <i class="fas fa-trash-alt"></i>
+                    You sure?
+                </button>
+            </div>
         </div>
+        </div>
+    </div>
+</form>
+    <divc class="row">
+        
+            @*=== ALERTS *@
+
+            <div class="col-md-12 text-center mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Alert Message</th>
+                            <th>Alert Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @if(@Model.parrentProduct.alert == true)
+                                {
+                                <td>@Model.parrentProduct.alertMessage</td>
+                                @if(@Model.parrentProduct.alertStatus == "red"){
+                                    alertColor = "red";
+                                }else if(@Model.parrentProduct.alertStatus == "yellow"){
+                                    alertColor = "yellow";
+                                }else if(@Model.parrentProduct.alertStatus == "green"){
+                                    alertColor = "green";
+                                }
+                                <td><i style="color:@alertColor" class="fas fa-exclamation-triangle"></i></td> 
+                            }else{
+                                <td>No Messages</td>
+                                <td><i style="color:@alertColor" class="fas fa-exclamation-triangle"></i></td>   
+                            }
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
         @* ===== PRINT TECHNIQUES ===== *@
         <div class="row col-md-12">
@@ -81,6 +222,31 @@
                         </tr>
 
                     }
+                </tbody>
+            </table>
+        
+
+        </div>
+
+         @* ===== PRODUCT PRICE STACKERS ===== *@
+        <div class="row col-md-12">
+            <h3 class="mt-5 mb-3 ml-auto mr-auto">Price Stackers</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        @foreach(var stackerAmmount in @Model.productScaling)
+                        {
+                            <th>@stackerAmmount.scale_minimumQuantity +</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach(var stackerPrice in @Model.productScaling)
+                        {
+                            <td>@stackerPrice.scale_priceDK DKK</td>
+                        }   
+                    </tr>
                 </tbody>
             </table>
 
@@ -222,60 +388,27 @@
                 </div>
             </div>*@
         @*<hr />*@
-        <div>
-            <div class="left-sided">
-                <button asp-page-handler="parrentProduct" class="btn btn-success" type="submit">
-                    <i class="fas fa-save"></i>
-                    Save
-                </button>
-                |
-                <a class="btn btn-secondary" data-dismiss="modal">
-                    <i class="fa fa-list"></i>
-                    Back
-                </a>
-            </div>
-            <div class="right-sided">
-                @if (Model.parrentProduct.parrentProduct_id == 0)
-                {
-                    <button disabled class="btn btn-danger" type="reset">
-                        <i class="fas fa-trash-alt"></i>
-                        Delete
-                    </button>
-                }
-                else
-                {
-                    <button id="toggledDeleteButton" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="@Model.parrentProduct.parrentProduct_id">
-                        <i class="fas fa-trash-alt"></i>
-                        Delete
-                    </button>
-                }
-                <button id="toggledConfirmDeleteButton" style="display:none" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="@Model.parrentProduct.parrentProduct_id">
-                    <i class="fas fa-trash-alt"></i>
-                    You sure?
-                </button>
-            </div>
-        </div>
-    </div>
-</form>
 
-@*<script>
-        //$(button).on('click', '#toggledDeleteButton', function () {
-        //    alert("Clicked");
-        //    $('#toggledDeleteButton').hide();
-        //    $('#toggledConfirmDeleteButton').show();
-        //});
-        //function toggleDeleteButton() {
-            //var butt1 = document.getElementById("toggledDeleteButton");
-            //var butt2 = document.getElementById("toggledConfirmDeleteButton");
-            //if (butt1.style.display !== "none") {
-            //    butt1.style.display = "none";
-            //    butt2.style.display = "block";
-            //    window.alert("Toggled! " + "Delete is: " + butt1.style.display + " Confirm is: " + butt2.style.display);
-            //} else {
-            //    butt1.style.display = "block";
-            //    butt2.style.display = "none";
-            //    window.alert("Toggled back! " + "Delete is: " + butt1.style.display + " Confirm is: " + butt2.style.display);
-            //}
-        //}
-    </script>*@
+    </divc>
+
+<script>
+        $(button).on('click', '#toggledDeleteButton', function () {
+            alert("Clicked");
+            $('#toggledDeleteButton').hide();
+            $('#toggledConfirmDeleteButton').show();
+        });
+        function toggleDeleteButton() {
+            var butt1 = document.getElementById("toggledDeleteButton");
+            var butt2 = document.getElementById("toggledConfirmDeleteButton");
+            if (butt1.style.display !== "none") {
+                butt1.style.display = "none";
+                butt2.style.display = "block";
+                window.alert("Toggled! " + "Delete is: " + butt1.style.display + " Confirm is: " + butt2.style.display);
+            } else {
+                butt1.style.display = "block";
+                butt2.style.display = "none";
+                window.alert("Toggled back! " + "Delete is: " + butt1.style.display + " Confirm is: " + butt2.style.display);
+            }
+        }
+    </script>
 

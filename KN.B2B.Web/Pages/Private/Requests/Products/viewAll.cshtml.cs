@@ -42,6 +42,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public string searchQuery { get; set; }
         public B2BProduct B2BProduct { get; set; }
         public IEnumerable<B2BParrentProducts> parrentProductsList { get; set; }
+        public IEnumerable<B2BPrintTechnique> techniqueList { get; set; }
         public PaginatedList<B2BParrentProducts> productPaging { get; set; }
         public string NameSort { get; set; }
         public string DateSort { get; set; }
@@ -85,14 +86,19 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //        .ToListAsync();
             //else
 
+            //techniqueList = await _db.B2BPrintTechniques.ToListAsync();
+
+            //Console.WriteLine(techniqueList);
+
             //parrentProductsList = await _db.B2BParrentProducts
             //    //.Include(x => x.parrentProduct_productName)
             //    //.Include(x => x.parrentProduct_shortDescription)
             //    .OrderByDescending(x => x.parrentProduct_id)
             //    .ToListAsync();
 
+            //IEnumerable<B2BPrintTechnique> techniques = await _db.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
 
-
+            //Console.WriteLine(techniques);
             //fetchMNData();
             //sendMail();
             //fetchFtpFile();
@@ -1096,7 +1102,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     {
                         B2BPrintPosition b2BPrintPosition = new B2BPrintPosition();
                         b2BPrintPosition.print_supplier = o.sUPPLIERField;
-                        b2BPrintPosition.Position = product.pRODUCT_BASE_NUMBERField;
+                        b2BPrintPosition.print_productName = "MN"+product.pRODUCT_BASE_NUMBERField;
                         if (product.pRINT_EXPRESS_POSSIBLEField == "N")
                         {
                             b2BPrintPosition.print_express = false;

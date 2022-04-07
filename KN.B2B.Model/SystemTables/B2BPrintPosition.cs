@@ -7,6 +7,7 @@ namespace KN.B2B.Model.SystemTables
         [key]
         public int Id { get; set; }
         public string Position { get; set; }
+        public string print_productName { get; set; }
         public string print_supplier { get; set; }
         public bool print_express { get; set; }
         public string print_position { get; set; }
