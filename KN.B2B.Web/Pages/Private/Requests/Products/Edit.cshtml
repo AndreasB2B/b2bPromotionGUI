@@ -10,7 +10,7 @@
 <form method="post">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="parrentProduct.parrentProduct_id" />
+        <input type="hidden" asp-for="parrentProduct.parrentProduct_id" name="id" />
         <div class="row col-md-12">
 
         @*=== PARRENT SKU *@
@@ -50,7 +50,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="parrentProduct.parrentProduct_printPositions" class="control-label"></label>
-                    <input asp-for="parrentProduct.parrentProduct_printPositions" class="form-control" />
+                    <input asp-for="parrentProduct.parrentProduct_printPositions" name="printPositions" class="form-control" />
                     <span asp-validation-for="parrentProduct.parrentProduct_printPositions" class="text-danger"></span>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="parrentProduct.parrentProduct_height" class="control-label"></label>
-                        <input asp-for="parrentProduct.parrentProduct_height" class="form-control" />
+                        <input asp-for="parrentProduct.parrentProduct_height" disabled class="form-control" />
                         <span asp-validation-for="parrentProduct.parrentProduct_height" class="text-danger"></span>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="parrentProduct.parrentProduct_width" class="control-label"></label>
-                        <input asp-for="parrentProduct.parrentProduct_width" class="form-control" />
+                        <input asp-for="parrentProduct.parrentProduct_width" disabled class="form-control" />
                         <span asp-validation-for="parrentProduct.parrentProduct_width" class="text-danger"></span>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="parrentProduct.parrentProduct_length" class="control-label"></label>
-                        <input asp-for="parrentProduct.parrentProduct_length" class="form-control" />
+                        <input asp-for="parrentProduct.parrentProduct_length" disabled class="form-control" />
                         <span asp-validation-for="parrentProduct.parrentProduct_length" class="text-danger"></span>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </a>
             </div>
             <div class="right-sided">
-               @* @if (Model.parrentProduct.parrentProduct_id == 0)
+                @if (Model.parrentProduct.parrentProduct_id == 0)
                 {
                     <button disabled class="btn btn-danger" type="reset">
                         <i class="fas fa-trash-alt"></i>
@@ -118,7 +118,7 @@
                         <i class="fas fa-trash-alt"></i>
                         Delete
                     </button>
-                }*@
+                }
                 <button id="toggledConfirmDeleteButton" style="display:none" asp-page-handler="DeleteProduct" class="btn btn-danger" asp-route-id="">
                     <i class="fas fa-trash-alt"></i>
                     You sure?
@@ -142,7 +142,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            @if(@Model.parrentProduct.alert == true)
+                            @if(@Model.parrentProduct.alert == true && @Model.parrentProduct != null)
                                 {
                                 <td>@Model.parrentProduct.alertMessage</td>
                                 @if(@Model.parrentProduct.alertStatus == "red"){
@@ -180,47 +180,49 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var position in Model.positions)
-                    {
-                        <tr>
-                            <th scope="row">
-                                @foreach (var technique in Model.techniques)
-                                {
-                                    if (position.fk_techniqueId.technique_id == technique.technique_id)
+                    @if(@Model.positions != null){
+                        @foreach (var position in Model.positions)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    @foreach (var technique in Model.techniques)
                                     {
-                                        tmpTechniqueId = technique.fk_supplierPriceCode.printPrice_id;
-                                        <p>@technique.technique_description</p>
+                                        if (position.fk_techniqueId.technique_id == technique.technique_id)
+                                        {
+                                            tmpTechniqueId = technique.fk_supplierPriceCode.printPrice_id;
+                                            <p>@technique.technique_description</p>
+                                        }
                                     }
-                                }
-                            </th>
+                                </th>
 
-                            <td>@position.print_position</td>
-                            <td>@position.print_height cm</td>
-                            <td>@position.print_height cm</td>
-                            <td>@position.print_express</td>
-                            @foreach (var printPrice in Model.printPrices)
-                            {
-
-
-                                if (tmpTechniqueId == printPrice.printPrice_id && tmpTechniqueId != null)
+                                <td>@position.print_position</td>
+                                <td>@position.print_height cm</td>
+                                <td>@position.print_height cm</td>
+                                <td>@position.print_express</td>
+                                @foreach (var printPrice in Model.printPrices)
                                 {
-                                    <td>@printPrice.printPrice_setupDK DKK</td>
-                                    <td>@printPrice.printPrice_repeat DKK</td>
+
+
+                                    if (tmpTechniqueId == printPrice.printPrice_id && tmpTechniqueId != null)
+                                    {
+                                        <td>@printPrice.printPrice_setupDK DKK</td>
+                                        <td>@printPrice.printPrice_repeat DKK</td>
+                                    }
+
+
                                 }
 
-
-                            }
-
                         
-                            <td class="text-center">
-                                <a class="btn btn-lg" asp-page="./Edit" asp-route-id="">
-                                    <i class="fas fa-info-circle"></i>
-                                </a>
-                            </td>
+                                <td class="text-center">
+                                    <a class="btn btn-lg" asp-page="./Edit" asp-route-id="">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                </td>
                         
 
-                        </tr>
+                            </tr>
 
+                        }
                     }
                 </tbody>
             </table>
@@ -234,18 +236,22 @@
             <table class="table">
                 <thead>
                     <tr>
-                        @foreach(var stackerAmmount in @Model.productScaling)
-                        {
-                            <th>@stackerAmmount.scale_minimumQuantity +</th>
+                        @if(@Model.productScaling != null){
+                            @foreach (var stackerAmmount in @Model.productScaling)
+                            {
+                                <th>@stackerAmmount.scale_minimumQuantity +</th>
+                            }
                         }
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        @foreach(var stackerPrice in @Model.productScaling)
-                        {
-                            <td>@stackerPrice.scale_priceDK DKK</td>
-                        }   
+                        @if(Model.productScaling != null){
+                            @foreach (var stackerPrice in @Model.productScaling)
+                            {
+                                <td>@stackerPrice.scale_priceDK DKK</td>
+                            }
+                        }
                     </tr>
                 </tbody>
             </table>
@@ -265,21 +271,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var product in Model.childProducts)
-                        {
-                            <tr>
-                                <th>@product.product_sku</th>
-                                <td>@product.product_shortDescriptionDK</td>
-                                <td style="text-align:right" width="13%">
-                                    <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@product.product_id">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@product.product_id">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                        @if(Model.childProducts != null) { 
+                            @foreach (var product in Model.childProducts)
+                            {
+                                <tr>
+                                    <th>@product.product_sku</th>
+                                    <td>@product.product_shortDescriptionDK</td>
+                                    <td style="text-align:right" width="13%">
+                                        <a class="btn btn-lg" asp-page="./Edit" asp-route-id="@product.product_id">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                        <a class="btn btn-lg" asp-page="./Delete" asp-route-id="@product.product_id">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
 
+                            }
                         }
                     </tbody>
                 </table>

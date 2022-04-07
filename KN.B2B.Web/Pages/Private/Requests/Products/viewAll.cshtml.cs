@@ -1073,21 +1073,21 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
 
 
-            //foreach (PRINTINGINFORMATIONPRINTING_TECHNIQUE_DESCRIPTION technique in o.pRINTING_TECHNIQUE_DESCRIPTIONSField)
-            //{
-            //    supplierPrintPrice = await _db.SupplierPrintPrices.FirstOrDefaultAsync(c => c.printPrice_descId == technique.idField);
-            //    //var = await _db.SupplierHandles.FirstOrDefaultAsync(c => c.printPrice_descId == technique.idField);
+            foreach (PRINTINGINFORMATIONPRINTING_TECHNIQUE_DESCRIPTION technique in o.pRINTING_TECHNIQUE_DESCRIPTIONSField)
+            {
+                supplierPrintPrice = await _db.SupplierPrintPrices.FirstOrDefaultAsync(c => c.printPrice_descId == technique.idField);
+                //var = await _db.SupplierHandles.FirstOrDefaultAsync(c => c.printPrice_descId == technique.idField);
 
-            //    B2BPrintTechnique printTechnique = new B2BPrintTechnique();
-            //    printTechnique.technique_name = technique.idField;
-            //    printTechnique.technique_description = technique.nAMEField[7].valueField;
-            //    printTechnique.technique_supplier = "midocean";
-            //    printTechnique.fk_supplierPriceCode = supplierPrintPrice;
-            //    _db.B2BPrintTechniques.Add(printTechnique);
-            //    _db.SaveChanges();
-            //    Console.WriteLine(printTechnique);
+                B2BPrintTechnique printTechnique = new B2BPrintTechnique();
+                printTechnique.technique_name = technique.idField;
+                printTechnique.technique_description = technique.nAMEField[7].valueField;
+                printTechnique.technique_supplier = "midocean";
+                printTechnique.fk_supplierPriceCode = supplierPrintPrice;
+                _db.B2BPrintTechniques.Add(printTechnique);
+                _db.SaveChanges();
+                Console.WriteLine(printTechnique);
 
-            //}
+            }
 
             //Console.ReadLine();
 

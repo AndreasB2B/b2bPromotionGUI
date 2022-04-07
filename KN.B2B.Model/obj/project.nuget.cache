@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "62Oht89OqSrmbb+ileOrg0LB65TJJ991yxl4Cvo7cP3RgfocTNnISHQSc+yZxjcSg+cNwdcon09VVzkEhuoa5A==",
+  "dgSpecHash": "+vpagSLTbsm/B9cJ2U6GwezHQ24QFwAhxcBJdSMPpuU+DagqM2x8DJCg5Wi2M1qmxWpTxodkvm9KQ3zpiCWzaw==",
   "success": true,
-  "projectFilePath": "C:\\github_repositories\\b2bPromotionGUI\\KN.B2B.Model\\KN.B2B.Model.csproj",
+  "projectFilePath": "F:\\Github_Repositories\\b2bPromotionGUI\\KN.B2B.Model\\KN.B2B.Model.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Showroom\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
-    "C:\\Users\\Showroom\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+    "C:\\Users\\Andre\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Andre\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -28,7 +28,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
         #region Bound Properties
         [BindProperty]
-        public B2BParrentProducts newProduct { get; set; }
+        public B2BParrentProducts parrentProduct { get; set; }
+
+        //[BindProperty]
+        //public B2BParrentProducts newProduct { get; set; }
         [BindProperty]
         public B2BParrentProducts tmpProduct { get; set; }
         //public B2BProduct childProducts { get; set; }
@@ -44,7 +47,6 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public IEnumerable<B2BPrintTechnique> techniques { get; set; }
         public IEnumerable<SupplierPrintPrice> printPrices { get; set; }
         public IEnumerable<B2BPriceScaling> priceScaling { get; set; }
-        public B2BParrentProducts parrentProduct { get; set; }
         public IEnumerable<B2BPriceScaling> productScaling { get; set; }
         //B2BPriceScaling productScaling { get; set; }
         //IEnumerable<B2BProductPrices>  productPrices { get; set; }
@@ -66,10 +68,12 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 childProducts = await LoadCollections.LoadProductsWherePId(_context, id);
                 positions = await LoadCollections.LoadPrintPositionsWProductSKU(_context, parrentProduct.parrentProduct_parrentSku);
                 //priceScaling = await LoadCollections.LoadProductPricesWSku(_context, parrentProduct.parrentProduct_parrentSku);
-
-                var productPrices = await _context.B2BProductPrices.Where(x => x.parrentSku == childProducts[0].product_sku).ToArrayAsync();
+                if(childProducts.Count > 0)
+                {
+                    var productPrices = await _context.B2BProductPrices.Where(x => x.parrentSku == childProducts[0].product_sku).ToArrayAsync();
+                    productScaling = await _context.B2BPriceScaling.Where(x => x.fk_priceId.id == productPrices[0].id).ToListAsync();
+                }
                 //IndexOf(productPrices, productPrices.id);
-                productScaling = await _context.B2BPriceScaling.Where(x => x.fk_priceId.id == productPrices[0].id).ToListAsync();
                 //productScaling = await _context.B2BPriceScaling.FirstOrDefaultAsync(x => x.fk_priceId.id == productPrices[0].id);
                 //printTechniques = await _context
                 //product = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.fk_ParentSKU.parrentProduct_id == id.Value);
@@ -94,91 +98,63 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         }
 
         //Multiple handlers: https://www.learnrazorpages.com/razor-pages/handler-methods#handling-multiple-actions-for-the-same-form
-        public async Task<IActionResult> OnPostProductAsync()
+        public async Task<IActionResult> OnPost()
         {
             //Set the supplier
-            var selectedSupplier = Request.Form["shortDesc"];
-            //if (string.IsNullOrEmpty(selectedSupplier) == false)
-            //{
-            //    if (Int32.TryParse(selectedSupplier, out var id))
-            //    {
-            //        var supplier = await _context.Suppliers.SingleAsync(x => x.Id == id);
-            //        newProduct.Supplier = supplier;
-            //    }
-            //}
+            var id = int.Parse(Request.Form["id"]);
+            parrentProduct = await _context.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == id);
 
-            //Set the B2BGroup
-            //var selectedB2bCategory = Request.Form["B2BCategorySelect"];
-            //if (string.IsNullOrEmpty(selectedB2bCategory) == false)
-            //{
-            //    if (Int32.TryParse(selectedB2bCategory, out var id))
-            //    {
-            //        var category = await _context.B2BCategories.SingleAsync(x => x.Id == id);
-            //        Product.B2BCategory = category;
-            //    }
-            //}
 
-            ////Set the Complaint
-            //var selectedComplaint= Request.Form["ComplaintSelect"];
-            //if (string.IsNullOrEmpty(selectedComplaint) == false)
-            //{
-            //    if (Int32.TryParse(selectedComplaint, out var id))
-            //    {
-            //        var complaint = await _context.Complaints.SingleAsync(x => x.Id == id);
-            //        Product.Complaint = complaint;
-            //    }
-            //}
+            parrentProduct.parrentProduct_shortDescription = Request.Form["shortDesc"];
+            parrentProduct.parrentProduct_longDescription = Request.Form["longDesc"];
+            parrentProduct.parrentProduct_subCategoryDK = Request.Form["category"];
+            parrentProduct.parrentProduct_printPositions = int.Parse(Request.Form["printPositions"]);
+            //productScaling
 
-            //if (!ModelState.IsValid)
-            //    return NotFound(); //TODO: Return error page
+            _context.Attach(parrentProduct).State = EntityState.Modified;
 
-            //get the request this product belongs to;
-            //var fetchedRequest = await _context.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == tmpProduct.parrentProduct_id);
-            //if (fetchedRequest == null)
-            //    return NotFound(); //TODO: this would mean that the request has been deleted in the mean time - notify the user
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(parrentProduct.parrentProduct_id))
+                    return NotFound();
+                else
+                    throw;
+            }
 
-            //newProduct
 
-            //if (ProductExists(newProduct.parrentProduct_id) == false)
-            //{
-            //    _context.B2BParrentProducts.Add(newProduct);
-            //    await _context.SaveChangesAsync();
-            //}
-            //else
-            //{
-            //    _context.Attach(newProduct).State = EntityState.Modified;
-            //    try
-            //    {
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!ProductExists(newProduct.parrentProduct_id))
-            //            return NotFound();
-            //        else
-            //            throw;
-            //    }
-            //}
-            return RedirectToPage("./Edit");
+            return RedirectToAction("Edit", new { @id=parrentProduct.parrentProduct_id });
         }
 
-        //public async Task<IActionResult> OnPostDeleteProductAsync(int? id)
-        //{
-        //    if (id == null)
-        //        return NotFound();
+        public async Task<IActionResult> OnPostDeleteProductAsync(int? id)
+        {
 
-        //    tmpProduct = await _context.B2BParrentProducts.FindAsync(id);
+            Console.WriteLine(id);
+            if (id == null)
+                return NotFound();
 
-        //    if (newProduct != null)
-        //    {
-        //        var tmpChildProduct = _context.B2BProdducts.Where(x => x.fk_ParentSKU == tmpProduct.parrentProduct_id)
-        //        _context.B2BParrentProducts.Remove(newProduct.parrentProduct_id);
-        //        _context.B2BParrentProducts.Remove(tmpProduct.parrentProduct_id);
-        //        await _context.SaveChangesAsync();
-        //    }
+            parrentProduct = await _context.B2BParrentProducts.FindAsync(id);
 
-        //    return RedirectToPage("../Edit", new { id = ParentRequest.Id });
-        //}
+            if (parrentProduct != null)
+            {
+                parrentProduct = _context.B2BParrentProducts.FirstOrDefault(x => x.parrentProduct_id == id);
+                childProducts = await LoadCollections.LoadProductsWherePId(_context, id);
+                if(childProducts.Count > 0)
+                {
+                    foreach(var childProduct in childProducts)
+                    {
+                        _context.B2BProdducts.Remove(childProduct);
+                    }
+                }
+                _context.B2BParrentProducts.Remove(parrentProduct);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./viewAll");
+        }
 
         private bool ProductExists(int id)
         {
