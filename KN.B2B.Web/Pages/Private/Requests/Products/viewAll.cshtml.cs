@@ -108,6 +108,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //fetchMNManipulations();
             //fetchMNCategoryAndExport();
             //insertCategories();
+
+            //excelInsertPrintPrices()
             var pageSize = _config.GetValue("PageSize", 4);
             productPaging = await PaginatedList<B2BParrentProducts>.CreateAsync(
                 products.AsNoTracking(), pageIndex ?? 1, pageSize);
@@ -196,11 +198,13 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 printObj.alertMessage = alertmsg;
                 printObj.alertStatus = alertStatus;
 
-                _db.SupplierPrintPrices.Add(printObj);
-                _db.SaveChanges();
 
 
-                foreach(VarCost varCost in printTechnique.var_costs)
+                //_db.SupplierPrintPrices.Add(printObj);
+                //_db.SaveChanges();
+
+
+                foreach (VarCost varCost in printTechnique.var_costs)
                 {
                     alert = false;
                     alertmsg = "";
@@ -234,10 +238,11 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     costObj.alertMessage = alertmsg;
                     costObj.alertStatus = alertStatus;
 
-                    _db.SupplierPrintCosts.Add(costObj);
-                    _db.SaveChanges();
+                    //_db.SupplierPrintCosts.Add(costObj);
+                    //_db.SaveChanges();
+                    excelInsertPrintPrices(printObj.printPrice_descId, varCost);
 
-                    foreach(Scales scale in varCost.scales)
+                    foreach (Scales scale in varCost.scales)
                     {
                         alert = false;
                         alertmsg = "";
@@ -253,15 +258,16 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                         scaleObj.scale_priceEU = (float)EUValuta;
                         scaleObj.scale_priceFI = (float)EUValuta;
                         scaleObj.scale_supplierPrice = float.Parse(scale.price);
-                        if (scale.next_price != "")
+                        if (scale.next_price != "" && double.Parse(scale.next_price) > 0)
                         {
-                            double originalNextPrice = Math.Round(double.Parse(varCost.area_to),2);
-                            double areaToB2BNextPrice = originalNextPrice * 1.5;
-                            double areaToFIEUNextPrice = Math.Round(areaToB2BNextPrice * 0.13, 2);
-                            scaleObj.scale_nextPriceSupplier = (float)originalNextPrice;
-                            scaleObj.scale_nextPriceDK = (float)originalNextPrice;
-                            scaleObj.scale_nextPriceFI = (float)originalNextPrice;
-                            scaleObj.scale_nextPriceEU = (float)originalNextPrice;
+                            //double originalNextPrice = Math.Round(double.Parse(varCost.area_to),2);
+                            //double areaToB2BNextPrice = originalNextPrice * 1.5;
+                            //double areaToFIEUNextPrice = Math.Round(areaToB2BNextPrice * 0.13, 2);
+                            //scaleObj.scale_nextPriceSupplier = (float)originalNextPrice;
+                            //scaleObj.scale_nextPriceDK = (float)originalNextPrice;
+                            //scaleObj.scale_nextPriceFI = (float)originalNextPrice;
+                            //scaleObj.scale_nextPriceEU = (float)originalNextPrice;
+                            //scaleObj.area
 
 
                         }
@@ -282,9 +288,9 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                         scaleObj.alertMessage = alertmsg;
                         scaleObj.alertStatus = alertStatus;
 
-                        _db.SupplierPrintPriceScales.Add(scaleObj);
-                        _db.SaveChanges();
 
+                        //_db.SupplierPrintPriceScales.Add(scaleObj);
+                        //_db.SaveChanges();
                     }
                 }
                 Console.WriteLine(printObj);
@@ -406,65 +412,6 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             patchToExcel(categoryListLevel1SortedFI, categoryListLevel2SortedFI, categoryListLevel3SortedFI, master_colorSortedFI, "FINNISH");
         }
 
-        public void patchToExcel(List<string> categoryLevel1, List<string> categoryLevel2, List<string> categoryLevel3, List<string> master_color, string country)
-        {
-
-            string filePath = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss") + "-" + country + ".csv";
-            try
-            {
-
-                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
-                {
-                    file.WriteLine("Country;Category_Level1_MN;Category1_Translated_B2B;");
-
-                    for (int i = 0; categoryLevel1.Count() > i; i++)
-                    {
-                        file.WriteLine(country + ";" + categoryLevel1[i]);
-
-                    }
-                    file.WriteLine(";");
-                    file.WriteLine(";");
-                    file.WriteLine("Country;Category_Level2_MN;Category2_Translated_B2B;");
-                    for (int i = 0; categoryLevel2.Count() > i; i++)
-                    {
-                        file.WriteLine(country + ";" + categoryLevel2[i]);
-
-                    }
-
-                    file.WriteLine(";");
-                    file.WriteLine(";");
-                    file.WriteLine("Country;Category_Level3_MN;Category3_Translated_B2B;");
-                    for (int i = 0; categoryLevel3.Count() > i; i++)
-                    {
-                        file.WriteLine(country + ";" + categoryLevel3[i]);
-
-                    }
-
-                }
-
-                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
-                {
-                    file.WriteLine(";");
-                    file.WriteLine(";");
-                    file.WriteLine(";");
-                    file.WriteLine("Country;Master_Color_MN;Master_color_B2B");
-
-                    for (int i = 0; master_color.Count() > i; i++)
-                    {
-                        if(master_color[i] != null)
-                        {
-                            file.WriteLine(country + ";" + master_color[i] +";;");
-                        }
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("This program did an oopsie :", ex);
-            }
-        }
 
         
         public void fetchMNData()
@@ -1924,6 +1871,94 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             }
             return null;
 
+        }
+        public void patchToExcel(List<string> categoryLevel1, List<string> categoryLevel2, List<string> categoryLevel3, List<string> master_color, string country)
+        {
+
+            string filePath = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss") + "-" + country + ".csv";
+            try
+            {
+
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    file.WriteLine("Country;Category_Level1_MN;Category1_Translated_B2B;");
+
+                    for (int i = 0; categoryLevel1.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + categoryLevel1[i]);
+
+                    }
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine("Country;Category_Level2_MN;Category2_Translated_B2B;");
+                    for (int i = 0; categoryLevel2.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + categoryLevel2[i]);
+
+                    }
+
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine("Country;Category_Level3_MN;Category3_Translated_B2B;");
+                    for (int i = 0; categoryLevel3.Count() > i; i++)
+                    {
+                        file.WriteLine(country + ";" + categoryLevel3[i]);
+
+                    }
+
+                }
+
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine(";");
+                    file.WriteLine("Country;Master_Color_MN;Master_color_B2B");
+
+                    for (int i = 0; master_color.Count() > i; i++)
+                    {
+                        if (master_color[i] != null)
+                        {
+                            file.WriteLine(country + ";" + master_color[i] + ";;");
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did an oopsie :", ex);
+            }
+        }
+
+        public void excelInsertPrintPrices(string printCode, VarCost costObj)
+        {
+            string filePath = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss") + "-" + "printCodes" + ".csv";
+            try
+            {
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    //file.WriteLine("print_code;q1;q2;q3;q4;q5;q6;next1;next2;next3;next4;next5;next6");
+                    file.WriteLine($"------------PRINTCODE :{printCode}--------------");
+
+                    for (int i = 0; costObj.scales.Count > i; i++)
+                    {
+                        //if(costObj.)
+                        file.WriteLine($"#_{i}:;"+"MN"+printCode + ";" + "Quantity: ;" + costObj.scales[i].minimum_quantity + ";" +"price:;" + costObj.scales[i].price + ";" + "Next price: ;" + costObj.scales[i].next_price+ ";");
+                    }
+                    file.WriteLine("---------------------END------------------------;");
+                    file.WriteLine(":");
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did an oopsie :", ex);
+            }
         }
     }
 }
