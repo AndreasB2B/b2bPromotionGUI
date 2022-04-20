@@ -372,6 +372,9 @@ namespace KN.B2B.Web.Migrations
                     b.Property<int?>("fk_techniqueIdtechnique_id")
                         .HasColumnType("int");
 
+                    b.Property<byte>("maxColors")
+                        .HasColumnType("tinyint");
+
                     b.Property<bool>("print_express")
                         .HasColumnType("bit");
 

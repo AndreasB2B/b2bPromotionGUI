@@ -42,7 +42,15 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public string searchQuery { get; set; }
         public B2BProduct B2BProduct { get; set; }
         public IEnumerable<B2BParrentProducts> parrentProductsList { get; set; }
+        public IEnumerable<B2BProduct> childProducts { get; set; }
+        public IEnumerable<B2BProductPrices> productPriceList { get; set; }
+        public List<B2BPriceScaling> priceScalingList { get; set; }
+        
+        public IEnumerable<SupplierPrintCost> supplierPrintCostLists { get; set; }
+        public IEnumerable<SupplierPrintPrice> SupplierPrintPricesLists { get; set; }
+        public IEnumerable<SupplierPrintPriceScales> SupplierPrintPriceScalesLists { get; set; }
         public IEnumerable<B2BPrintTechnique> techniqueList { get; set; }
+        public IEnumerable<B2BPrintPosition> printPositionList { get; set; }
         public PaginatedList<B2BParrentProducts> productPaging { get; set; }
         public string NameSort { get; set; }
         public string DateSort { get; set; }
@@ -66,12 +74,12 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             CurrentFilter = searchString;
 
-            IQueryable<B2BParrentProducts> products = from s in _db.B2BParrentProducts select s;
+            //IQueryable<B2BParrentProducts> products = from s in _db.B2BParrentProducts select s;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(s => s.parrentProduct_parrentSku.Contains(searchString) || s.parrentProduct_productName.Contains(searchString));
-            }
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    products = products.Where(s => s.parrentProduct_parrentSku.Contains(searchString) || s.parrentProduct_productName.Contains(searchString));
+            //}
 
 
 
@@ -99,20 +107,23 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //IEnumerable<B2BPrintTechnique> techniques = await _db.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
 
             //Console.WriteLine(techniques);
-            //fetchMNData();
+            fetchMNData();
             //sendMail();
             //fetchFtpFile();
-            //await fetchPrintTechniques();
+            //patchProduct();
             //fetchMNPriceList();
+            await patchProduct();
+            //await fetchPrintTechniques();
             //fetchTechniquePrices();
             //fetchMNManipulations();
+
             //fetchMNCategoryAndExport();
             //insertCategories();
 
             //excelInsertPrintPrices()
             var pageSize = _config.GetValue("PageSize", 4);
-            productPaging = await PaginatedList<B2BParrentProducts>.CreateAsync(
-                products.AsNoTracking(), pageIndex ?? 1, pageSize);
+            //productPaging = await PaginatedList<B2BParrentProducts>.CreateAsync(
+            //    products.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
         public void fetchMNManipulations()
         {
@@ -200,8 +211,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
 
 
-                //_db.SupplierPrintPrices.Add(printObj);
-                //_db.SaveChanges();
+                _db.SupplierPrintPrices.Add(printObj);
+                _db.SaveChanges();
 
 
                 foreach (VarCost varCost in printTechnique.var_costs)
@@ -238,9 +249,9 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     costObj.alertMessage = alertmsg;
                     costObj.alertStatus = alertStatus;
 
-                    //_db.SupplierPrintCosts.Add(costObj);
-                    //_db.SaveChanges();
-                    excelInsertPrintPrices(printObj.printPrice_descId, varCost);
+                    _db.SupplierPrintCosts.Add(costObj);
+                    _db.SaveChanges();
+                    //excelInsertPrintPrices(printObj.printPrice_descId, varCost);
 
                     foreach (Scales scale in varCost.scales)
                     {
@@ -289,8 +300,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                         scaleObj.alertStatus = alertStatus;
 
 
-                        //_db.SupplierPrintPriceScales.Add(scaleObj);
-                        //_db.SaveChanges();
+                        _db.SupplierPrintPriceScales.Add(scaleObj);
+                        _db.SaveChanges();
                     }
                 }
                 Console.WriteLine(printObj);
@@ -391,32 +402,32 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 }
             }
 
-            List<string> categoryListLevel1SortedDK = categoryListLevel1DK.Distinct().ToList();
-            List<string> categoryListLevel2SortedDK = categoryListLevel2DK.Distinct().ToList();
-            List<string> categoryListLevel3SortedDK = categoryListLevel3DK.Distinct().ToList();
-            List<string> master_colorSortedDK = master_colorDK.Distinct().ToList();
+            //List<string> categoryListLevel1SortedDK = categoryListLevel1DK.Distinct().ToList();
+            //List<string> categoryListLevel2SortedDK = categoryListLevel2DK.Distinct().ToList();
+            //List<string> categoryListLevel3SortedDK = categoryListLevel3DK.Distinct().ToList();
+            //List<string> master_colorSortedDK = master_colorDK.Distinct().ToList();
 
-            List<string> categoryListLevel1SortedFI = categoryListLevel1FI.Distinct().ToList();
-            List<string> categoryListLevel2SortedFI = categoryListLevel2FI.Distinct().ToList();
-            List<string> categoryListLevel3SortedFI = categoryListLevel3FI.Distinct().ToList();
-            List<string> master_colorSortedFI = master_colorFI.Distinct().ToList();
+            //List<string> categoryListLevel1SortedFI = categoryListLevel1FI.Distinct().ToList();
+            //List<string> categoryListLevel2SortedFI = categoryListLevel2FI.Distinct().ToList();
+            //List<string> categoryListLevel3SortedFI = categoryListLevel3FI.Distinct().ToList();
+            //List<string> master_colorSortedFI = master_colorFI.Distinct().ToList();
 
-            List<string> categoryListLevel1SortedEN = categoryListLevel1EN.Distinct().ToList();
-            List<string> categoryListLevel2SortedEN = categoryListLevel2EN.Distinct().ToList();
-            List<string> categoryListLevel3SortedEN = categoryListLevel3EN.Distinct().ToList();
-            List<string> master_colorSortedEN = master_colorEN.Distinct().ToList();
+            //List<string> categoryListLevel1SortedEN = categoryListLevel1EN.Distinct().ToList();
+            //List<string> categoryListLevel2SortedEN = categoryListLevel2EN.Distinct().ToList();
+            //List<string> categoryListLevel3SortedEN = categoryListLevel3EN.Distinct().ToList();
+            //List<string> master_colorSortedEN = master_colorEN.Distinct().ToList();
 
 
-            patchToExcel(categoryListLevel1SortedDK, categoryListLevel2SortedDK, categoryListLevel3SortedDK, master_colorSortedDK, "DANISH");
-            patchToExcel(categoryListLevel1SortedEN, categoryListLevel2SortedEN, categoryListLevel3SortedEN, master_colorSortedEN, "ENGLISH");
-            patchToExcel(categoryListLevel1SortedFI, categoryListLevel2SortedFI, categoryListLevel3SortedFI, master_colorSortedFI, "FINNISH");
+            //patchToExcel(categoryListLevel1SortedDK, categoryListLevel2SortedDK, categoryListLevel3SortedDK, master_colorSortedDK, "DANISH");
+            //patchToExcel(categoryListLevel1SortedEN, categoryListLevel2SortedEN, categoryListLevel3SortedEN, master_colorSortedEN, "ENGLISH");
+            //patchToExcel(categoryListLevel1SortedFI, categoryListLevel2SortedFI, categoryListLevel3SortedFI, master_colorSortedFI, "FINNISH");
         }
 
 
         
         public void fetchMNData()
         {
-            string country = "fi";
+            string country = "da";
             HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language={country}"));
 
             WebReqDk.Method = "GET";
@@ -607,10 +618,19 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     //    downloadImages(img.url, childProduct.sku + "_" + imgCount.ToString() + ".jpg");
                     //    imgCount++;
                     //}
+                    //var placeholderList = new[] { 1, 2, 3 }.ToList();
+
+                    foreach(DigitalAsset image in childProduct.digital_assets)
+                    {
+                        string imageName = image.url.Substring(image.url.LastIndexOf('/') + 1);
+                        B2BProductImages imageObj = new B2BProductImages();
+                        imageObj.imagePath = $"https://www.b2bpromotion.dk/content/images/productImages/${imageName}";
+                        imageObj.fk_childProduct(b2bProdcut);
+                    }
 
                 }
             }
-            //patchProdDesc(productList, country);
+            patchProdDesc(productList, country);
 
         }
         public void patchProdDesc(List<B2BParrentProducts> product, string country)
@@ -638,7 +658,656 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 throw new ApplicationException("This program did an oopsie :", ex);
             }
         }
+        public async Task patchProduct()
+        {
+            string country = "dk";
+            string filePath = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss") + "_" + "Products" + "-" + country + ".csv";
+            try
+            {
 
+                childProducts = await LoadCollections.LoadAllProducts(_db);
+
+            //childProducts = await _db.B2BProdducts
+            //    //.Include(x => x.parrentProduct_productName)
+            //    //.Include(x => x.parrentProduct_shortDescription)
+            //    .OrderByDescending(x => x.product_id)
+            //    .ToListAsync();
+
+            parrentProductsList = await LoadCollections.LoadAllParrentProducts(_db);
+            //parrentProductsList = await _db.B2BParrentProducts
+            //.OrderByDescending(x => x.parrentProduct_id)
+            //.ToListAsync();
+
+            productPriceList = await LoadCollections.LoadAllProductPrices(_db);
+
+            //productPriceList = await _db.B2BProductPrices
+            //.OrderByDescending(x => x.id)
+            //.ToListAsync();
+
+            priceScalingList = await LoadCollections.LoadAllPriceScales(_db);
+
+            //priceScalingList = await _db.B2BPriceScaling
+            //.OrderByDescending(x => x.scale_id)
+            //.ToListAsync();
+
+
+            techniqueList = await LoadCollections.LoadAllPrintTechniques(_db);
+
+
+            //techniqueList = await _db.B2BPrintTechniques
+            //.OrderByDescending(x => x.technique_id)
+            //.ToListAsync();
+
+            printPositionList = await LoadCollections.LoadAllPrintPositions(_db);
+
+            //printPositionList = await _db.B2BPrintPositions
+            //.OrderByDescending(x => x.Id)
+            //.ToListAsync();
+
+
+            supplierPrintCostLists = await LoadCollections.LoadAllSupplierPrintCosts(_db);
+            //supplierPrintCostLists = await _db.SupplierPrintCosts
+            //    .OrderByDescending(x => x.printCost_id)
+            //    .ToListAsync();
+
+
+            SupplierPrintPricesLists = await LoadCollections.LoadAllSupplierPrintPrices(_db);
+
+                //SupplierPrintPricesLists = await _db.SupplierPrintPrices
+                //    .OrderByDescending(x => x.printPrice_id)
+                //    .ToListAsync();
+
+            SupplierPrintPriceScalesLists = await LoadCollections.LoadAllSupplierPrintPriceScales(_db);
+
+                //SupplierPrintPriceScalesLists = await _db.SupplierPrintPriceScales
+                //    .OrderByDescending(x => x.scale_id)
+                //    .ToListAsync();
+
+
+        //var ammount = Enumerable.Repeat(new { q = "", p = "" }, 0).ToList();
+
+                var list = Enumerable.Repeat(new { ParentSKU = "", ColorName = "", InternetName = "", InternetTxt = "" }, 0).ToList();
+                foreach (var oneProduct in parrentProductsList)
+                {
+                    list.Add(new
+                    {
+                        ParentSKU = oneProduct.parrentProduct_parrentSku,
+                        ColorName = "color",
+                        InternetName = oneProduct.parrentProduct_shortDescription,
+                        InternetTxt = oneProduct.parrentProduct_longDescription
+                    });
+
+                }
+
+                //Console.WriteLine(list);
+
+                using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    file.WriteLine("ParentSKU;	SKU;	ColorName;	InternetName;	InternetTxt;	Q1;	Q2;	Q3;	Q4;	Q5;	Q6;	P1;	P2;	P3;	P4;	P5;	P6;	GrossNett;	ImprintType_IL1_T1;	ImprintDescription_IL1_T1;	ImprintImage_IL1_T1;	PriceClass_IL1_T1;	PriceClass_IL1_CN;	SetupFee_IL1_T1;	SetupFee_IL1_T1_NextColor;	SetupFeeStructure_IL1_T1;	ExcludeFreeSetupCosts_IL1_T1;	ImprintSize_IL1_T1;	MaxColors_IL1_T1;	Handling_IL1_T1;	ImprintType_IL1_T2;	ImprintDescription_IL1_T2;	ImprintImage_IL1_T2;	PriceClass_IL1_T2;	PriceClass_IL1_CN2;	SetupFee_IL1_T2;	SetupFee_IL1_T2_NextColor;	SetupFeeStructure_IL1_T2;	ExcludeFreeSetupCosts_IL1_T2;	ImprintSize_IL1_T2;	MaxColors_IL1_T2;	Handling_IL1_T2	ImprintType_IL1_T3;	ImprintDescription_IL1_T3;	ImprintImage_IL1_T3	PriceClass_IL1_T3;	PriceClass_IL1_CN3;	SetupFee_IL1_T3;	SetupFee_IL1_T3_NextColor;	SetupFeeStructure_IL1_T3;	ExcludeFreeSetupCosts_IL1_T3;	ImprintSize_IL1_T3;	MaxColors_IL1_T3;	Handling_IL1_T3;	ImprintType_IL1_T4;	ImprintDescription_IL1_T4;	ImprintImage_IL1_T4;	PriceClass_IL1_T4;	PriceClass_IL1_CN4;	SetupFee_IL1_T4;	SetupFee_IL1_T4_NextColor;	SetupFeeStructure_IL1_T4;	ExcludeFreeSetupCosts_IL1_T4;	ImprintSize_IL1_T4;	MaxColors_IL1_T4;	Handling_IL1_T4	ImprintType_IL1_T5;	ImprintDescription_IL1_T5;	ImprintImage_IL1_T5	PriceClass_IL1_T5;	PriceClass_IL1_CN5;	SetupFee_IL1_T5;	SetupFee_IL1_T5_NextColor;	SetupFeeStructure_IL1_T5;	ExcludeFreeSetupCosts_IL1_T5;	ImprintSize_IL1_T5;	MaxColors_IL1_T5;	Handling_IL1_T5	ImprintType_IL1_T6;	ImprintDescription_IL1_T6;	ImprintImage_IL1_T6;	PriceClass_IL1_T6;	PriceClass_IL1_CN6;	SetupFee_IL1_T6;	SetupFee_IL1_T6_NextColor;	SetupFeeStructure_IL1_T6;	ExcludeFreeSetupCosts_IL1_T6;	ImprintSize_IL1_T6;	MaxColors_IL1_T6;	Handling_IL1_T6;	IntraCode;	CountryOfOrigin;	OuterCartonPieces;	OuterCartonLength;	OuterCartonWidth;	OuterCartonHeight;	CommercialItemLength;	CommercialItemWidth;	CommercialItemHeight;	CommercialItemWeight;	Flavours;	Sizes;	WritingColor;	CapacityTxt;	OrderUnit;	MainGroup;	Material;	BatteryType;	NumberOfBatteries;	ProductImageURL;	DeliveryTimeMT_IL1_T1;	07_12_SearchTerms;	Q_OnPallet;	Brandnames;");
+                    string parentSku = "";
+                    string SKU = "";
+                    string ColorName = "";
+                    string InternetName = "";
+                    string InternetTxt = "";
+                    string Q1 = "";
+                    string Q2 = "";
+                    string Q3 = "";
+                    string Q4 = "";
+                    string Q5 = "";
+                    string Q6 = "";
+                    string P1 = "";
+                    string P2 = "";
+                    string P3 = "";
+                    string P4 = "";
+                    string P5 = "";
+                    string P6 = "";
+                    string GrossNett = "";
+                    string ImprintType_IL1_T1 = "";
+                    string ImprintDescription_IL1_T1 = "";
+                    string ImprintImage_IL1_T1 = "";
+                    string PriceClass_IL1_T1 = "";
+                    string PriceClass_IL1_CN = "";
+                    string SetupFee_IL1_T1 = "";
+                    string SetupFee_IL1_T1_NextColor = "";
+                    string SetupFeeStructure_IL1_T1 = "";
+                    string ExcludeFreeSetupCosts_IL1_T1 = "";
+                    string ImprintSize_IL1_T1 = "";
+                    string MaxColors_IL1_T1 = "";
+                    string Handling_IL1_T1 = "";
+                    string ImprintType_IL1_T2 = "";
+                    string ImprintDescription_IL1_T2 = "";
+                    string ImprintImage_IL1_T2 = "";
+                    string PriceClass_IL1_T2 = "";
+                    string PriceClass_IL1_CN2 = "";
+                    string SetupFee_IL1_T2 = "";
+                    string SetupFee_IL1_T2_NextColor = "";
+                    string SetupFeeStructure_IL1_T2 = "";
+                    string ExcludeFreeSetupCosts_IL1_T2 = "";
+                    string ImprintSize_IL1_T2 = "";
+                    string MaxColors_IL1_T2 = "";
+                    string Handling_IL1_T2 = "";
+                    string ImprintType_IL1_T3 = "";
+                    string ImprintDescription_IL1_T3 = "";
+                    string ImprintImage_IL1_T3 = "";
+                    string PriceClass_IL1_T3 = "";
+                    string PriceClass_IL1_CN3 = "";
+                    string SetupFee_IL1_T3 = "";
+                    string SetupFee_IL1_T3_NextColor = "";
+                    string SetupFeeStructure_IL1_T3 = "";
+                    string ExcludeFreeSetupCosts_IL1_T3 = "";
+                    string ImprintSize_IL1_T3 = "";
+                    string MaxColors_IL1_T3 = "";
+                    string Handling_IL1_T3 = "";
+                    string ImprintType_IL1_T4 = "";
+                    string ImprintDescription_IL1_T4 = "";
+                    string ImprintImage_IL1_T4 = "";
+                    string PriceClass_IL1_T4 = "";
+                    string PriceClass_IL1_CN4 = "";
+                    string SetupFee_IL1_T4 = "";
+                    string SetupFee_IL1_T4_NextColor = "";
+                    string SetupFeeStructure_IL1_T4 = "";
+                    string ExcludeFreeSetupCosts_IL1_T4 = "";
+                    string ImprintSize_IL1_T4 = "";
+                    string MaxColors_IL1_T4 = "";
+                    string Handling_IL1_T4 = "";
+                    string ImprintType_IL1_T5 = "";
+                    string ImprintDescription_IL1_T5 = "";
+                    string ImprintImage_IL1_T5 = "";
+                    string PriceClass_IL1_T5 = "";
+                    string PriceClass_IL1_CN5 = "";
+                    string SetupFee_IL1_T5 = "";
+                    string SetupFee_IL1_T5_NextColor = "";
+                    string SetupFeeStructure_IL1_T5 = "";
+                    string ExcludeFreeSetupCosts_IL1_T5 = "";
+                    string ImprintSize_IL1_T5 = "";
+                    string MaxColors_IL1_T5 = "";
+                    string Handling_IL1_T5 = "";
+                    string ImprintType_IL1_T6 = "";
+                    string ImprintDescription_IL1_T6 = "";
+                    string ImprintImage_IL1_T6 = "";
+                    string PriceClass_IL1_T6 = "";
+                    string PriceClass_IL1_CN6 = "";
+                    string SetupFee_IL1_T6 = "";
+                    string SetupFee_IL1_T6_NextColor = "";
+                    string SetupFeeStructure_IL1_T6 = "";
+                    string ExcludeFreeSetupCosts_IL1_T6 = "";
+                    string ImprintSize_IL1_T6 = "";
+                    string MaxColors_IL1_T6 = "";
+                    string Handling_IL1_T6 = "";
+                    string IntraCode = "";
+                    string CountryOfOrigin = "";
+                    string OuterCartonPieces = "";
+                    string OuterCartonLength = "";
+                    string OuterCartonWidth = "";
+                    string OuterCartonHeight = "";
+                    string CommercialItemLength = "";
+                    string CommercialItemWidth = "";
+                    string CommercialItemHeight = "";
+                    string CommercialItemWeight = "";
+                    string Flavours = "";
+                    string Sizes = "";
+                    string WritingColor = "";
+                    string CapacityTxt = "";
+                    string OrderUnit = "";
+                    string MainGroup = "";
+                    string Material = "";
+                    string BatteryType = "";
+                    string NumberOfBatteries = "";
+                    string ProductImageURL = "";
+                    string DeliveryTimeMT_IL1_T1 = "";
+                    string SearchTerms = "";
+                    string Q_OnPallet = "";
+                    string Brandnames = "";
+                    file.WriteLine(parentSku + ";" + SKU + ";" + ColorName + ";" + InternetName + ";" + InternetTxt + ";" + Q1 + ";" + Q2 + ";" + Q3 + ";" + Q4 + ";" + Q5 + ";" + Q6 + ";" + P1 + ";" + P2 + ";" + P3 + ";" + P4 + ";" + P5 + ";" + P6 + ";" + GrossNett + ";" + ImprintType_IL1_T1 + ";" + ImprintDescription_IL1_T1 + ";" + ImprintImage_IL1_T1 + ";" + PriceClass_IL1_T1 + ";" + PriceClass_IL1_CN + ";" + SetupFee_IL1_T1 + ";" + SetupFee_IL1_T1_NextColor + ";" + SetupFeeStructure_IL1_T1 + ";" + ExcludeFreeSetupCosts_IL1_T1 + ";" + ImprintSize_IL1_T1 + ";" + MaxColors_IL1_T1 + ";" + Handling_IL1_T1 + ";" + ImprintType_IL1_T2 + ";" + ImprintDescription_IL1_T2 + ";" + ImprintImage_IL1_T2 + ";" + PriceClass_IL1_T2 + ";" + PriceClass_IL1_CN2 + ";" + SetupFee_IL1_T2 + ";" + SetupFee_IL1_T2_NextColor + ";" + SetupFeeStructure_IL1_T2 + ";" + ExcludeFreeSetupCosts_IL1_T2 + ";" + ImprintSize_IL1_T2 + ";" + MaxColors_IL1_T2 + ";" + Handling_IL1_T2 + ";" + ImprintType_IL1_T3 + ";" + ImprintDescription_IL1_T3 + ";" + ImprintImage_IL1_T3 + ";" + PriceClass_IL1_T3 + ";" + PriceClass_IL1_CN3 + ";" + SetupFee_IL1_T3 + ";" + SetupFee_IL1_T3_NextColor + ";" + SetupFeeStructure_IL1_T3 + ";" + ExcludeFreeSetupCosts_IL1_T3 + ";" + ImprintSize_IL1_T3 + ";" + MaxColors_IL1_T3 + ";" + Handling_IL1_T3 + ";" + ImprintType_IL1_T4 + ";" + ImprintDescription_IL1_T4 + ";" + ImprintImage_IL1_T4 + ";" + PriceClass_IL1_T4 + ";" + PriceClass_IL1_CN4 + ";" + SetupFee_IL1_T4 + ";" + SetupFee_IL1_T4_NextColor + ";" + SetupFeeStructure_IL1_T4 + ";" + ExcludeFreeSetupCosts_IL1_T4 + ";" + ImprintSize_IL1_T4 + ";" + MaxColors_IL1_T4 + ";" + Handling_IL1_T4 + ";" + ImprintType_IL1_T5 + ";" + ImprintDescription_IL1_T5 + ";" + ImprintImage_IL1_T5 + ";" + PriceClass_IL1_T5 + ";" + PriceClass_IL1_CN5 + ";" + SetupFee_IL1_T5 + ";" + SetupFee_IL1_T5_NextColor + ";" + SetupFeeStructure_IL1_T5 + ";" + ExcludeFreeSetupCosts_IL1_T5 + ";" + ImprintSize_IL1_T5 + ";" + MaxColors_IL1_T5 + ";" + Handling_IL1_T5 + ";" + ImprintType_IL1_T6 + ";" + ImprintDescription_IL1_T6 + ";" + ImprintImage_IL1_T6 + ";" + PriceClass_IL1_T6 + ";" + PriceClass_IL1_CN6 + ";" + SetupFee_IL1_T6 + ";" + SetupFee_IL1_T6_NextColor + ";" + SetupFeeStructure_IL1_T6 + ";" + ExcludeFreeSetupCosts_IL1_T6 + ";" + ImprintSize_IL1_T6 + ";" + MaxColors_IL1_T6 + ";" + Handling_IL1_T6 + ";" + IntraCode + ";" + CountryOfOrigin + ";" + OuterCartonPieces + ";" + OuterCartonLength + ";" + OuterCartonWidth + ";" + OuterCartonLength + ";" + CommercialItemLength + ";" + CommercialItemWidth + ";" + CommercialItemHeight + ";" + CommercialItemWeight + ";" + Flavours + ";" + Sizes + ";" + WritingColor + ";" + CapacityTxt + ";" + OrderUnit + ";" + MainGroup + ";" + Material + ";" + BatteryType + ";" + NumberOfBatteries + ";" + ProductImageURL + ";" + DeliveryTimeMT_IL1_T1 + ";" + SearchTerms + ";" + Q_OnPallet + ";" + Brandnames);
+
+                    foreach (var oneProduct in childProducts)
+                    {
+                        var ammount = Enumerable.Repeat(new { q = "", p = "" }, 0).ToList();
+                        parentSku = "";
+                         SKU = "";
+                         ColorName = "";
+                         InternetName = "";
+                         InternetTxt = "";
+                         Q1 = "";
+                         Q2 = "";
+                         Q3 = "";
+                         Q4 = "";
+                         Q5 = "";
+                         Q6 = "";
+                         P1 = "";
+                         P2 = "";
+                         P3 = "";
+                         P4 = "";
+                         P5 = "";
+                         P6 = "";
+                         GrossNett = "";
+                         ImprintType_IL1_T1 = "";
+                         ImprintDescription_IL1_T1 = "";
+                         ImprintImage_IL1_T1 = "";
+                         PriceClass_IL1_T1 = "";
+                         PriceClass_IL1_CN = "";
+                         SetupFee_IL1_T1 = "";
+                         SetupFee_IL1_T1_NextColor = "";
+                         SetupFeeStructure_IL1_T1 = "";
+                         ExcludeFreeSetupCosts_IL1_T1 = "";
+                         ImprintSize_IL1_T1 = "";
+                         MaxColors_IL1_T1 = "";
+                         Handling_IL1_T1 = "";
+                         ImprintType_IL1_T2 = "";
+                         ImprintDescription_IL1_T2 = "";
+                         ImprintImage_IL1_T2 = "";
+                         PriceClass_IL1_T2 = "";
+                         PriceClass_IL1_CN2 = "";
+                         SetupFee_IL1_T2 = "";
+                         SetupFee_IL1_T2_NextColor = "";
+                         SetupFeeStructure_IL1_T2 = "";
+                         ExcludeFreeSetupCosts_IL1_T2 = "";
+                         ImprintSize_IL1_T2 = "";
+                         MaxColors_IL1_T2 = "";
+                         Handling_IL1_T2 = "";
+                         ImprintType_IL1_T3 = "";
+                         ImprintDescription_IL1_T3 = "";
+                         ImprintImage_IL1_T3 = "";
+                         PriceClass_IL1_T3 = "";
+                         PriceClass_IL1_CN3 = "";
+                         SetupFee_IL1_T3 = "";
+                         SetupFee_IL1_T3_NextColor = "";
+                         SetupFeeStructure_IL1_T3 = "";
+                         ExcludeFreeSetupCosts_IL1_T3 = "";
+                         ImprintSize_IL1_T3 = "";
+                         MaxColors_IL1_T3 = "";
+                         Handling_IL1_T3 = "";
+                         ImprintType_IL1_T4 = "";
+                         ImprintDescription_IL1_T4 = "";
+                         ImprintImage_IL1_T4 = "";
+                         PriceClass_IL1_T4 = "";
+                         PriceClass_IL1_CN4 = "";
+                         SetupFee_IL1_T4 = "";
+                         SetupFee_IL1_T4_NextColor = "";
+                         SetupFeeStructure_IL1_T4 = "";
+                         ExcludeFreeSetupCosts_IL1_T4 = "";
+                         ImprintSize_IL1_T4 = "";
+                         MaxColors_IL1_T4 = "";
+                         Handling_IL1_T4 = "";
+                         ImprintType_IL1_T5 = "";
+                         ImprintDescription_IL1_T5 = "";
+                         ImprintImage_IL1_T5 = "";
+                         PriceClass_IL1_T5 = "";
+                         PriceClass_IL1_CN5 = "";
+                         SetupFee_IL1_T5 = "";
+                         SetupFee_IL1_T5_NextColor = "";
+                         SetupFeeStructure_IL1_T5 = "";
+                         ExcludeFreeSetupCosts_IL1_T5 = "";
+                         ImprintSize_IL1_T5 = "";
+                         MaxColors_IL1_T5 = "";
+                         Handling_IL1_T5 = "";
+                         ImprintType_IL1_T6 = "";
+                         ImprintDescription_IL1_T6 = "";
+                         ImprintImage_IL1_T6 = "";
+                         PriceClass_IL1_T6 = "";
+                         PriceClass_IL1_CN6 = "";
+                         SetupFee_IL1_T6 = "";
+                         SetupFee_IL1_T6_NextColor = "";
+                         SetupFeeStructure_IL1_T6 = "";
+                         ExcludeFreeSetupCosts_IL1_T6 = "";
+                         ImprintSize_IL1_T6 = "";
+                         MaxColors_IL1_T6 = "";
+                         Handling_IL1_T6 = "";
+                         IntraCode = "";
+                         CountryOfOrigin = "";
+                         OuterCartonPieces = "";
+                         OuterCartonLength = "";
+                         OuterCartonWidth = "";
+                         OuterCartonHeight = "";
+                         CommercialItemLength = "";
+                         CommercialItemWidth = "";
+                         CommercialItemHeight = "";
+                         CommercialItemWeight = "";
+                         Flavours = "";
+                         Sizes = "";
+                         WritingColor = "";
+                        CapacityTxt = "";
+                         OrderUnit = "";
+                        MainGroup = "";
+                        Material = "";
+                        BatteryType = "";
+                        NumberOfBatteries = "";
+                        ProductImageURL = "";
+                        DeliveryTimeMT_IL1_T1 = "";
+                        SearchTerms = "";
+                        Q_OnPallet = "";
+                        Brandnames = "";
+                        SKU = oneProduct.product_sku;
+                        ColorName = oneProduct.product_ColorName;
+
+                        //foreach (var parrentProduct in parrentProductsList)
+                        //{
+                        //    parentSku = parrentProduct.parrentProduct_parrentSku;
+                        //    InternetName = parrentProduct.parrentProduct_shortDescription;
+                        //    InternetTxt = parrentProduct.parrentProduct_longDescription;
+                        //    MainGroup = parrentProduct.parrentProduct_subCategoryDK;
+
+                        foreach(var images in )
+
+                        var tmpParrentProduct = await _db.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == oneProduct.fk_ParentSKU.parrentProduct_id);
+
+                        parentSku = tmpParrentProduct.parrentProduct_productName;
+                        InternetName = tmpParrentProduct.parrentProduct_shortDescription;
+                        InternetTxt = tmpParrentProduct.parrentProduct_subCategoryFI;
+                        MainGroup = tmpParrentProduct.parrentProduct_subCategoryFI;
+
+                        //TODO => INSERT 
+                        //Material = 
+                        foreach (var price in productPriceList)
+                            {
+                            if(price.parrentSku == oneProduct.product_sku)
+                                {
+                                    List<B2BPriceScaling> tmpPriceScaleList = await _db.B2BPriceScaling.Where(x => x.fk_priceId == price).ToListAsync();
+                                Console.WriteLine(tmpPriceScaleList);
+
+                                if(tmpPriceScaleList.Count() == 0)
+                                {
+
+                                }
+
+                                if(tmpPriceScaleList.Count() == 1)
+                                {
+                                    Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
+                                    P1 = tmpPriceScaleList[0].scale_priceFI.ToString();
+
+                                }
+                                if (tmpPriceScaleList.Count() == 2)
+                                {
+                                    Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
+                                    Q2 = tmpPriceScaleList[1].scale_minimumQuantity.ToString();
+
+                                    P1 = tmpPriceScaleList[0].scale_priceFI.ToString();
+                                    P2 = tmpPriceScaleList[1].scale_priceFI.ToString();
+                                }
+                                if (tmpPriceScaleList.Count() == 3)
+                                {
+                                    Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
+                                    Q2 = tmpPriceScaleList[1].scale_minimumQuantity.ToString();
+                                    Q3 = tmpPriceScaleList[2].scale_minimumQuantity.ToString();
+
+                                    P1 = tmpPriceScaleList[0].scale_priceFI.ToString();
+                                    P2 = tmpPriceScaleList[1].scale_priceFI.ToString();
+                                    P3 = tmpPriceScaleList[2].scale_priceFI.ToString();
+
+                                }
+                                if (tmpPriceScaleList.Count() == 4)
+                                {
+                                    Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
+                                    Q2 = tmpPriceScaleList[1].scale_minimumQuantity.ToString();
+                                    Q3 = tmpPriceScaleList[2].scale_minimumQuantity.ToString();
+                                    Q4 = tmpPriceScaleList[3].scale_minimumQuantity.ToString();
+
+                                    P1 = tmpPriceScaleList[0].scale_priceFI.ToString();
+                                    P2 = tmpPriceScaleList[1].scale_priceFI.ToString();
+                                    P3 = tmpPriceScaleList[2].scale_priceFI.ToString();
+                                    P4 = tmpPriceScaleList[3].scale_priceFI.ToString();
+
+                                }
+                                if (tmpPriceScaleList.Count() == 5)
+                                {
+                                    Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
+                                    Q2 = tmpPriceScaleList[1].scale_minimumQuantity.ToString();
+                                    Q3 = tmpPriceScaleList[2].scale_minimumQuantity.ToString();
+                                    Q4 = tmpPriceScaleList[3].scale_minimumQuantity.ToString();
+                                    Q5 = tmpPriceScaleList[4].scale_minimumQuantity.ToString();
+
+                                    P1 = tmpPriceScaleList[0].scale_priceFI.ToString();
+                                    P2 = tmpPriceScaleList[1].scale_priceFI.ToString();
+                                    P3 = tmpPriceScaleList[2].scale_priceFI.ToString();
+                                    P4 = tmpPriceScaleList[3].scale_priceFI.ToString();
+                                    P5 = tmpPriceScaleList[4].scale_priceFI.ToString();
+                                }
+                                if (tmpPriceScaleList.Count() == 6)
+                                {
+                                    Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
+                                    Q2 = tmpPriceScaleList[1].scale_minimumQuantity.ToString();
+                                    Q3 = tmpPriceScaleList[2].scale_minimumQuantity.ToString();
+                                    Q5 = tmpPriceScaleList[4].scale_minimumQuantity.ToString();
+                                    Q6 = tmpPriceScaleList[5].scale_minimumQuantity.ToString();
+
+                                    P1 = tmpPriceScaleList[0].scale_priceFI.ToString();
+                                    P2 = tmpPriceScaleList[1].scale_priceFI.ToString();
+                                    P3 = tmpPriceScaleList[2].scale_priceFI.ToString();
+                                    P4 = tmpPriceScaleList[3].scale_priceFI.ToString();
+                                    P5 = tmpPriceScaleList[4].scale_priceFI.ToString();
+                                    P6 = tmpPriceScaleList[5].scale_priceFI.ToString();
+                                }
+
+                                break;
+
+                                }
+                        }
+                        var technique = Enumerable.Repeat(new { imprintType = "", imprintDesc = "", priceClass = "", setupFee = "", imprintSize = "", maxColors = "" }, 0).ToList();
+
+                        foreach (var printPos in printPositionList)
+                        {
+                            if(printPos.print_productName == tmpParrentProduct.parrentProduct_parrentSku) { 
+  
+
+
+                                var onePrintTechnique = await _db.B2BPrintTechniques.FirstOrDefaultAsync(x => x.technique_id == printPos.fk_techniqueId.technique_id);
+                                var onePrintPrice = await _db.SupplierPrintPrices.FirstOrDefaultAsync(x => x.printPrice_id == onePrintTechnique.fk_supplierPriceCode.printPrice_id);
+
+
+                                string tmpImprintType = printPos.print_position;
+                            string tmpImprintDesc = onePrintTechnique.technique_description;
+                            string tmpPriceClass = onePrintPrice.printPrice_descId;
+                            string tmpSetupFee = onePrintPrice.printPrice_setupFI;
+                            string tmpImprintSize = printPos.print_height.ToString() + "x" + printPos.print_width.ToString() + " cm";
+                            string tmpMaxColors = printPos.maxColors.ToString();
+
+                            //if (printPos.print_productName == parentSku)
+                            //{
+                            //    foreach (var oneTechnique in techniqueList)
+                            //    {
+                            //        if (printPos.fk_techniqueId.technique_id == oneTechnique.technique_id)
+                            //        {
+                            //            tmpImprintDesc = oneTechnique.technique_description;
+                            //            foreach (var printPrices in SupplierPrintPricesLists)
+                            //            {
+                            //                if (oneTechnique.technique_name == printPrices.printPrice_descId)
+                            //                {
+                            //                    tmpPriceClass = printPrices.printPrice_descId;
+                            //                    tmpSetupFee = printPrices.printPrice_setupDK;
+                            //                    break;
+
+                            //                }
+                            //            }
+
+                            //        }
+                            //    }
+
+                            //}
+                            technique.Add(new
+                            {
+                                imprintType = tmpImprintType,
+                                imprintDesc = tmpImprintDesc,
+                                priceClass = tmpPriceClass,
+                                setupFee = tmpSetupFee,
+                                imprintSize = tmpImprintSize,
+                                maxColors = tmpMaxColors
+                            });
+
+                            Console.WriteLine(technique);
+                            }
+                        }
+                        if (technique.Count() == 0)
+                        {
+
+                        }
+
+                        if (technique.Count() == 1)
+                        {
+                            ImprintType_IL1_T1 = technique[0].imprintType;
+                            ImprintDescription_IL1_T1 = technique[0].imprintDesc;
+                            PriceClass_IL1_T1 = technique[0].priceClass;
+                            SetupFee_IL1_T1 = technique[0].setupFee;
+                            ImprintSize_IL1_T1 = technique[0].imprintSize;
+
+                        }
+                        if (technique.Count() == 2)
+                        {
+                            ImprintType_IL1_T1 = technique[0].imprintType;
+                            ImprintDescription_IL1_T1 = technique[0].imprintDesc;
+                            PriceClass_IL1_T1 = technique[0].priceClass;
+                            SetupFee_IL1_T1 = technique[0].setupFee;
+                            ImprintSize_IL1_T1 = technique[0].imprintSize;
+
+                            ImprintType_IL1_T2 = technique[1].imprintType;
+                            ImprintDescription_IL1_T2 = technique[1].imprintDesc;
+                            PriceClass_IL1_T2 = technique[1].priceClass;
+                            SetupFee_IL1_T2 = technique[1].setupFee;
+                            ImprintSize_IL1_T2 = technique[1].imprintSize;
+                        }
+                        if (technique.Count() == 3)
+                        {
+                            ImprintType_IL1_T1 = technique[0].imprintType;
+                            ImprintDescription_IL1_T1 = technique[0].imprintDesc;
+                            PriceClass_IL1_T1 = technique[0].priceClass;
+                            SetupFee_IL1_T1 = technique[0].setupFee;
+                            ImprintSize_IL1_T1 = technique[0].imprintSize;
+
+                            ImprintType_IL1_T2 = technique[1].imprintType;
+                            ImprintDescription_IL1_T2 = technique[1].imprintDesc;
+                            PriceClass_IL1_T2 = technique[1].priceClass;
+                            SetupFee_IL1_T2 = technique[1].setupFee;
+                            ImprintSize_IL1_T2 = technique[1].imprintSize;
+
+                            ImprintType_IL1_T3 = technique[2].imprintType;
+                            ImprintDescription_IL1_T3 = technique[2].imprintDesc;
+                            PriceClass_IL1_T3 = technique[2].priceClass;
+                            SetupFee_IL1_T3 = technique[2].setupFee;
+                            ImprintSize_IL1_T3 = technique[2].imprintSize;
+
+                        }
+                        if (technique.Count() == 4)
+                        {
+                            ImprintType_IL1_T1 = technique[0].imprintType;
+                            ImprintDescription_IL1_T1 = technique[0].imprintDesc;
+                            PriceClass_IL1_T1 = technique[0].priceClass;
+                            SetupFee_IL1_T1 = technique[0].setupFee;
+                            ImprintSize_IL1_T1 = technique[0].imprintSize;
+
+                            ImprintType_IL1_T2 = technique[1].imprintType;
+                            ImprintDescription_IL1_T2 = technique[1].imprintDesc;
+                            PriceClass_IL1_T2 = technique[1].priceClass;
+                            SetupFee_IL1_T2 = technique[1].setupFee;
+                            ImprintSize_IL1_T2 = technique[1].imprintSize;
+
+                            ImprintType_IL1_T3 = technique[2].imprintType;
+                            ImprintDescription_IL1_T3 = technique[2].imprintDesc;
+                            PriceClass_IL1_T3 = technique[2].priceClass;
+                            SetupFee_IL1_T3 = technique[2].setupFee;
+                            ImprintSize_IL1_T3 = technique[2].imprintSize;
+
+                            ImprintType_IL1_T4 = technique[3].imprintType;
+                            ImprintDescription_IL1_T4 = technique[3].imprintDesc;
+                            PriceClass_IL1_T4 = technique[3].priceClass;
+                            SetupFee_IL1_T4 = technique[3].setupFee;
+                            ImprintSize_IL1_T4 = technique[3].imprintSize;
+
+                        }
+                        if (technique.Count() == 5)
+                        {
+                            ImprintType_IL1_T1 = technique[0].imprintType;
+                            ImprintDescription_IL1_T1 = technique[0].imprintDesc;
+                            PriceClass_IL1_T1 = technique[0].priceClass;
+                            SetupFee_IL1_T1 = technique[0].setupFee;
+                            ImprintSize_IL1_T1 = technique[0].imprintSize;
+
+                            ImprintType_IL1_T2 = technique[1].imprintType;
+                            ImprintDescription_IL1_T2 = technique[1].imprintDesc;
+                            PriceClass_IL1_T2 = technique[1].priceClass;
+                            SetupFee_IL1_T2 = technique[1].setupFee;
+                            ImprintSize_IL1_T2 = technique[1].imprintSize;
+
+                            ImprintType_IL1_T3 = technique[2].imprintType;
+                            ImprintDescription_IL1_T3 = technique[2].imprintDesc;
+                            PriceClass_IL1_T3 = technique[2].priceClass;
+                            SetupFee_IL1_T3 = technique[2].setupFee;
+                            ImprintSize_IL1_T3 = technique[2].imprintSize;
+
+                            ImprintType_IL1_T4 = technique[3].imprintType;
+                            ImprintDescription_IL1_T4 = technique[3].imprintDesc;
+                            PriceClass_IL1_T4 = technique[3].priceClass;
+                            SetupFee_IL1_T4 = technique[3].setupFee;
+                            ImprintSize_IL1_T4 = technique[3].imprintSize;
+
+                            ImprintType_IL1_T4 = technique[4].imprintType;
+                            ImprintDescription_IL1_T4 = technique[4].imprintDesc;
+                            PriceClass_IL1_T4 = technique[4].priceClass;
+                            SetupFee_IL1_T4 = technique[4].setupFee;
+                            ImprintSize_IL1_T4 = technique[4].imprintSize;
+                        }
+                        if (technique.Count() == 6)
+                        {
+                            ImprintType_IL1_T1 = technique[0].imprintType;
+                            ImprintDescription_IL1_T1 = technique[0].imprintDesc;
+                            PriceClass_IL1_T1 = technique[0].priceClass;
+                            SetupFee_IL1_T1 = technique[0].setupFee;
+                            ImprintSize_IL1_T1 = technique[0].imprintSize;
+
+                            ImprintType_IL1_T2 = technique[1].imprintType;
+                            ImprintDescription_IL1_T2 = technique[1].imprintDesc;
+                            PriceClass_IL1_T2 = technique[1].priceClass;
+                            SetupFee_IL1_T2 = technique[1].setupFee;
+                            ImprintSize_IL1_T2 = technique[1].imprintSize;
+
+                            ImprintType_IL1_T3 = technique[2].imprintType;
+                            ImprintDescription_IL1_T3 = technique[2].imprintDesc;
+                            PriceClass_IL1_T3 = technique[2].priceClass;
+                            SetupFee_IL1_T3 = technique[2].setupFee;
+                            ImprintSize_IL1_T3 = technique[2].imprintSize;
+
+                            ImprintType_IL1_T4 = technique[3].imprintType;
+                            ImprintDescription_IL1_T4 = technique[3].imprintDesc;
+                            PriceClass_IL1_T4 = technique[3].priceClass;
+                            SetupFee_IL1_T4 = technique[3].setupFee;
+                            ImprintSize_IL1_T4 = technique[3].imprintSize;
+
+                            ImprintType_IL1_T4 = technique[4].imprintType;
+                            ImprintDescription_IL1_T4 = technique[4].imprintDesc;
+                            PriceClass_IL1_T4 = technique[4].priceClass;
+                            SetupFee_IL1_T4 = technique[4].setupFee;
+                            ImprintSize_IL1_T4 = technique[4].imprintSize;
+
+                            ImprintType_IL1_T5 = technique[5].imprintType;
+                            ImprintDescription_IL1_T5 = technique[5].imprintDesc;
+                            PriceClass_IL1_T5 = technique[5].priceClass;
+                            SetupFee_IL1_T5 = technique[5].setupFee;
+                            ImprintSize_IL1_T5 = technique[5].imprintSize;
+                        }
+                        //foreach (var tech in technique)
+                        //{
+                        //    Console.WriteLine(tech);
+                        //}
+                        Console.WriteLine(technique);
+                        file.WriteLine(parentSku + ";" + SKU + ";" + ColorName + ";" + InternetName + ";" + InternetTxt + ";" + Q1 + ";" + Q2 + ";" + Q3 + ";" + Q4 + ";" + Q5 + ";" + Q6 + ";" + P1 + ";" + P2 + ";" + P3 + ";" + P4 + ";" + P5 + ";" + P6 + ";" + GrossNett + ";" + ImprintType_IL1_T1 + ";" + ImprintDescription_IL1_T1 + ";" + ImprintImage_IL1_T1 + ";" + PriceClass_IL1_T1 + ";" + PriceClass_IL1_CN + ";" + SetupFee_IL1_T1 + ";" + SetupFee_IL1_T1_NextColor + ";" + SetupFeeStructure_IL1_T1 + ";" + ExcludeFreeSetupCosts_IL1_T1 + ";" + ImprintSize_IL1_T1 + ";" + MaxColors_IL1_T1 + ";" + Handling_IL1_T1 + ";" + ImprintType_IL1_T2 + ";" + ImprintDescription_IL1_T2 + ";" + ImprintImage_IL1_T2 + ";" + PriceClass_IL1_T2 + ";" + PriceClass_IL1_CN2 + ";" + SetupFee_IL1_T2 + ";" + SetupFee_IL1_T2_NextColor + ";" + SetupFeeStructure_IL1_T2 + ";" + ExcludeFreeSetupCosts_IL1_T2 + ";" + ImprintSize_IL1_T2 + ";" + MaxColors_IL1_T2 + ";" + Handling_IL1_T2 + ";" + ImprintType_IL1_T3 + ";" + ImprintDescription_IL1_T3 + ";" + ImprintImage_IL1_T3 + ";" + PriceClass_IL1_T3 + ";" + PriceClass_IL1_CN3 + ";" + SetupFee_IL1_T3 + ";" + SetupFee_IL1_T3_NextColor + ";" + SetupFeeStructure_IL1_T3 + ";" + ExcludeFreeSetupCosts_IL1_T3 + ";" + ImprintSize_IL1_T3 + ";" + MaxColors_IL1_T3 + ";" + Handling_IL1_T3 + ";" + ImprintType_IL1_T4 + ";" + ImprintDescription_IL1_T4 + ";" + ImprintImage_IL1_T4 + ";" + PriceClass_IL1_T4 + ";" + PriceClass_IL1_CN4 + ";" + SetupFee_IL1_T4 + ";" + SetupFee_IL1_T4_NextColor + ";" + SetupFeeStructure_IL1_T4 + ";" + ExcludeFreeSetupCosts_IL1_T4 + ";" + ImprintSize_IL1_T4 + ";" + MaxColors_IL1_T4 + ";" + Handling_IL1_T4 + ";" + ImprintType_IL1_T5 + ";" + ImprintDescription_IL1_T5 + ";" + ImprintImage_IL1_T5 + ";" + PriceClass_IL1_T5 + ";" + PriceClass_IL1_CN5 + ";" + SetupFee_IL1_T5 + ";" + SetupFee_IL1_T5_NextColor + ";" + SetupFeeStructure_IL1_T5 + ";" + ExcludeFreeSetupCosts_IL1_T5 + ";" + ImprintSize_IL1_T5 + ";" + MaxColors_IL1_T5 + ";" + Handling_IL1_T5 + ";" + ImprintType_IL1_T6 + ";" + ImprintDescription_IL1_T6 + ";" + ImprintImage_IL1_T6 + ";" + PriceClass_IL1_T6 + ";" + PriceClass_IL1_CN6 + ";" + SetupFee_IL1_T6 + ";" + SetupFee_IL1_T6_NextColor + ";" + SetupFeeStructure_IL1_T6 + ";" + ExcludeFreeSetupCosts_IL1_T6 + ";" + ImprintSize_IL1_T6 + ";" + MaxColors_IL1_T6 + ";" + Handling_IL1_T6 + ";" + IntraCode + ";" + CountryOfOrigin + ";" + OuterCartonPieces + ";" + OuterCartonLength + ";" + OuterCartonWidth + ";" + OuterCartonHeight + ";" + CommercialItemLength + ";" + CommercialItemWidth + ";" + CommercialItemHeight + ";" + Flavours + ";" + Sizes + ";" + WritingColor + ";" + CapacityTxt + ";" + OrderUnit + ";" + MainGroup + ";" + Material + ";" + BatteryType + ";" + NumberOfBatteries + ";" + ProductImageURL + ";" + DeliveryTimeMT_IL1_T1 + ";" + SearchTerms + ";" + Q_OnPallet + ";" + Brandnames);
+
+                    }
+
+                    //}
+
+                    //for (int i = 0; product.Count() > i; i++)
+                    //{
+                    //    file.WriteLine(country + ";" + product[i].parrentProduct_productName + ";" + product[i].parrentProduct_shortDescription + "," + product[i].parrentProduct_longDescription + ",");
+
+                    //}
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("This program did an oopsie :", ex);
+            }
+        }
         public void fetchMNPriceList()
         {
             HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/pricelist/2.0/"));
@@ -677,6 +1346,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 productPrice.price_startingPriceFI = String.Format("{0:0.00}", startingPrice * 1.75);
                 productPrice.price_startingPriceEU = String.Format("{0:0.00}", startingPrice * 1.75);
                 productPrice.price_validUntill = priceObj.valid_until;
+                //TODO ===> NOT PARRENT SKU // IT IS CHILD SKU
                 productPrice.parrentSku = priceObj.sku;
 
 
@@ -1072,6 +1742,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                         b2BPrintPosition.print_position = printPos.idField;
                         b2BPrintPosition.print_width = float.Parse(printPos.mAX_PRINT_SIZE_WIDTHField);
                         b2BPrintPosition.print_height = float.Parse(printPos.mAX_PRINT_SIZE_HEIGHTField);
+                        b2BPrintPosition.maxColors = technique.MAX_COLORS;
                         _db.B2BPrintPositions.Add(b2BPrintPosition);
                         _db.SaveChanges();
                         Console.WriteLine(product);
@@ -1106,6 +1777,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         }
         public void insertCategories()
         {
+            // TODO ===> BUG -> inserts FI on DK's place
 
             List<B2BCategory> categories = new List<B2BCategory>();
 
@@ -1597,7 +2269,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     return null;
                 }
             }
-            if(country == "dk")
+            if(country == "da")
             {
                 switch (product.category_level2)
                 {

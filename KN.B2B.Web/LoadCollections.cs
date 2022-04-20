@@ -14,6 +14,68 @@ namespace KN.B2B.Web
 {
     public static class LoadCollections
     {
+
+        public static async Task<IEnumerable<B2BProduct>> LoadAllProducts(B2BDbContext _context)
+        {
+
+            IEnumerable<B2BProduct> products = await _context.B2BProdducts.ToListAsync();
+            return products;
+        }
+        public static async Task<IEnumerable<B2BParrentProducts>> LoadAllParrentProducts(B2BDbContext _context)
+        {
+
+            IEnumerable<B2BParrentProducts> products = await _context.B2BParrentProducts.ToListAsync();
+            return products;
+        }
+        public static async Task<IEnumerable<B2BProductPrices>> LoadAllProductPrices(B2BDbContext _context)
+        {
+
+            IEnumerable<B2BProductPrices> productPrices = await _context.B2BProductPrices.ToListAsync();
+            return productPrices;
+        }
+
+        public static async Task<List<B2BPriceScaling>> LoadAllPriceScales(B2BDbContext _context)
+        {
+
+            List<B2BPriceScaling> productPricesScaling = await _context.B2BPriceScaling.ToListAsync();
+            return productPricesScaling;
+        }
+
+        public static async Task<List<SupplierPrintCost>> LoadAllSupplierPrintCosts(B2BDbContext _context)
+        {
+
+            List<SupplierPrintCost> supplierPrintCosts = await _context.SupplierPrintCosts.ToListAsync();
+            return supplierPrintCosts;
+        }
+
+        public static async Task<List<SupplierPrintPrice>> LoadAllSupplierPrintPrices(B2BDbContext _context)
+        {
+
+            List<SupplierPrintPrice> supplierPrintPrices = await _context.SupplierPrintPrices.ToListAsync();
+            return supplierPrintPrices;
+        }
+
+        public static async Task<List<SupplierPrintPriceScales>> LoadAllSupplierPrintPriceScales(B2BDbContext _context)
+        {
+
+            List<SupplierPrintPriceScales> supplierPrintPriceScales = await _context.SupplierPrintPriceScales.ToListAsync();
+            return supplierPrintPriceScales;
+        }
+
+        public static async Task<List<B2BPrintTechnique>> LoadAllPrintTechniques(B2BDbContext _context)
+        {
+
+            List<B2BPrintTechnique> printTechniques = await _context.B2BPrintTechniques.ToListAsync();
+            return printTechniques;
+        }
+
+        public static async Task<List<B2BPrintPosition>> LoadAllPrintPositions(B2BDbContext _context)
+        {
+
+            List<B2BPrintPosition> printPositions = await _context.B2BPrintPositions.ToListAsync();
+            return printPositions;
+        }
+
         public static async Task<IEnumerable<SelectListItem>> LoadCustomers(B2BDbContext _context)
         {
             var selectList = new List<SelectListItem>();
@@ -57,15 +119,15 @@ namespace KN.B2B.Web
             return printPrices;
         }
 
-        public static async Task<IEnumerable<B2BPrintTechnique>> LoadAllPrintTechniques(B2BDbContext _context)
-        {
-            IEnumerable<B2BPrintTechnique> techniques;
-            techniques = await _context.B2BPrintTechniques.ToListAsync();
+        //public static async Task<IEnumerable<B2BPrintTechnique>> LoadAllPrintTechniques(B2BDbContext _context)
+        //{
+        //    IEnumerable<B2BPrintTechnique> techniques;
+        //    techniques = await _context.B2BPrintTechniques.ToListAsync();
 
-            //techniques = await _context.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
+        //    //techniques = await _context.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
 
-            return techniques;
-        }
+        //    return techniques;
+        //}
 
         public static async Task<IEnumerable<RequestCommunication>> LoadCommunications(B2BDbContext _context, int requestId)
         {

@@ -13,6 +13,7 @@ namespace KN.B2B.Model.SystemTables
         public string print_position { get; set; }
         public float print_width { get; set; }
         public float print_height { get; set; }
+        public byte maxColors { get; set; }
         // Foreign key for fk techniqueID = B2BPrintTechnique;
         public B2BPrintTechnique fk_techniqueId { get; set; }
     }
