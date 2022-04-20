@@ -44,7 +44,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         public List<B2BProduct> childProducts { get; set; }
         public IEnumerable<B2BPrintPosition> positions { get; set; }
         public IEnumerable<B2BPrintTechnique> printTechniques { get; set; }
-        public IEnumerable<B2BPrintTechnique> techniques { get; set; }
+        //public List<B2BPrintTechnique> techniques { get; set; }
+        public B2BPrintTechnique techniques { get; set; }
         public IEnumerable<SupplierPrintPrice> printPrices { get; set; }
         public IEnumerable<B2BPriceScaling> priceScaling { get; set; }
         public IEnumerable<B2BPriceScaling> productScaling { get; set; }
@@ -92,7 +93,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             Suppliers = await LoadCollections.LoadSuppliers(_context);
             B2BCategories = await LoadCollections.LoadB2BCategories(_context);
             Complaints = await LoadCollections.LoadComplaints(_context);
-            techniques = await LoadCollections.LoadAllPrintTechniques(_context);
+            //techniques = await _context.B2BPrintTechniques.ToListAsync();
+            techniques = await _context.B2BPrintTechniques.FirstOrDefaultAsync();
             printPrices = await LoadCollections.LoadAllPrintPrices(_context);
             return Page();
         }

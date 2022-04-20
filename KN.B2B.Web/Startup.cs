@@ -27,22 +27,22 @@ namespace KN.B2B.Web
         {
             //Contexts
             //---- Local Test
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContextPool<B2BDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("KN.B2B.Web"));
-            });
-
-            //---- Prod
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("ProdConnection")));
+            //        Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDbContextPool<B2BDbContext>(options =>
             //{
-            //    options.UseSqlServer(Configuration.GetConnectionString("ProdConnection"), b => b.MigrationsAssembly("KN.B2B.Web"));
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("KN.B2B.Web"));
             //});
+
+            //---- Prod
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ProdConnection")));
+            services.AddDbContextPool<B2BDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("ProdConnection"), b => b.MigrationsAssembly("KN.B2B.Web"));
+            });
 
 
             //Identity

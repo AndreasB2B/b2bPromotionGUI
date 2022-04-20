@@ -27,6 +27,7 @@ using Microsoft.Extensions.Logging;
 using KN.B2B.Web.Models;
 using System.Collections;
 using System.Web;
+using System.Net.Http;
 
 namespace KN.B2B.Web.Pages.Private.Requests.Products
 {
@@ -35,6 +36,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         private readonly ILogger<IndexModel> _logger;
         private readonly B2BDbContext _db;
         private readonly IConfiguration _config;
+        private static readonly HttpClient client = new HttpClient();
 
         SupplierPrintPrice supplierPrintPrice { get; set; }
 
@@ -98,14 +100,15 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
             //IEnumerable<B2BPrintTechnique> techniques = await _db.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
 
+            //await sendTestDataAsync();
             //Console.WriteLine(techniques);
             //fetchMNData();
             //sendMail();
             //fetchFtpFile();
             //await fetchPrintTechniques();
             //fetchMNPriceList();
-            //fetchTechniquePrices();
             //fetchMNManipulations();
+            //fetchTechniquePrices();
             //fetchMNCategoryAndExport();
             //insertCategories();
 
@@ -200,8 +203,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
 
 
-                //_db.SupplierPrintPrices.Add(printObj);
-                //_db.SaveChanges();
+                _db.SupplierPrintPrices.Add(printObj);
+                _db.SaveChanges();
 
 
                 foreach (VarCost varCost in printTechnique.var_costs)
@@ -238,9 +241,9 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     costObj.alertMessage = alertmsg;
                     costObj.alertStatus = alertStatus;
 
-                    //_db.SupplierPrintCosts.Add(costObj);
-                    //_db.SaveChanges();
-                    excelInsertPrintPrices(printObj.printPrice_descId, varCost);
+                    _db.SupplierPrintCosts.Add(costObj);
+                    _db.SaveChanges();
+                    //excelInsertPrintPrices(printObj.printPrice_descId, varCost);
 
                     foreach (Scales scale in varCost.scales)
                     {
@@ -289,8 +292,8 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                         scaleObj.alertStatus = alertStatus;
 
 
-                        //_db.SupplierPrintPriceScales.Add(scaleObj);
-                        //_db.SaveChanges();
+                        _db.SupplierPrintPriceScales.Add(scaleObj);
+                        _db.SaveChanges();
                     }
                 }
                 Console.WriteLine(printObj);
@@ -1959,6 +1962,22 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             {
                 throw new ApplicationException("This program did an oopsie :", ex);
             }
+        }
+        public async Task sendTestDataAsync()
+        {
+            var values = new Dictionary<string, string>
+                  {
+                      { "productName", "productName1" },
+                      { "productShortName", "productShortName1" },
+                      { "productLongName", "productLongName1" },
+                      { "productSku", "productSku1" },
+                  };
+
+                var content = new FormUrlEncodedContent(values);
+
+                var response = await client.PostAsync("http://localhost:15537/apiv1/product", content);
+
+                var responseString = await response.Content.ReadAsStringAsync();
         }
     }
 }
