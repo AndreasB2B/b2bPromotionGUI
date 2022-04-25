@@ -107,13 +107,15 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
             //IEnumerable<B2BPrintTechnique> techniques = await _db.B2BPrintTechniques.Where(x => x.technique_description == "Doming").ToListAsync();
 
             //Console.WriteLine(techniques);
-            fetchMNData();
+            //fetchMNData();
             //sendMail();
             //fetchFtpFile();
-            //patchProduct();
-            //fetchMNPriceList();
             await patchProduct();
+            //fetchMNPriceList();
+
+            //await patchProduct();
             //await fetchPrintTechniques();
+
             //fetchTechniquePrices();
             //fetchMNManipulations();
 
@@ -427,7 +429,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
         
         public void fetchMNData()
         {
-            string country = "da";
+            string country = "fi";
             HttpWebRequest WebReqDk = (HttpWebRequest)WebRequest.Create(string.Format($"https://api.midocean.com/gateway/products/2.0?language={country}"));
 
             WebReqDk.Method = "GET";
@@ -594,6 +596,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                 _db.B2BParrentProducts.Add(obj);
                 _db.SaveChanges();
 
+        // ==== CREATING CHILD PRODUCTS ===
                 foreach (Variant childProduct in product.variants)
                 {
 
@@ -620,12 +623,16 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     //}
                     //var placeholderList = new[] { 1, 2, 3 }.ToList();
 
-                    foreach(DigitalAsset image in childProduct.digital_assets)
+            // ==== CREATING CHILD PRODUCT IMAGES ===
+                    foreach (DigitalAsset image in childProduct.digital_assets)
                     {
                         string imageName = image.url.Substring(image.url.LastIndexOf('/') + 1);
                         B2BProductImages imageObj = new B2BProductImages();
-                        imageObj.imagePath = $"https://www.b2bpromotion.dk/content/images/productImages/${imageName}";
-                        imageObj.fk_childProduct(b2bProdcut);
+                        imageObj.imagePath = $"https://www.b2bpromotion.dk/content/images/productImages/{imageName}";
+                        imageObj.fk_childProduct = b2bProdcut;
+
+                        _db.B2BProductImages.Add(imageObj);
+                        _db.SaveChanges();
                     }
 
                 }
@@ -743,7 +750,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
                 using (StreamWriter file = new StreamWriter(filePath, true, Encoding.GetEncoding("iso-8859-1")))
                 {
-                    file.WriteLine("ParentSKU;	SKU;	ColorName;	InternetName;	InternetTxt;	Q1;	Q2;	Q3;	Q4;	Q5;	Q6;	P1;	P2;	P3;	P4;	P5;	P6;	GrossNett;	ImprintType_IL1_T1;	ImprintDescription_IL1_T1;	ImprintImage_IL1_T1;	PriceClass_IL1_T1;	PriceClass_IL1_CN;	SetupFee_IL1_T1;	SetupFee_IL1_T1_NextColor;	SetupFeeStructure_IL1_T1;	ExcludeFreeSetupCosts_IL1_T1;	ImprintSize_IL1_T1;	MaxColors_IL1_T1;	Handling_IL1_T1;	ImprintType_IL1_T2;	ImprintDescription_IL1_T2;	ImprintImage_IL1_T2;	PriceClass_IL1_T2;	PriceClass_IL1_CN2;	SetupFee_IL1_T2;	SetupFee_IL1_T2_NextColor;	SetupFeeStructure_IL1_T2;	ExcludeFreeSetupCosts_IL1_T2;	ImprintSize_IL1_T2;	MaxColors_IL1_T2;	Handling_IL1_T2	ImprintType_IL1_T3;	ImprintDescription_IL1_T3;	ImprintImage_IL1_T3	PriceClass_IL1_T3;	PriceClass_IL1_CN3;	SetupFee_IL1_T3;	SetupFee_IL1_T3_NextColor;	SetupFeeStructure_IL1_T3;	ExcludeFreeSetupCosts_IL1_T3;	ImprintSize_IL1_T3;	MaxColors_IL1_T3;	Handling_IL1_T3;	ImprintType_IL1_T4;	ImprintDescription_IL1_T4;	ImprintImage_IL1_T4;	PriceClass_IL1_T4;	PriceClass_IL1_CN4;	SetupFee_IL1_T4;	SetupFee_IL1_T4_NextColor;	SetupFeeStructure_IL1_T4;	ExcludeFreeSetupCosts_IL1_T4;	ImprintSize_IL1_T4;	MaxColors_IL1_T4;	Handling_IL1_T4	ImprintType_IL1_T5;	ImprintDescription_IL1_T5;	ImprintImage_IL1_T5	PriceClass_IL1_T5;	PriceClass_IL1_CN5;	SetupFee_IL1_T5;	SetupFee_IL1_T5_NextColor;	SetupFeeStructure_IL1_T5;	ExcludeFreeSetupCosts_IL1_T5;	ImprintSize_IL1_T5;	MaxColors_IL1_T5;	Handling_IL1_T5	ImprintType_IL1_T6;	ImprintDescription_IL1_T6;	ImprintImage_IL1_T6;	PriceClass_IL1_T6;	PriceClass_IL1_CN6;	SetupFee_IL1_T6;	SetupFee_IL1_T6_NextColor;	SetupFeeStructure_IL1_T6;	ExcludeFreeSetupCosts_IL1_T6;	ImprintSize_IL1_T6;	MaxColors_IL1_T6;	Handling_IL1_T6;	IntraCode;	CountryOfOrigin;	OuterCartonPieces;	OuterCartonLength;	OuterCartonWidth;	OuterCartonHeight;	CommercialItemLength;	CommercialItemWidth;	CommercialItemHeight;	CommercialItemWeight;	Flavours;	Sizes;	WritingColor;	CapacityTxt;	OrderUnit;	MainGroup;	Material;	BatteryType;	NumberOfBatteries;	ProductImageURL;	DeliveryTimeMT_IL1_T1;	07_12_SearchTerms;	Q_OnPallet;	Brandnames;");
+                    file.WriteLine("parentSku ; SKU ; ColorName ; InternetName ;  InternetTxt ;  Q1 ;  + Q2 ; Q3 ; Q4 ; Q5 ; Q6 ; P1 ; P2 ; P3 ; P4 ; P5 ; P6 ; GrossNett ; ImprintType_IL1_T1 ; ImprintDescription_IL1_T1 ; ImprintImage_IL1_T1 ; PriceClass_IL1_T1 ; PriceClass_IL1_CN ; SetupFee_IL1_T1 ; SetupFee_IL1_T1_NextColor ; SetupFeeStructure_IL1_T1 ; ExcludeFreeSetupCosts_IL1_T1 ; ImprintSize_IL1_T1 ; MaxColors_IL1_T1 ; Handling_IL1_T1 ; ImprintType_IL1_T2 ; ImprintDescription_IL1_T2 ; ImprintImage_IL1_T2 ; PriceClass_IL1_T2 ; PriceClass_IL1_CN2 ; SetupFee_IL1_T2 ; SetupFee_IL1_T2_NextColor ; SetupFeeStructure_IL1_T2 ; ExcludeFreeSetupCosts_IL1_T2 ; ImprintSize_IL1_T2 ; MaxColors_IL1_T2 ; Handling_IL1_T2 ; ImprintType_IL1_T3 ; ImprintDescription_IL1_T3 ; ImprintImage_IL1_T3 ; PriceClass_IL1_T3 ; PriceClass_IL1_CN3 ; SetupFee_IL1_T3 ; SetupFee_IL1_T3_NextColor ; SetupFeeStructure_IL1_T3 ; ExcludeFreeSetupCosts_IL1_T3 ; ImprintSize_IL1_T3 ; MaxColors_IL1_T3 ; Handling_IL1_T3 ; ImprintType_IL1_T4 ; ImprintDescription_IL1_T4 ; ImprintImage_IL1_T4 ; PriceClass_IL1_T4 ; PriceClass_IL1_CN4 ; SetupFee_IL1_T4 ; SetupFee_IL1_T4_NextColor ; SetupFeeStructure_IL1_T4 ; ExcludeFreeSetupCosts_IL1_T4 ; ImprintSize_IL1_T4 ; MaxColors_IL1_T4 ; Handling_IL1_T4 ; ImprintType_IL1_T5 ; ImprintDescription_IL1_T5 ; ImprintImage_IL1_T5 ; PriceClass_IL1_T5 ; PriceClass_IL1_CN5 ; SetupFee_IL1_T5 ; SetupFee_IL1_T5_NextColor ; SetupFeeStructure_IL1_T5 ; ExcludeFreeSetupCosts_IL1_T5 ; ImprintSize_IL1_T5 ; MaxColors_IL1_T5 ; Handling_IL1_T5 ; ImprintType_IL1_T6 ; ImprintDescription_IL1_T6 ; ImprintImage_IL1_T6 ; PriceClass_IL1_T6 ; PriceClass_IL1_CN6 ; SetupFee_IL1_T6 ; SetupFee_IL1_T6_NextColor ; SetupFeeStructure_IL1_T6 ; ExcludeFreeSetupCosts_IL1_T6 ; ImprintSize_IL1_T6 ; MaxColors_IL1_T6 ; Handling_IL1_T6 ; IntraCode ; CountryOfOrigin ; OuterCartonPieces ; OuterCartonLength ; OuterCartonWidth ; OuterCartonLength ; CommercialItemLength ; CommercialItemWidth ; CommercialItemHeight ; CommercialItemWeight ; Flavours ; Sizes ; WritingColor ; CapacityTxt ; OrderUnit ; MainGroup ; Material ; BatteryType ; NumberOfBatteries ; ProductImageURL ; DeliveryTimeMT_IL1_T1 ; SearchTerms ; Q_OnPallet ; Brandnames");
                     string parentSku = "";
                     string SKU = "";
                     string ColorName = "";
@@ -858,7 +865,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                     string SearchTerms = "";
                     string Q_OnPallet = "";
                     string Brandnames = "";
-                    file.WriteLine(parentSku + ";" + SKU + ";" + ColorName + ";" + InternetName + ";" + InternetTxt + ";" + Q1 + ";" + Q2 + ";" + Q3 + ";" + Q4 + ";" + Q5 + ";" + Q6 + ";" + P1 + ";" + P2 + ";" + P3 + ";" + P4 + ";" + P5 + ";" + P6 + ";" + GrossNett + ";" + ImprintType_IL1_T1 + ";" + ImprintDescription_IL1_T1 + ";" + ImprintImage_IL1_T1 + ";" + PriceClass_IL1_T1 + ";" + PriceClass_IL1_CN + ";" + SetupFee_IL1_T1 + ";" + SetupFee_IL1_T1_NextColor + ";" + SetupFeeStructure_IL1_T1 + ";" + ExcludeFreeSetupCosts_IL1_T1 + ";" + ImprintSize_IL1_T1 + ";" + MaxColors_IL1_T1 + ";" + Handling_IL1_T1 + ";" + ImprintType_IL1_T2 + ";" + ImprintDescription_IL1_T2 + ";" + ImprintImage_IL1_T2 + ";" + PriceClass_IL1_T2 + ";" + PriceClass_IL1_CN2 + ";" + SetupFee_IL1_T2 + ";" + SetupFee_IL1_T2_NextColor + ";" + SetupFeeStructure_IL1_T2 + ";" + ExcludeFreeSetupCosts_IL1_T2 + ";" + ImprintSize_IL1_T2 + ";" + MaxColors_IL1_T2 + ";" + Handling_IL1_T2 + ";" + ImprintType_IL1_T3 + ";" + ImprintDescription_IL1_T3 + ";" + ImprintImage_IL1_T3 + ";" + PriceClass_IL1_T3 + ";" + PriceClass_IL1_CN3 + ";" + SetupFee_IL1_T3 + ";" + SetupFee_IL1_T3_NextColor + ";" + SetupFeeStructure_IL1_T3 + ";" + ExcludeFreeSetupCosts_IL1_T3 + ";" + ImprintSize_IL1_T3 + ";" + MaxColors_IL1_T3 + ";" + Handling_IL1_T3 + ";" + ImprintType_IL1_T4 + ";" + ImprintDescription_IL1_T4 + ";" + ImprintImage_IL1_T4 + ";" + PriceClass_IL1_T4 + ";" + PriceClass_IL1_CN4 + ";" + SetupFee_IL1_T4 + ";" + SetupFee_IL1_T4_NextColor + ";" + SetupFeeStructure_IL1_T4 + ";" + ExcludeFreeSetupCosts_IL1_T4 + ";" + ImprintSize_IL1_T4 + ";" + MaxColors_IL1_T4 + ";" + Handling_IL1_T4 + ";" + ImprintType_IL1_T5 + ";" + ImprintDescription_IL1_T5 + ";" + ImprintImage_IL1_T5 + ";" + PriceClass_IL1_T5 + ";" + PriceClass_IL1_CN5 + ";" + SetupFee_IL1_T5 + ";" + SetupFee_IL1_T5_NextColor + ";" + SetupFeeStructure_IL1_T5 + ";" + ExcludeFreeSetupCosts_IL1_T5 + ";" + ImprintSize_IL1_T5 + ";" + MaxColors_IL1_T5 + ";" + Handling_IL1_T5 + ";" + ImprintType_IL1_T6 + ";" + ImprintDescription_IL1_T6 + ";" + ImprintImage_IL1_T6 + ";" + PriceClass_IL1_T6 + ";" + PriceClass_IL1_CN6 + ";" + SetupFee_IL1_T6 + ";" + SetupFee_IL1_T6_NextColor + ";" + SetupFeeStructure_IL1_T6 + ";" + ExcludeFreeSetupCosts_IL1_T6 + ";" + ImprintSize_IL1_T6 + ";" + MaxColors_IL1_T6 + ";" + Handling_IL1_T6 + ";" + IntraCode + ";" + CountryOfOrigin + ";" + OuterCartonPieces + ";" + OuterCartonLength + ";" + OuterCartonWidth + ";" + OuterCartonLength + ";" + CommercialItemLength + ";" + CommercialItemWidth + ";" + CommercialItemHeight + ";" + CommercialItemWeight + ";" + Flavours + ";" + Sizes + ";" + WritingColor + ";" + CapacityTxt + ";" + OrderUnit + ";" + MainGroup + ";" + Material + ";" + BatteryType + ";" + NumberOfBatteries + ";" + ProductImageURL + ";" + DeliveryTimeMT_IL1_T1 + ";" + SearchTerms + ";" + Q_OnPallet + ";" + Brandnames);
+                    //file.WriteLine(parentSku + ";" + SKU + ";" + ColorName + ";" + InternetName + ";" + InternetTxt + ";" + Q1 + ";" + Q2 + ";" + Q3 + ";" + Q4 + ";" + Q5 + ";" + Q6 + ";" + P1 + ";" + P2 + ";" + P3 + ";" + P4 + ";" + P5 + ";" + P6 + ";" + GrossNett + ";" + ImprintType_IL1_T1 + ";" + ImprintDescription_IL1_T1 + ";" + ImprintImage_IL1_T1 + ";" + PriceClass_IL1_T1 + ";" + PriceClass_IL1_CN + ";" + SetupFee_IL1_T1 + ";" + SetupFee_IL1_T1_NextColor + ";" + SetupFeeStructure_IL1_T1 + ";" + ExcludeFreeSetupCosts_IL1_T1 + ";" + ImprintSize_IL1_T1 + ";" + MaxColors_IL1_T1 + ";" + Handling_IL1_T1 + ";" + ImprintType_IL1_T2 + ";" + ImprintDescription_IL1_T2 + ";" + ImprintImage_IL1_T2 + ";" + PriceClass_IL1_T2 + ";" + PriceClass_IL1_CN2 + ";" + SetupFee_IL1_T2 + ";" + SetupFee_IL1_T2_NextColor + ";" + SetupFeeStructure_IL1_T2 + ";" + ExcludeFreeSetupCosts_IL1_T2 + ";" + ImprintSize_IL1_T2 + ";" + MaxColors_IL1_T2 + ";" + Handling_IL1_T2 + ";" + ImprintType_IL1_T3 + ";" + ImprintDescription_IL1_T3 + ";" + ImprintImage_IL1_T3 + ";" + PriceClass_IL1_T3 + ";" + PriceClass_IL1_CN3 + ";" + SetupFee_IL1_T3 + ";" + SetupFee_IL1_T3_NextColor + ";" + SetupFeeStructure_IL1_T3 + ";" + ExcludeFreeSetupCosts_IL1_T3 + ";" + ImprintSize_IL1_T3 + ";" + MaxColors_IL1_T3 + ";" + Handling_IL1_T3 + ";" + ImprintType_IL1_T4 + ";" + ImprintDescription_IL1_T4 + ";" + ImprintImage_IL1_T4 + ";" + PriceClass_IL1_T4 + ";" + PriceClass_IL1_CN4 + ";" + SetupFee_IL1_T4 + ";" + SetupFee_IL1_T4_NextColor + ";" + SetupFeeStructure_IL1_T4 + ";" + ExcludeFreeSetupCosts_IL1_T4 + ";" + ImprintSize_IL1_T4 + ";" + MaxColors_IL1_T4 + ";" + Handling_IL1_T4 + ";" + ImprintType_IL1_T5 + ";" + ImprintDescription_IL1_T5 + ";" + ImprintImage_IL1_T5 + ";" + PriceClass_IL1_T5 + ";" + PriceClass_IL1_CN5 + ";" + SetupFee_IL1_T5 + ";" + SetupFee_IL1_T5_NextColor + ";" + SetupFeeStructure_IL1_T5 + ";" + ExcludeFreeSetupCosts_IL1_T5 + ";" + ImprintSize_IL1_T5 + ";" + MaxColors_IL1_T5 + ";" + Handling_IL1_T5 + ";" + ImprintType_IL1_T6 + ";" + ImprintDescription_IL1_T6 + ";" + ImprintImage_IL1_T6 + ";" + PriceClass_IL1_T6 + ";" + PriceClass_IL1_CN6 + ";" + SetupFee_IL1_T6 + ";" + SetupFee_IL1_T6_NextColor + ";" + SetupFeeStructure_IL1_T6 + ";" + ExcludeFreeSetupCosts_IL1_T6 + ";" + ImprintSize_IL1_T6 + ";" + MaxColors_IL1_T6 + ";" + Handling_IL1_T6 + ";" + IntraCode + ";" + CountryOfOrigin + ";" + OuterCartonPieces + ";" + OuterCartonLength + ";" + OuterCartonWidth + ";" + OuterCartonLength + ";" + CommercialItemLength + ";" + CommercialItemWidth + ";" + CommercialItemHeight + ";" + CommercialItemWeight + ";" + Flavours + ";" + Sizes + ";" + WritingColor + ";" + CapacityTxt + ";" + OrderUnit + ";" + MainGroup + ";" + Material + ";" + BatteryType + ";" + NumberOfBatteries + ";" + ProductImageURL + ";" + DeliveryTimeMT_IL1_T1 + ";" + SearchTerms + ";" + Q_OnPallet + ";" + Brandnames);
 
                     foreach (var oneProduct in childProducts)
                     {
@@ -986,14 +993,18 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                         //    InternetName = parrentProduct.parrentProduct_shortDescription;
                         //    InternetTxt = parrentProduct.parrentProduct_longDescription;
                         //    MainGroup = parrentProduct.parrentProduct_subCategoryDK;
+                        var tmpProductImages = await _db.B2BProductImages.Where(x => x.fk_childProduct.product_id == oneProduct.product_id).ToListAsync();
 
-                        foreach(var images in )
+                        foreach (var images in tmpProductImages)
+                        {
+                            ProductImageURL += $"{images.imagePath}, ";
+                        }
 
-                        var tmpParrentProduct = await _db.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == oneProduct.fk_ParentSKU.parrentProduct_id);
+                            var tmpParrentProduct = await _db.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_id == oneProduct.fk_ParentSKU.parrentProduct_id);
 
-                        parentSku = tmpParrentProduct.parrentProduct_productName;
-                        InternetName = tmpParrentProduct.parrentProduct_shortDescription;
-                        InternetTxt = tmpParrentProduct.parrentProduct_subCategoryFI;
+                        parentSku = tmpParrentProduct.parrentProduct_parrentSku;
+                        InternetName = tmpParrentProduct.parrentProduct_productName;
+                        InternetTxt = tmpParrentProduct.parrentProduct_longDescription;
                         MainGroup = tmpParrentProduct.parrentProduct_subCategoryFI;
 
                         //TODO => INSERT 
@@ -1067,6 +1078,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                                     Q1 = tmpPriceScaleList[0].scale_minimumQuantity.ToString();
                                     Q2 = tmpPriceScaleList[1].scale_minimumQuantity.ToString();
                                     Q3 = tmpPriceScaleList[2].scale_minimumQuantity.ToString();
+                                    Q4 = tmpPriceScaleList[3].scale_minimumQuantity.ToString();
                                     Q5 = tmpPriceScaleList[4].scale_minimumQuantity.ToString();
                                     Q6 = tmpPriceScaleList[5].scale_minimumQuantity.ToString();
 
@@ -1094,10 +1106,10 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                                 var onePrintPrice = await _db.SupplierPrintPrices.FirstOrDefaultAsync(x => x.printPrice_id == onePrintTechnique.fk_supplierPriceCode.printPrice_id);
 
 
-                                string tmpImprintType = printPos.print_position;
+                            string tmpImprintType = printPos.print_position;
                             string tmpImprintDesc = onePrintTechnique.technique_description;
                             string tmpPriceClass = onePrintPrice.printPrice_descId;
-                            string tmpSetupFee = onePrintPrice.printPrice_setupFI;
+                            string tmpSetupFee = onePrintPrice.printPrice_setupEU;
                             string tmpImprintSize = printPos.print_height.ToString() + "x" + printPos.print_width.ToString() + " cm";
                             string tmpMaxColors = printPos.maxColors.ToString();
 
@@ -1148,6 +1160,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                             PriceClass_IL1_T1 = technique[0].priceClass;
                             SetupFee_IL1_T1 = technique[0].setupFee;
                             ImprintSize_IL1_T1 = technique[0].imprintSize;
+                            MaxColors_IL1_T1 = technique[0].maxColors;
 
                         }
                         if (technique.Count() == 2)
@@ -1157,12 +1170,14 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                             PriceClass_IL1_T1 = technique[0].priceClass;
                             SetupFee_IL1_T1 = technique[0].setupFee;
                             ImprintSize_IL1_T1 = technique[0].imprintSize;
+                            MaxColors_IL1_T1 = technique[0].maxColors;
 
                             ImprintType_IL1_T2 = technique[1].imprintType;
                             ImprintDescription_IL1_T2 = technique[1].imprintDesc;
                             PriceClass_IL1_T2 = technique[1].priceClass;
                             SetupFee_IL1_T2 = technique[1].setupFee;
                             ImprintSize_IL1_T2 = technique[1].imprintSize;
+                            MaxColors_IL1_T2 = technique[1].maxColors;
                         }
                         if (technique.Count() == 3)
                         {
@@ -1171,18 +1186,21 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                             PriceClass_IL1_T1 = technique[0].priceClass;
                             SetupFee_IL1_T1 = technique[0].setupFee;
                             ImprintSize_IL1_T1 = technique[0].imprintSize;
+                            MaxColors_IL1_T1 = technique[0].maxColors;
 
                             ImprintType_IL1_T2 = technique[1].imprintType;
                             ImprintDescription_IL1_T2 = technique[1].imprintDesc;
                             PriceClass_IL1_T2 = technique[1].priceClass;
                             SetupFee_IL1_T2 = technique[1].setupFee;
                             ImprintSize_IL1_T2 = technique[1].imprintSize;
+                            MaxColors_IL1_T2 = technique[1].maxColors;
 
                             ImprintType_IL1_T3 = technique[2].imprintType;
                             ImprintDescription_IL1_T3 = technique[2].imprintDesc;
                             PriceClass_IL1_T3 = technique[2].priceClass;
                             SetupFee_IL1_T3 = technique[2].setupFee;
                             ImprintSize_IL1_T3 = technique[2].imprintSize;
+                            MaxColors_IL1_T3 = technique[2].maxColors;
 
                         }
                         if (technique.Count() == 4)
@@ -1192,24 +1210,28 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                             PriceClass_IL1_T1 = technique[0].priceClass;
                             SetupFee_IL1_T1 = technique[0].setupFee;
                             ImprintSize_IL1_T1 = technique[0].imprintSize;
+                            MaxColors_IL1_T1 = technique[0].maxColors;
 
                             ImprintType_IL1_T2 = technique[1].imprintType;
                             ImprintDescription_IL1_T2 = technique[1].imprintDesc;
                             PriceClass_IL1_T2 = technique[1].priceClass;
                             SetupFee_IL1_T2 = technique[1].setupFee;
                             ImprintSize_IL1_T2 = technique[1].imprintSize;
+                            MaxColors_IL1_T2 = technique[1].maxColors;
 
                             ImprintType_IL1_T3 = technique[2].imprintType;
                             ImprintDescription_IL1_T3 = technique[2].imprintDesc;
                             PriceClass_IL1_T3 = technique[2].priceClass;
                             SetupFee_IL1_T3 = technique[2].setupFee;
                             ImprintSize_IL1_T3 = technique[2].imprintSize;
+                            MaxColors_IL1_T3 = technique[2].maxColors;
 
                             ImprintType_IL1_T4 = technique[3].imprintType;
                             ImprintDescription_IL1_T4 = technique[3].imprintDesc;
                             PriceClass_IL1_T4 = technique[3].priceClass;
                             SetupFee_IL1_T4 = technique[3].setupFee;
                             ImprintSize_IL1_T4 = technique[3].imprintSize;
+                            MaxColors_IL1_T4 = technique[3].maxColors;
 
                         }
                         if (technique.Count() == 5)
@@ -1219,30 +1241,35 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                             PriceClass_IL1_T1 = technique[0].priceClass;
                             SetupFee_IL1_T1 = technique[0].setupFee;
                             ImprintSize_IL1_T1 = technique[0].imprintSize;
+                            MaxColors_IL1_T1 = technique[0].maxColors;
 
                             ImprintType_IL1_T2 = technique[1].imprintType;
                             ImprintDescription_IL1_T2 = technique[1].imprintDesc;
                             PriceClass_IL1_T2 = technique[1].priceClass;
                             SetupFee_IL1_T2 = technique[1].setupFee;
                             ImprintSize_IL1_T2 = technique[1].imprintSize;
+                            MaxColors_IL1_T2 = technique[1].maxColors;
 
                             ImprintType_IL1_T3 = technique[2].imprintType;
                             ImprintDescription_IL1_T3 = technique[2].imprintDesc;
                             PriceClass_IL1_T3 = technique[2].priceClass;
                             SetupFee_IL1_T3 = technique[2].setupFee;
                             ImprintSize_IL1_T3 = technique[2].imprintSize;
+                            MaxColors_IL1_T3 = technique[2].maxColors;
 
                             ImprintType_IL1_T4 = technique[3].imprintType;
                             ImprintDescription_IL1_T4 = technique[3].imprintDesc;
                             PriceClass_IL1_T4 = technique[3].priceClass;
                             SetupFee_IL1_T4 = technique[3].setupFee;
                             ImprintSize_IL1_T4 = technique[3].imprintSize;
+                            MaxColors_IL1_T4 = technique[3].maxColors;
 
-                            ImprintType_IL1_T4 = technique[4].imprintType;
-                            ImprintDescription_IL1_T4 = technique[4].imprintDesc;
-                            PriceClass_IL1_T4 = technique[4].priceClass;
-                            SetupFee_IL1_T4 = technique[4].setupFee;
-                            ImprintSize_IL1_T4 = technique[4].imprintSize;
+                            ImprintType_IL1_T5 = technique[4].imprintType;
+                            ImprintDescription_IL1_T5 = technique[4].imprintDesc;
+                            PriceClass_IL1_T5 = technique[4].priceClass;
+                            SetupFee_IL1_T5 = technique[4].setupFee;
+                            ImprintSize_IL1_T5 = technique[4].imprintSize;
+                            MaxColors_IL1_T5 = technique[4].maxColors;
                         }
                         if (technique.Count() == 6)
                         {
@@ -1251,43 +1278,49 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
                             PriceClass_IL1_T1 = technique[0].priceClass;
                             SetupFee_IL1_T1 = technique[0].setupFee;
                             ImprintSize_IL1_T1 = technique[0].imprintSize;
+                            MaxColors_IL1_T1 = technique[0].maxColors;
 
                             ImprintType_IL1_T2 = technique[1].imprintType;
                             ImprintDescription_IL1_T2 = technique[1].imprintDesc;
                             PriceClass_IL1_T2 = technique[1].priceClass;
                             SetupFee_IL1_T2 = technique[1].setupFee;
                             ImprintSize_IL1_T2 = technique[1].imprintSize;
+                            MaxColors_IL1_T2 = technique[1].maxColors;
 
                             ImprintType_IL1_T3 = technique[2].imprintType;
                             ImprintDescription_IL1_T3 = technique[2].imprintDesc;
                             PriceClass_IL1_T3 = technique[2].priceClass;
                             SetupFee_IL1_T3 = technique[2].setupFee;
                             ImprintSize_IL1_T3 = technique[2].imprintSize;
+                            MaxColors_IL1_T3 = technique[2].maxColors;
 
                             ImprintType_IL1_T4 = technique[3].imprintType;
                             ImprintDescription_IL1_T4 = technique[3].imprintDesc;
                             PriceClass_IL1_T4 = technique[3].priceClass;
                             SetupFee_IL1_T4 = technique[3].setupFee;
                             ImprintSize_IL1_T4 = technique[3].imprintSize;
+                            MaxColors_IL1_T4 = technique[3].maxColors;
 
-                            ImprintType_IL1_T4 = technique[4].imprintType;
-                            ImprintDescription_IL1_T4 = technique[4].imprintDesc;
-                            PriceClass_IL1_T4 = technique[4].priceClass;
-                            SetupFee_IL1_T4 = technique[4].setupFee;
-                            ImprintSize_IL1_T4 = technique[4].imprintSize;
+                            ImprintType_IL1_T5 = technique[4].imprintType;
+                            ImprintDescription_IL1_T5 = technique[4].imprintDesc;
+                            PriceClass_IL1_T5 = technique[4].priceClass;
+                            SetupFee_IL1_T5 = technique[4].setupFee;
+                            ImprintSize_IL1_T5 = technique[4].imprintSize;
+                            MaxColors_IL1_T5 = technique[4].maxColors;
 
-                            ImprintType_IL1_T5 = technique[5].imprintType;
-                            ImprintDescription_IL1_T5 = technique[5].imprintDesc;
-                            PriceClass_IL1_T5 = technique[5].priceClass;
-                            SetupFee_IL1_T5 = technique[5].setupFee;
-                            ImprintSize_IL1_T5 = technique[5].imprintSize;
+                            ImprintType_IL1_T6 = technique[5].imprintType;
+                            ImprintDescription_IL1_T6 = technique[5].imprintDesc;
+                            PriceClass_IL1_T6 = technique[5].priceClass;
+                            SetupFee_IL1_T6 = technique[5].setupFee;
+                            ImprintSize_IL1_T6 = technique[5].imprintSize;
+                            MaxColors_IL1_T6 = technique[0].maxColors;
                         }
                         //foreach (var tech in technique)
                         //{
                         //    Console.WriteLine(tech);
                         //}
                         Console.WriteLine(technique);
-                        file.WriteLine(parentSku + ";" + SKU + ";" + ColorName + ";" + InternetName + ";" + InternetTxt + ";" + Q1 + ";" + Q2 + ";" + Q3 + ";" + Q4 + ";" + Q5 + ";" + Q6 + ";" + P1 + ";" + P2 + ";" + P3 + ";" + P4 + ";" + P5 + ";" + P6 + ";" + GrossNett + ";" + ImprintType_IL1_T1 + ";" + ImprintDescription_IL1_T1 + ";" + ImprintImage_IL1_T1 + ";" + PriceClass_IL1_T1 + ";" + PriceClass_IL1_CN + ";" + SetupFee_IL1_T1 + ";" + SetupFee_IL1_T1_NextColor + ";" + SetupFeeStructure_IL1_T1 + ";" + ExcludeFreeSetupCosts_IL1_T1 + ";" + ImprintSize_IL1_T1 + ";" + MaxColors_IL1_T1 + ";" + Handling_IL1_T1 + ";" + ImprintType_IL1_T2 + ";" + ImprintDescription_IL1_T2 + ";" + ImprintImage_IL1_T2 + ";" + PriceClass_IL1_T2 + ";" + PriceClass_IL1_CN2 + ";" + SetupFee_IL1_T2 + ";" + SetupFee_IL1_T2_NextColor + ";" + SetupFeeStructure_IL1_T2 + ";" + ExcludeFreeSetupCosts_IL1_T2 + ";" + ImprintSize_IL1_T2 + ";" + MaxColors_IL1_T2 + ";" + Handling_IL1_T2 + ";" + ImprintType_IL1_T3 + ";" + ImprintDescription_IL1_T3 + ";" + ImprintImage_IL1_T3 + ";" + PriceClass_IL1_T3 + ";" + PriceClass_IL1_CN3 + ";" + SetupFee_IL1_T3 + ";" + SetupFee_IL1_T3_NextColor + ";" + SetupFeeStructure_IL1_T3 + ";" + ExcludeFreeSetupCosts_IL1_T3 + ";" + ImprintSize_IL1_T3 + ";" + MaxColors_IL1_T3 + ";" + Handling_IL1_T3 + ";" + ImprintType_IL1_T4 + ";" + ImprintDescription_IL1_T4 + ";" + ImprintImage_IL1_T4 + ";" + PriceClass_IL1_T4 + ";" + PriceClass_IL1_CN4 + ";" + SetupFee_IL1_T4 + ";" + SetupFee_IL1_T4_NextColor + ";" + SetupFeeStructure_IL1_T4 + ";" + ExcludeFreeSetupCosts_IL1_T4 + ";" + ImprintSize_IL1_T4 + ";" + MaxColors_IL1_T4 + ";" + Handling_IL1_T4 + ";" + ImprintType_IL1_T5 + ";" + ImprintDescription_IL1_T5 + ";" + ImprintImage_IL1_T5 + ";" + PriceClass_IL1_T5 + ";" + PriceClass_IL1_CN5 + ";" + SetupFee_IL1_T5 + ";" + SetupFee_IL1_T5_NextColor + ";" + SetupFeeStructure_IL1_T5 + ";" + ExcludeFreeSetupCosts_IL1_T5 + ";" + ImprintSize_IL1_T5 + ";" + MaxColors_IL1_T5 + ";" + Handling_IL1_T5 + ";" + ImprintType_IL1_T6 + ";" + ImprintDescription_IL1_T6 + ";" + ImprintImage_IL1_T6 + ";" + PriceClass_IL1_T6 + ";" + PriceClass_IL1_CN6 + ";" + SetupFee_IL1_T6 + ";" + SetupFee_IL1_T6_NextColor + ";" + SetupFeeStructure_IL1_T6 + ";" + ExcludeFreeSetupCosts_IL1_T6 + ";" + ImprintSize_IL1_T6 + ";" + MaxColors_IL1_T6 + ";" + Handling_IL1_T6 + ";" + IntraCode + ";" + CountryOfOrigin + ";" + OuterCartonPieces + ";" + OuterCartonLength + ";" + OuterCartonWidth + ";" + OuterCartonHeight + ";" + CommercialItemLength + ";" + CommercialItemWidth + ";" + CommercialItemHeight + ";" + Flavours + ";" + Sizes + ";" + WritingColor + ";" + CapacityTxt + ";" + OrderUnit + ";" + MainGroup + ";" + Material + ";" + BatteryType + ";" + NumberOfBatteries + ";" + ProductImageURL + ";" + DeliveryTimeMT_IL1_T1 + ";" + SearchTerms + ";" + Q_OnPallet + ";" + Brandnames);
+                        file.WriteLine(parentSku + ";" + SKU + ";" + ColorName + ";" + InternetName + ";" + InternetTxt + ";" + Q1 + ";" + Q2 + ";" + Q3 + ";" + Q4 + ";" + Q5 + ";" + Q6 + ";" + P1 + ";" + P2 + ";" + P3 + ";" + P4 + ";" + P5 + ";" + P6 + ";" + GrossNett + ";" + ImprintType_IL1_T1 + ";" + ImprintDescription_IL1_T1 + ";" + ImprintImage_IL1_T1 + ";" + PriceClass_IL1_T1 + ";" + PriceClass_IL1_CN + ";" + SetupFee_IL1_T1 + ";" + SetupFee_IL1_T1_NextColor + ";" + SetupFeeStructure_IL1_T1 + ";" + ExcludeFreeSetupCosts_IL1_T1 + ";" + ImprintSize_IL1_T1 + ";" + MaxColors_IL1_T1 + ";" + Handling_IL1_T1 + ";" + ImprintType_IL1_T2 + ";" + ImprintDescription_IL1_T2 + ";" + ImprintImage_IL1_T2 + ";" + PriceClass_IL1_T2 + ";" + PriceClass_IL1_CN2 + ";" + SetupFee_IL1_T2 + ";" + SetupFee_IL1_T2_NextColor + ";" + SetupFeeStructure_IL1_T2 + ";" + ExcludeFreeSetupCosts_IL1_T2 + ";" + ImprintSize_IL1_T2 + ";" + MaxColors_IL1_T2 + ";" + Handling_IL1_T2 + ";" + ImprintType_IL1_T3 + ";" + ImprintDescription_IL1_T3 + ";" + ImprintImage_IL1_T3 + ";" + PriceClass_IL1_T3 + ";" + PriceClass_IL1_CN3 + ";" + SetupFee_IL1_T3 + ";" + SetupFee_IL1_T3_NextColor + ";" + SetupFeeStructure_IL1_T3 + ";" + ExcludeFreeSetupCosts_IL1_T3 + ";" + ImprintSize_IL1_T3 + ";" + MaxColors_IL1_T3 + ";" + Handling_IL1_T3 + ";" + ImprintType_IL1_T4 + ";" + ImprintDescription_IL1_T4 + ";" + ImprintImage_IL1_T4 + ";" + PriceClass_IL1_T4 + ";" + PriceClass_IL1_CN4 + ";" + SetupFee_IL1_T4 + ";" + SetupFee_IL1_T4_NextColor + ";" + SetupFeeStructure_IL1_T4 + ";" + ExcludeFreeSetupCosts_IL1_T4 + ";" + ImprintSize_IL1_T4 + ";" + MaxColors_IL1_T4 + ";" + Handling_IL1_T4 + ";" + ImprintType_IL1_T5 + ";" + ImprintDescription_IL1_T5 + ";" + ImprintImage_IL1_T5 + ";" + PriceClass_IL1_T5 + ";" + PriceClass_IL1_CN5 + ";" + SetupFee_IL1_T5 + ";" + SetupFee_IL1_T5_NextColor + ";" + SetupFeeStructure_IL1_T5 + ";" + ExcludeFreeSetupCosts_IL1_T5 + ";" + ImprintSize_IL1_T5 + ";" + MaxColors_IL1_T5 + ";" + Handling_IL1_T5 + ";" + ImprintType_IL1_T6 + ";" + ImprintDescription_IL1_T6 + ";" + ImprintImage_IL1_T6 + ";" + PriceClass_IL1_T6 + ";" + PriceClass_IL1_CN6 + ";" + SetupFee_IL1_T6 + ";" + SetupFee_IL1_T6_NextColor + ";" + SetupFeeStructure_IL1_T6 + ";" + ExcludeFreeSetupCosts_IL1_T6 + ";" + ImprintSize_IL1_T6 + ";" + MaxColors_IL1_T6 + ";" + Handling_IL1_T6 + ";" + IntraCode + ";" + CountryOfOrigin + ";" + OuterCartonPieces + ";" + OuterCartonLength + ";" + OuterCartonWidth + ";" + OuterCartonHeight + ";" + CommercialItemLength + ";" + CommercialItemWidth + ";" + CommercialItemHeight + ";" + Flavours + ";" + Sizes + ";" + WritingColor + ";" + CapacityTxt + ";" + OrderUnit + ";" + MainGroup + ";" + Material + ";" + BatteryType + ";" + NumberOfBatteries + ";" + " ;" + ProductImageURL + ";" + DeliveryTimeMT_IL1_T1 + ";" + SearchTerms + ";" + Q_OnPallet + ";" + Brandnames);
 
                     }
 
@@ -1697,7 +1730,7 @@ namespace KN.B2B.Web.Pages.Private.Requests.Products
 
                 B2BPrintTechnique printTechnique = new B2BPrintTechnique();
                 printTechnique.technique_name = technique.idField;
-                printTechnique.technique_description = technique.nAMEField[7].valueField;
+                printTechnique.technique_description = technique.nAMEField[3].valueField;
                 printTechnique.technique_supplier = "midocean";
                 printTechnique.fk_supplierPriceCode = supplierPrintPrice;
                 _db.B2BPrintTechniques.Add(printTechnique);

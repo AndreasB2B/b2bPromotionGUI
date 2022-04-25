@@ -1053,6 +1053,26 @@ namespace KN.B2B.Web.Migrations
                     b.ToTable("B2BProdducts");
                 });
 
+            modelBuilder.Entity("KN.B2B.Model.products.B2BProductImages", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("fk_childProductproduct_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("imagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("fk_childProductproduct_id");
+
+                    b.ToTable("B2BProductImages");
+                });
+
             modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScaling", b =>
                 {
                     b.Property<int>("scale_id")
@@ -1264,6 +1284,13 @@ namespace KN.B2B.Web.Migrations
                     b.HasOne("KN.B2B.Model.SystemTables.B2BPrintPosition", "fk_printPosition")
                         .WithMany()
                         .HasForeignKey("fk_printPositionId");
+                });
+
+            modelBuilder.Entity("KN.B2B.Model.products.B2BProductImages", b =>
+                {
+                    b.HasOne("KN.B2B.Model.products.B2BProduct", "fk_childProduct")
+                        .WithMany()
+                        .HasForeignKey("fk_childProductproduct_id");
                 });
 
             modelBuilder.Entity("KN.B2B.Model.products.productPrice.B2BPriceScaling", b =>
