@@ -48,5 +48,6 @@ namespace KN.B2B.Data
         public DbSet<B2BPriceClass> B2BPriceClasses { get; set; }
         public DbSet<B2BPriceScaling> B2BPriceScaling { get; set; }
         public DbSet<B2BProductPrices> B2BProductPrices { get; set; }
+        public DbSet<B2BProductImages> B2BProductImages { get; set; }
     }
 }

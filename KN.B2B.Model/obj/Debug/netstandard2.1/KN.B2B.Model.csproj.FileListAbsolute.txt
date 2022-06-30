@@ -8,16 +8,6 @@ C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromot
 C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.CoreCompileInputs.cache
 C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.dll
 C:\Users\Showroom\OneDrive - B2B Promotion ApS\Dokumenter\arbejde\apps\b2bpromotion-data-access\b2bpromotion-data-access\src\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.pdb
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.deps.json
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.dll
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.pdb
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.AssemblyReference.cache
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.GeneratedMSBuildEditorConfig.editorconfig
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.AssemblyInfoInputs.cache
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.AssemblyInfo.cs
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.CoreCompileInputs.cache
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.dll
-C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.pdb
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.deps.json
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.dll
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.pdb
@@ -28,3 +18,13 @@ F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.dll
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.pdb
 F:\Github_Repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.AssemblyReference.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.deps.json
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\bin\Debug\netstandard2.1\KN.B2B.Model.pdb
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.AssemblyReference.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.AssemblyInfoInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.AssemblyInfo.cs
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.csproj.CoreCompileInputs.cache
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.dll
+C:\github_repositories\b2bPromotionGUI\KN.B2B.Model\obj\Debug\netstandard2.1\KN.B2B.Model.pdb

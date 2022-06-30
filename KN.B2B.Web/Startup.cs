@@ -2,6 +2,7 @@ using KN.B2B.Data;
 using KN.B2B.Data.Repository;
 using KN.B2B.Data.Repository.SqlServer;
 using KN.B2B.Web.Data;
+using KN.B2B.Web.Services.Products;
 using KN.Messaging.SendGrid;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +57,8 @@ namespace KN.B2B.Web
             });
 
             //Dependency Injection
+            services.AddScoped<IMasterProductImport, MasterProductsImport>();
+            services.AddScoped<IExcelImport, ExcelImport>();
             services.AddScoped<IRequestData, MsSqlRequestData>();
             //further information can be found on: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-5.0&tabs=visual-studio
             services.AddScoped<IEmailSender>(sender => new EmailSender(Configuration["SendGrid"], Configuration["DefaultSender"], Configuration["AppName"]));
