@@ -4,6 +4,7 @@ using KN.B2B.Model.products;
 using KN.B2B.Model.products.B2BPrintPositions;
 using KN.B2B.Model.products.productPrice;
 using KN.B2B.Model.SystemTables;
+using KN.B2B.Web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -15,16 +16,41 @@ namespace KN.B2B.Web
     public static class LoadCollections
     {
 
-        public static async Task<IEnumerable<B2BProduct>> LoadAllProducts(B2BDbContext _context)
+        public static async Task<List<B2BProduct>> LoadAllProducts(B2BDbContext _context)
         {
 
-            IEnumerable<B2BProduct> products = await _context.B2BProdducts.ToListAsync();
+            List<B2BProduct> products = await _context.B2BProdducts.ToListAsync();
             return products;
         }
-        public static async Task<IEnumerable<B2BParrentProducts>> LoadAllParrentProducts(B2BDbContext _context)
+
+        public static async Task<bool> DoesProductExist(B2BDbContext _context, CustomProduct customProduct)
         {
 
-            IEnumerable<B2BParrentProducts> products = await _context.B2BParrentProducts.ToListAsync();
+            B2BProduct childProduct = await _context.B2BProdducts.FirstOrDefaultAsync(x => x.product_sku == customProduct.SKU);
+
+            if(childProduct == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static async Task<bool> DoesParrentProductExist(B2BDbContext _context, CustomProduct customProduct)
+        {
+            B2BParrentProducts parrentProduct = await _context.B2BParrentProducts.FirstOrDefaultAsync(x => x.parrentProduct_masterId == customProduct.ParentSKU);
+
+            if (parrentProduct == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public static async Task<List<B2BParrentProducts>> LoadAllParrentProducts(B2BDbContext _context)
+        {
+
+            List<B2BParrentProducts> products = await _context.B2BParrentProducts.ToListAsync();
             return products;
         }
         public static async Task<IEnumerable<B2BProductPrices>> LoadAllProductPrices(B2BDbContext _context)

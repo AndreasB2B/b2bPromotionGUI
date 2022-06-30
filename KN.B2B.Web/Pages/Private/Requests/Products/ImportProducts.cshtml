@@ -1,0 +1,23 @@
+﻿@page
+@model KN.B2B.Web.Pages.Private.Requests.Products.ImportProductsModel
+@{
+    ViewData["Title"] = "Import Products";
+}
+
+<h1>All Products</h1>
+@*<form method="post">
+    <div class="mb-3">
+            <label for="formFile" class="form-label">Image</label>
+            <input class="form-control" type="file" id="formFile" name="file">
+        </div>
+        <input type="submit" value="submit"/>*@
+     @*   <button asp-page-handler="UploadExcel" class="btn btn-success" type="submit">
+            <i class="fas fa-save"></i>
+             Upload Excel
+        </button>*@
+@*</form>*@
+
+<form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadFile" class="form-control" />
+    <input type="submit" value="submit" id="sub" />
+</form>
